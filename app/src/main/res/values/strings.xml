@@ -7,5 +7,6 @@
     <string name="timer_default">3:00.00</string>
     <string name="fencer_one">One</string>
     <string name="fencer_two">Two</string>
+    <string name="mode_5touch">5 Touches</string>
 
 </resources>
