@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -96,47 +95,38 @@ public class MyActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    //methods to deal with timer
-    public void countDown(View v) {
-        if(ringer.isPlaying()) {
-            ringer.stop();
-            vibrator.cancel();
-            Log.v("Scorekeeper", "Ringer stopped");
+    public void countDown(View v) { //onClick method for timer
+        ringer.stop();
+        vibrator.cancel();
+
+        if (timerRunning) {
+            countDownTimer.cancel();
+            timerRunning = false;
         } else {
-            if (timerRunning) {
-                countDownTimer.cancel();
-                //Log.v("Scorekeeper", "Paused");
-                timerRunning = false;
-            } else {
-                countDownTimer = new CountDownTimer(time, 1) {
-                    public void onTick(long millisUntilFinished) {
-                        String timeStr = String.format("%02d:%02d.%02d", millisUntilFinished / 60000, millisUntilFinished / 1000, millisUntilFinished % 1000 / 10);
-                        timer.setText(timeStr);
-                        time = millisUntilFinished;
-                    }
+            countDownTimer = new CountDownTimer(time, 1) {
+                public void onTick(long millisUntilFinished) {
+                    String timeStr = String.format("%02d:%02d.%02d", millisUntilFinished / 60000, millisUntilFinished / 1000, millisUntilFinished % 1000 / 10);
+                    timer.setText(timeStr);
+                    time = millisUntilFinished;
+                }
 
-                    public void onFinish() {
-                        timer.setText("Time Up!");
-                        vibrator.vibrate(5000);
-                        ringer.play();
-                        Log.v("Scorekeeper", "Ringer started");
-                        time = originalTime;
+                public void onFinish() {
+                    timer.setText("Time Up!");
+                    vibrator.vibrate(5000);
+                    ringer.play();
+                    time = originalTime;
 
-                    }
-                }.start();
-                //Log.v("Scorekeeper", "Started");
-                timerRunning = true;
-            }
+                }
+            }.start();
+            timerRunning = true;
         }
     }
-
-
     //methods to deal with scores
     public void refreshScores() {
         scoreOneView.setText("" + scoreOne);
         scoreTwoView.setText("" + scoreTwo);
     }
-    public void addScoreOne(View view) {
+    public void addScoreOne(View view) { //onClick for scoreOne
         scoreOne++;
         refreshScores();
     }
@@ -144,7 +134,7 @@ public class MyActivity extends Activity {
         scoreOne--;
         refreshScores();
     }
-    public void addScoreTwo(View view) {
+    public void addScoreTwo(View view) { //onClick for scoreTwo
         scoreTwo++;
         refreshScores();
     }
