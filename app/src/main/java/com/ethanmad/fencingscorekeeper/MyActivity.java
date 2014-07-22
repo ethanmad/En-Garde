@@ -9,24 +9,29 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MyActivity extends Activity {
-    int scoreOne, scoreTwo;
+    long time;
+    int scoreOne;
+    int scoreTwo;
     TextView timer, scoreOneView, scoreTwoView;
     boolean timerRunning;
+    CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
 
+        timer = (TextView) findViewById(R.id.timer);
         scoreOneView = (TextView) findViewById(R.id.scoreOne);
         scoreTwoView = (TextView) findViewById(R.id.scoreTwo);
-        timer = (TextView) findViewById(R.id.timer);
 
-        if (savedInstanceState != null && savedInstanceState.containsKey("scoreOne")) {
+        if (savedInstanceState != null && savedInstanceState.containsKey("time")) {
+            time = savedInstanceState.getInt("time");
             scoreOne = savedInstanceState.getInt("scoreOne");
             scoreTwo = savedInstanceState.getInt("scoreTwo");
             timerRunning = savedInstanceState.getBoolean("timerRunning");
         } else {
+            time = 180 * 1000;
             scoreOne = scoreTwo = 0;
             timerRunning = false;
         }
@@ -36,6 +41,7 @@ public class MyActivity extends Activity {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putLong("time", time);
         savedInstanceState.putInt("scoreOne", scoreOne);
         savedInstanceState.putInt("scoreTwo", scoreTwo);
         savedInstanceState.putBoolean("timerRunning", timerRunning);
@@ -61,17 +67,26 @@ public class MyActivity extends Activity {
     }
 
     //methods to deal with timer
+    //TODO: subtract from time and check if timer has been started previously
     public void countDown(View v) {
-        new CountDownTimer(30000, 1000) {
+        if (timerRunning) {
+            countDownTimer.cancel();
+            //Log.v("Scorekeeper", "Paused");
+            timerRunning = false;
+        } else {
+            countDownTimer = new CountDownTimer(time, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    timer.setText("" + millisUntilFinished / 1000);
+                    time = millisUntilFinished;
+                }
 
-            public void onTick(long millisUntilFinished) {
-                timer.setText("" + millisUntilFinished / 1000);
-            }
-
-            public void onFinish() {
-                timer.setText("done!");
-            }
-        }.start();
+                public void onFinish() {
+                    timer.setText("done!");
+                }
+            }.start();
+            //Log.v("Scorekeeper", "Started");
+            timerRunning = true;
+        }
     }
 
     //methods to deal with scores
