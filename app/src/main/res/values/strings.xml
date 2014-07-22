@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FencingScorekeeper</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="timer_default">Timer</string>
+    <string name="fencer_one">One</string>
+    <string name="fencer_two">Two</string>
+
+</resources>

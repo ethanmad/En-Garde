@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MyActivity"
+    android:id="@+id/layout"
+    android:background="#303030">
+
+    <!--Fencer One's Score-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fencer_one"
+        android:id="@+id/scoreOne"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="20dp"
+        android:onClick="addScoreOne"
+        android:clickable="true"
+        android:textSize="40sp"
+        android:freezesText="true"
+        android:padding="20dp"
+        android:textColor="#FF0000"
+        android:layout_centerHorizontal="true" />
+
+    <!--Fencer Two's Score-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fencer_two"
+        android:id="@+id/scoreTwo"
+        android:layout_alignTop="@+id/scoreOne"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="addScoreTwo"
+        android:clickable="true"
+        android:textSize="40sp"
+        android:freezesText="true"
+        android:padding="20dp"
+        android:textColor="#00FF00" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/timer"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF"
+        android:text="@string/timer_default"
+        android:textSize="40dp"
+        android:clickable="true"
+        android:onClick="countDown" />
+
+    <!--Timer-->
+
+</RelativeLayout>
