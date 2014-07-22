@@ -1,20 +1,30 @@
 package com.ethanmad.fencingscorekeeper;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 public class MyActivity extends Activity {
-    long time;
+    long time, originalTime;
     int scoreOne;
     int scoreTwo;
     TextView timer, scoreOneView, scoreTwoView;
     boolean timerRunning;
     CountDownTimer countDownTimer;
+    Vibrator vibrator;
+    Uri alert;
+    Ringtone ringer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,23 +35,43 @@ public class MyActivity extends Activity {
         scoreOneView = (TextView) findViewById(R.id.scoreOne);
         scoreTwoView = (TextView) findViewById(R.id.scoreTwo);
 
-        if (savedInstanceState != null && savedInstanceState.containsKey("time")) {
-            time = savedInstanceState.getInt("time");
+
+        if (savedInstanceState != null && savedInstanceState.containsKey("time")) { //retrieve previous data
+            time = savedInstanceState.getLong("time");
+            originalTime = savedInstanceState.getLong("originalTime");
             scoreOne = savedInstanceState.getInt("scoreOne");
             scoreTwo = savedInstanceState.getInt("scoreTwo");
             timerRunning = savedInstanceState.getBoolean("timerRunning");
-        } else {
-            time = 180 * 1000;
+        } else { //create new data
+            time = originalTime =  10 * 1000;
             scoreOne = scoreTwo = 0;
             timerRunning = false;
         }
 
-        refreshScores();
+        refreshScores(); //update scoreViews
+
+        //used to signal to user that time has expired
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+        alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        if (alert == null){
+            // alert is null, using backup
+            alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            // I can't see this ever being null (as always have a default notification)
+            // but just in case
+            if (alert == null) {
+                // alert backup is null, using 2nd backup
+                alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+            }
+        }
+
+        ringer = RingtoneManager.getRingtone(getApplicationContext(), alert);
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putLong("time", time);
+        savedInstanceState.putLong("originalTime", originalTime);
         savedInstanceState.putInt("scoreOne", scoreOne);
         savedInstanceState.putInt("scoreTwo", scoreTwo);
         savedInstanceState.putBoolean("timerRunning", timerRunning);
@@ -67,27 +97,39 @@ public class MyActivity extends Activity {
     }
 
     //methods to deal with timer
-    //TODO: subtract from time and check if timer has been started previously
     public void countDown(View v) {
-        if (timerRunning) {
-            countDownTimer.cancel();
-            //Log.v("Scorekeeper", "Paused");
-            timerRunning = false;
+        if(ringer.isPlaying()) {
+            ringer.stop();
+            vibrator.cancel();
+            Log.v("Scorekeeper", "Ringer stopped");
         } else {
-            countDownTimer = new CountDownTimer(time, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    timer.setText("" + millisUntilFinished / 1000);
-                    time = millisUntilFinished;
-                }
+            if (timerRunning) {
+                countDownTimer.cancel();
+                //Log.v("Scorekeeper", "Paused");
+                timerRunning = false;
+            } else {
+                countDownTimer = new CountDownTimer(time, 1) {
+                    public void onTick(long millisUntilFinished) {
+                        String timeStr = String.format("%02d:%02d.%02d", millisUntilFinished / 60000, millisUntilFinished / 1000, millisUntilFinished % 1000 / 10);
+                        timer.setText(timeStr);
+                        time = millisUntilFinished;
+                    }
 
-                public void onFinish() {
-                    timer.setText("done!");
-                }
-            }.start();
-            //Log.v("Scorekeeper", "Started");
-            timerRunning = true;
+                    public void onFinish() {
+                        timer.setText("Time Up!");
+                        vibrator.vibrate(5000);
+                        ringer.play();
+                        Log.v("Scorekeeper", "Ringer started");
+                        time = originalTime;
+
+                    }
+                }.start();
+                //Log.v("Scorekeeper", "Started");
+                timerRunning = true;
+            }
         }
     }
+
 
     //methods to deal with scores
     public void refreshScores() {

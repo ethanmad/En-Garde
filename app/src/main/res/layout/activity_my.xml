@@ -56,7 +56,8 @@
         android:text="@string/timer_default"
         android:textSize="40dp"
         android:clickable="true"
-        android:onClick="countDown" />
+        android:onClick="countDown"
+        android:fontFamily="monospace" />
 
     <!--Timer-->
 
