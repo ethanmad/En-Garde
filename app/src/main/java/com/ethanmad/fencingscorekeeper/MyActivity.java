@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +20,7 @@ public class MyActivity extends Activity {
     int scoreOne;
     int scoreTwo;
     TextView timer, scoreOneView, scoreTwoView;
-    boolean timerRunning;
+    boolean timerRunning, oneHasYellow, oneHasRed, twoHasYellow, twoHasRed;
     CountDownTimer countDownTimer;
     Vibrator vibrator;
     Uri alert;
@@ -46,7 +45,7 @@ public class MyActivity extends Activity {
             scoreTwo = savedInstanceState.getInt("scoreTwo");
             timerRunning = savedInstanceState.getBoolean("timerRunning");
         } else { //create new data
-            time = originalTime =  10 * 1000;
+            time = originalTime =  3 * 60 * 1000;
             scoreOne = scoreTwo = 0;
             timerRunning = false;
         }
@@ -55,10 +54,10 @@ public class MyActivity extends Activity {
 
         // set-up blinking animation used when timer is paused
         blink = new AlphaAnimation(0.0f, 1.0f);
-        blink.setDuration(350);
-        blink.setStartOffset(20);
+        blink.setDuration(1000);
+        blink.setStartOffset(0);
         blink.setRepeatCount(Animation.INFINITE);
-        blink.setRepeatMode(Animation.REVERSE);
+        blink.setRepeatMode(Animation.ABSOLUTE);
 
         // used to signal to user that time has expired
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -113,20 +112,21 @@ public class MyActivity extends Activity {
             countDownTimer.cancel();
             timerRunning = false;
             timer.startAnimation(blink);
-            Log.v("", "Blinker started");
         } else {
             timer.clearAnimation();
-            Log.v("", "Blinker cancelled");
             countDownTimer = new CountDownTimer(time, 10) {
                 public void onTick(long millisUntilFinished) {
-                    String timeStr = String.format("%02d:%02d.%02d", millisUntilFinished / 60000,
-                            millisUntilFinished / 1000, millisUntilFinished % 1000 / 10);
+                    long minutes = millisUntilFinished / 60000;
+                    long seconds = millisUntilFinished / 1000 - minutes * 60;
+                    long milliseconds = millisUntilFinished % 1000 / 10;
+                    String timeStr = String.format("%1d:%02d.%02d", minutes,
+                            seconds, milliseconds);
                     timer.setText(timeStr);
                     time = millisUntilFinished;
                 }
 
                 public void onFinish() {
-                    timer.setText("Time Up!");
+                    timer.setText("Done!");
                     vibrator.vibrate(5000);
                     ringer.play();
                     time = originalTime;
@@ -158,4 +158,37 @@ public class MyActivity extends Activity {
         refreshScores();
     }
 
+    public void resetScores() {
+        scoreOne = 0;
+        countDownTimer.cancel();
+        scoreTwo = 0;
+        refreshScores();
+    }
+
+    public void resetTime() {
+        time = originalTime;
+        timerRunning = false;
+        ringer.stop();
+        vibrator.cancel();
+        timer.clearAnimation();
+    }
+
+    public void resetAll() {
+        resetScores();
+        resetTime();
+    }
+
+    //methods for cards
+    public void giveOneYellow(View view) {
+
+    }
+    public void giveOneRed(View view) {
+
+    }
+    public void giveTwoYellow(View view){
+
+    }
+    public void giveTwoRed(View view){
+
+    }
 }

@@ -2,11 +2,26 @@
 <resources>
 
     <string name="app_name">FencingScorekeeper</string>
-    <string name="hello_world">Hello world!</string>
+
     <string name="action_settings">Settings</string>
+    <string name="action_reset">Reset</string>
+
     <string name="timer_default">3:00.00</string>
-    <string name="fencer_one">One</string>
-    <string name="fencer_two">Two</string>
+
+    <string name="fencer_one">0</string>
+    <string name="fencer_two">0</string>
+
     <string name="mode_5touch">5 Touches</string>
+    <string name="mode_15touch">15 Touches</string>
+
+    <string name="onePeriod">1 Period</string>
+    <string name="threePeriods">3 Periods</string>
+
+    <string name="periodOne">Period 1</string>
+    <string name="periodTwo">Period 2</string>
+    <string name="periodThree">Period 3</string>
+
+    <string name="yellowCard">Yellow Card</string>
+    <string name="redCard">Red Card</string>
 
 </resources>
