@@ -1,6 +1,7 @@
 package com.ethanmad.fencingscorekeeper;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -190,5 +191,17 @@ public class MyActivity extends Activity {
     }
     public void giveTwoRed(View view){
 
+    }
+
+    public void showDialogYellowCard(View view) {
+        FragmentManager man = this.getFragmentManager();
+        YellowCardAlertFragment dialog = new YellowCardAlertFragment();
+        dialog.show(man,"Yellow Card");
+    }
+
+    public void showDialogRedCard(View view) {
+        FragmentManager man = this.getFragmentManager();
+        RedCardAlertFragment dialog = new RedCardAlertFragment();
+        dialog.show(man, "Red Card");
     }
 }

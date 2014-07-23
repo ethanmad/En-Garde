@@ -8,8 +8,8 @@
 
     <string name="timer_default">3:00.00</string>
 
-    <string name="fencer_one">0</string>
-    <string name="fencer_two">0</string>
+    <string name="fencer_one_score">0</string>
+    <string name="fencer_two_score">0</string>
 
     <string name="mode_5touch">5 Touches</string>
     <string name="mode_15touch">15 Touches</string>
@@ -23,5 +23,8 @@
 
     <string name="yellowCard">Yellow Card</string>
     <string name="redCard">Red Card</string>
+
+    <string name="pickFencerYellowCard">Yellow card: pick a fencer</string>
+    <string name="pickFencerRedCard">Red card: pick a fencer</string>
 
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fencer_names">
+        <item name="fencer_left">Left Fencer</item>
+        <item name="fencer_right">Right Fencer</item>
+    </string-array>
+</resources>
