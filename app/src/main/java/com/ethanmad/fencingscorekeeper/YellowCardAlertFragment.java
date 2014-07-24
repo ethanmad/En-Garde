@@ -1,5 +1,6 @@
 package com.ethanmad.fencingscorekeeper;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -25,7 +26,23 @@ public class YellowCardAlertFragment extends DialogFragment {
     }
 
     public interface YellowCardAlertListener {
-        //public void onDialog
+        public void onDialogClickTop(DialogFragment dialogFragment);
+        public void onDialogClickBottom(DialogFragment dialogFragment);
+    }
+
+    YellowCardAlertListener mListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            // Instantiate the YellowCardAlertListener so we can send events to the host
+            mListener = (YellowCardAlertListener) activity;
+        } catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(activity.toString()
+                + " must implement YellowCardAlertListener");
+        }
     }
 
 }

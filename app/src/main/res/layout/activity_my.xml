@@ -42,7 +42,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="130dp"
         android:layout_marginLeft="20dp"
-        android:onClick="addScoreOne"
+        android:onClick="addScore"
         android:clickable="true"
         android:textSize="60sp"
         android:freezesText="true"
@@ -60,7 +60,7 @@
         android:layout_alignTop="@+id/scoreOne"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:onClick="addScoreBoth"
+        android:onClick="addScore"
         android:clickable="true"/>
 
     <!--Double Touch View-->
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:text="@string/fencer_two_score"
         android:id="@+id/scoreTwo"
-        android:onClick="addScoreTwo"
+        android:onClick="addScore"
         android:clickable="true"
         android:textSize="60sp"
         android:freezesText="true"

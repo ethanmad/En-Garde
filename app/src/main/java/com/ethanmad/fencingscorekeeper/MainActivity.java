@@ -17,7 +17,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
 
-public class MyActivity extends Activity {
+public class MainActivity extends Activity {
     long time, originalTime;
     int scoreOne, scoreTwo;
     TextView timer, scoreOneView, scoreTwoView;
@@ -173,29 +173,30 @@ public class MyActivity extends Activity {
         scoreOneView.setText("" + scoreOne);
         scoreTwoView.setText("" + scoreTwo);
     }
-    public void addScoreOne(View view) { // onClick for scoreOne
-        pauseTimer();
-        scoreOne++;
+    public void addScore(View view) {
+        switch (view.getId()) {
+            case R.id.scoreOne:
+                scoreOne++;
+                break;
+            case R.id.scoreTwo:
+                scoreTwo++;
+                break;
+            case R.id.doubleTouchButton:
+                scoreOne++;
+                scoreTwo++;
+                break;
+        }
         refreshScores();
     }
-    public void subScoreOne(View view) {
-        pauseTimer();
-        scoreOne--;
-        refreshScores();
-    }
-    public void addScoreTwo(View view) { // onClick for scoreTwo
-        scoreTwo++;
-        refreshScores();
-    }
-    public void subScoreTwo(View view) {
-        scoreTwo--;
-        refreshScores();
-    }
-    public void addScoreBoth (View view) { // onClick for doubleTouchButton
-        pauseTimer();
-        scoreOne++;
-        scoreTwo++;
-        refreshScores();
+    public void subScore(View view) {
+        switch(view.getId()) {
+            case R.id.scoreOne:
+                scoreOne++;
+                break;
+            case R.id.scoreTwo:
+                scoreTwo++;
+                break;
+        }
     }
     private void resetScores() {
         scoreOne = 0;
@@ -214,16 +215,26 @@ public class MyActivity extends Activity {
 
     // methods for cards
     public void giveOneYellow(View view) {
-
+        if(oneHasYellow) {
+            oneHasRed = true;
+            scoreTwo++;
+        }
+        oneHasYellow = true;
     }
     public void giveOneRed(View view) {
-
+        scoreTwo++;
+        oneHasRed = true;
     }
     public void giveTwoYellow(View view){
-
+        if(twoHasYellow) {
+            twoHasRed = true;
+            scoreOne++;
+        }
+        twoHasYellow = true;
     }
     public void giveTwoRed(View view){
-
+        scoreOne++;
+        twoHasRed = true;
     }
     private void resetCards() {
        oneHasYellow = oneHasRed = twoHasRed = twoHasYellow = false;
