@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,8 +19,7 @@ import android.widget.TextView;
 
 public class MyActivity extends Activity {
     long time, originalTime;
-    int scoreOne;
-    int scoreTwo;
+    int scoreOne, scoreTwo;
     TextView timer, scoreOneView, scoreTwoView;
     boolean timerRunning, oneHasYellow, oneHasRed, twoHasYellow, twoHasRed;
     CountDownTimer countDownTimer;
@@ -105,6 +105,7 @@ public class MyActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    //methods for timer
     public void countDown(View v) { // onClick method for timer
         ringer.stop();
         vibrator.cancel();
@@ -117,17 +118,19 @@ public class MyActivity extends Activity {
             startTimer();
         }
     }
-
-    public void startTimer() {
+    private void refreshTimer(long millisUntilFinished) {
+        long minutes = millisUntilFinished / 60000;
+        long seconds = millisUntilFinished / 1000 - minutes * 60;
+        long milliseconds = millisUntilFinished % 1000 / 10;
+        String timeStr = String.format("%1d:%02d.%02d", minutes,
+                seconds, milliseconds);
+        timer.setText(timeStr);
+    }
+    private void startTimer() {
         timer.clearAnimation();
         countDownTimer = new CountDownTimer(time, 10) {
             public void onTick(long millisUntilFinished) {
-                long minutes = millisUntilFinished / 60000;
-                long seconds = millisUntilFinished / 1000 - minutes * 60;
-                long milliseconds = millisUntilFinished % 1000 / 10;
-                String timeStr = String.format("%1d:%02d.%02d", minutes,
-                        seconds, milliseconds);
-                timer.setText(timeStr);
+                refreshTimer(millisUntilFinished);
                 time = millisUntilFinished;
             }
 
@@ -141,8 +144,7 @@ public class MyActivity extends Activity {
         }.start();
         timerRunning = true;
     }
-
-    public void pauseTimer() {
+    private void pauseTimer() {
         ringer.stop();
         vibrator.cancel();
         if(timerRunning) {
@@ -151,14 +153,23 @@ public class MyActivity extends Activity {
             timer.startAnimation(blink);
         }
     }
-
-    public void endTimer() {
+    private void endTimer() {
         timer.setText("Done!");
         vibrator.vibrate(5000); //TODO: set vibrate pattern
     }
+    private void resetTime() {
+        time = originalTime;
+        timer.setText("" + time);
+        refreshTimer(time);
+        Log.d("", "Time reset");
+        timerRunning = false;
+        ringer.stop();
+        vibrator.cancel();
+        timer.clearAnimation();
+    }
 
-    //methods to deal with scores
-    public void refreshScores() {
+    // methods for scores
+    private void refreshScores() {
         scoreOneView.setText("" + scoreOne);
         scoreTwoView.setText("" + scoreTwo);
     }
@@ -180,32 +191,25 @@ public class MyActivity extends Activity {
         scoreTwo--;
         refreshScores();
     }
-
     public void addScoreBoth (View view) { // onClick for doubleTouchButton
         pauseTimer();
         scoreOne++;
         scoreTwo++;
         refreshScores();
     }
-
-    public void resetScores() {
+    private void resetScores() {
         scoreOne = 0;
-        countDownTimer.cancel();
+        if(timerRunning)
+            countDownTimer.cancel();
         scoreTwo = 0;
         refreshScores();
     }
 
-    public void resetTime() {
-        time = originalTime;
-        timerRunning = false;
-        ringer.stop();
-        vibrator.cancel();
-        timer.clearAnimation();
-    }
-
-    public void resetAll() {
+    public void resetAll(MenuItem menuItem) { // onClick for action_reset
         resetScores();
-        resetTime();
+        if(time != originalTime)
+            resetTime();
+        resetCards();
     }
 
     // methods for cards
@@ -221,16 +225,19 @@ public class MyActivity extends Activity {
     public void giveTwoRed(View view){
 
     }
+    private void resetCards() {
+       oneHasYellow = oneHasRed = twoHasRed = twoHasYellow = false;
+    }
 
     public void showDialogYellowCard(View view) { // onClick for yellowCardButton
         FragmentManager man = this.getFragmentManager();
         YellowCardAlertFragment dialog = new YellowCardAlertFragment();
         dialog.show(man,"Yellow Card");
     }
-
     public void showDialogRedCard(View view) { // onClick for redCardButton
         FragmentManager man = this.getFragmentManager();
         RedCardAlertFragment dialog = new RedCardAlertFragment();
         dialog.show(man, "Red Card");
     }
+
 }
