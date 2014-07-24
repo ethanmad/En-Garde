@@ -5,4 +5,8 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    <item android:id="@+id/reset_settings"
+        android:title="@string/action_reset"
+        android:orderInCategory="0"
+        android:showAsAction="never" />
 </menu>

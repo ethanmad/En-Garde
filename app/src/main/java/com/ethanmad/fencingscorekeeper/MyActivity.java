@@ -89,7 +89,7 @@ public class MyActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.my, menu);
+        getMenuInflater().inflate(R.menu.items, menu);
         return true;
     }
 
@@ -162,7 +162,7 @@ public class MyActivity extends Activity {
         scoreOneView.setText("" + scoreOne);
         scoreTwoView.setText("" + scoreTwo);
     }
-    public void addScoreOne(View view) { //onClick for scoreOne
+    public void addScoreOne(View view) { // onClick for scoreOne
         pauseTimer();
         scoreOne++;
         refreshScores();
@@ -172,7 +172,7 @@ public class MyActivity extends Activity {
         scoreOne--;
         refreshScores();
     }
-    public void addScoreTwo(View view) { //onClick for scoreTwo
+    public void addScoreTwo(View view) { // onClick for scoreTwo
         scoreTwo++;
         refreshScores();
     }
@@ -181,7 +181,7 @@ public class MyActivity extends Activity {
         refreshScores();
     }
 
-    public void addScoreBoth (View view) {
+    public void addScoreBoth (View view) { // onClick for doubleTouchButton
         pauseTimer();
         scoreOne++;
         scoreTwo++;
@@ -208,7 +208,7 @@ public class MyActivity extends Activity {
         resetTime();
     }
 
-    //methods for cards
+    // methods for cards
     public void giveOneYellow(View view) {
 
     }
