@@ -31,16 +31,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+
     <!--Fencer One Score-->
-
-    <!--Fencer Two Score-->
-
-    <!--Yellow Card Button-->
-
-    <!--Red Card Button-->
-
-    <!--Double Touch View-->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,8 +51,19 @@
         android:layout_centerHorizontal="true"
         android:layout_alignStart="@+id/timer" />
 
-    <com.cengalabs.flatui.views.FlatButton
+   <com.cengalabs.flatui.views.FlatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/double_touch"
+        android:id="@+id/doubleTouchButton"
+        flatui:theme="@array/dark"
+        android:layout_alignTop="@+id/scoreOne"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:onClick="addScoreBoth"
+        android:clickable="true"/>
 
+    <!--Double Touch View-->
     <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,6 +79,7 @@
         android:linksClickable="false"
         android:clickable="true" />-->
 
+    <!--Fencer Two Score-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -101,6 +105,7 @@
         android:layout_toRightOf="@+id/scoreOne"
         android:layout_toEndOf="@+id/scoreOne">
 
+        <!--Yellow Card Button-->
         <com.cengalabs.flatui.views.FlatButton
             flatui:blockButtonEffectHeight="3dp"
             flatui:theme="@array/flat_yellow"
@@ -115,6 +120,7 @@
             android:paddingLeft="10dp"
             android:layout_marginLeft="20dp" />
 
+        <!--Red Card Button-->
         <com.cengalabs.flatui.views.FlatButton
             flatui:blockButtonEffectHeight="3dp"
             flatui:theme="@array/flat_red"
