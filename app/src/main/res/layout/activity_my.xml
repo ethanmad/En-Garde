@@ -19,16 +19,28 @@
         android:id="@+id/timer"
         android:textColor="#FFFFFF"
         android:text="@string/timer_default"
-        android:textSize="80sp"
+        android:textSize="70sp"
         android:clickable="true"
         android:onClick="countDown"
         android:padding="20dp"
         android:typeface="sans"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/scoreOne"
-        android:layout_alignStart="@+id/scoreOne" />
+        android:gravity="center_horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <!--Fencer One Score-->
+
+    <!--Fencer Two Score-->
+
+    <!--Yellow Card Button-->
+
+    <!--Red Card Button-->
+
+    <!--Double Touch View-->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,9 +56,26 @@
         android:freezesText="true"
         android:padding="20dp"
         android:textColor="#FF0000"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignStart="@+id/timer" />
 
-    <!--Fencer Two Score-->
+    <com.cengalabs.flatui.views.FlatButton
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/double_touch"
+        android:id="@+id/doubleTouchView"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:onClick="addScoreBoth"
+        android:linksClickable="false"
+        android:clickable="true" />-->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,35 +88,44 @@
         android:padding="20dp"
         android:textColor="#00FF00"
         android:layout_alignTop="@+id/scoreOne"
-        android:layout_alignRight="@+id/timer"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentStart="false"
         android:layout_alignEnd="@+id/timer" />
 
-    <!--Yellow Card Button-->
-    <com.cengalabs.flatui.views.FlatButton
-        flatui:blockButtonEffectHeight="3dp"
-        flatui:theme="@array/flat_yellow"
-        android:layout_width="35dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/yellowCardButton"
-        android:clickable="true"
-        android:onClick="showDialogYellowCard"
-        android:layout_marginBottom="30dp"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/scoreOne"
-        android:layout_toEndOf="@+id/scoreOne"
-        android:layout_marginLeft="20dp" />
-
-    <!--Red Card Button-->
-    <com.cengalabs.flatui.views.FlatButton
-        flatui:blockButtonEffectHeight="3dp"
-        flatui:theme="@array/flat_red"
-        android:layout_width="35dp"
-        android:layout_height="50dp"
-        android:id="@+id/redCardOne"
-        android:layout_alignTop="@+id/yellowCardButton"
         android:layout_toLeftOf="@+id/scoreTwo"
         android:layout_toStartOf="@+id/scoreTwo"
-        android:layout_marginBottom="30dp"
-        android:layout_marginRight="20dp"
-        android:onClick="showDialogRedCard" />
+        android:layout_toRightOf="@+id/scoreOne"
+        android:layout_toEndOf="@+id/scoreOne">
+
+        <com.cengalabs.flatui.views.FlatButton
+            flatui:blockButtonEffectHeight="3dp"
+            flatui:theme="@array/flat_yellow"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:id="@+id/yellowCardButton"
+            android:clickable="true"
+            android:onClick="showDialogYellowCard"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/doubleTouchView"
+            android:focusableInTouchMode="false"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="20dp" />
+
+        <com.cengalabs.flatui.views.FlatButton
+            flatui:blockButtonEffectHeight="3dp"
+            flatui:theme="@array/flat_red"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:id="@+id/redCardButton"
+            android:onClick="showDialogRedCard"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="20dp" />
+    </RelativeLayout>
+
 </RelativeLayout>

@@ -114,39 +114,61 @@ public class MyActivity extends Activity {
             timerRunning = false;
             timer.startAnimation(blink);
         } else {
-            timer.clearAnimation();
-            countDownTimer = new CountDownTimer(time, 10) {
-                public void onTick(long millisUntilFinished) {
-                    long minutes = millisUntilFinished / 60000;
-                    long seconds = millisUntilFinished / 1000 - minutes * 60;
-                    long milliseconds = millisUntilFinished % 1000 / 10;
-                    String timeStr = String.format("%1d:%02d.%02d", minutes,
-                            seconds, milliseconds);
-                    timer.setText(timeStr);
-                    time = millisUntilFinished;
-                }
-
-                public void onFinish() {
-                    timer.setText("Done!");
-                    vibrator.vibrate(5000);
-                    ringer.play();
-                    time = originalTime;
-
-                }
-            }.start();
-            timerRunning = true;
+            startTimer();
         }
     }
+
+    public void startTimer() {
+        timer.clearAnimation();
+        countDownTimer = new CountDownTimer(time, 10) {
+            public void onTick(long millisUntilFinished) {
+                long minutes = millisUntilFinished / 60000;
+                long seconds = millisUntilFinished / 1000 - minutes * 60;
+                long milliseconds = millisUntilFinished % 1000 / 10;
+                String timeStr = String.format("%1d:%02d.%02d", minutes,
+                        seconds, milliseconds);
+                timer.setText(timeStr);
+                time = millisUntilFinished;
+            }
+
+            public void onFinish() {
+                timer.setText("Done!");
+                vibrator.vibrate(5000);
+                ringer.play();
+                time = originalTime;
+
+            }
+        }.start();
+        timerRunning = true;
+    }
+
+    public void pauseTimer() {
+        ringer.stop();
+        vibrator.cancel();
+        if(timerRunning) {
+            countDownTimer.cancel();
+            timerRunning = false;
+            timer.startAnimation(blink);
+        }
+    }
+
+    public void endTimer() {
+        timer.setText("Done!");
+        vibrator.vibrate(5000); //TODO: set vibrate pattern
+    }
+
     //methods to deal with scores
     public void refreshScores() {
         scoreOneView.setText("" + scoreOne);
         scoreTwoView.setText("" + scoreTwo);
     }
     public void addScoreOne(View view) { //onClick for scoreOne
+        pauseTimer();
         scoreOne++;
         refreshScores();
     }
     public void subScoreOne(View view) {
+        pauseTimer();
         scoreOne--;
         refreshScores();
     }
@@ -156,6 +178,13 @@ public class MyActivity extends Activity {
     }
     public void subScoreTwo(View view) {
         scoreTwo--;
+        refreshScores();
+    }
+
+    public void addScoreBoth (View view) {
+        pauseTimer();
+        scoreOne++;
+        scoreTwo++;
         refreshScores();
     }
 
@@ -193,13 +222,13 @@ public class MyActivity extends Activity {
 
     }
 
-    public void showDialogYellowCard(View view) {
+    public void showDialogYellowCard(View view) { // onClick for yellowCardButton
         FragmentManager man = this.getFragmentManager();
         YellowCardAlertFragment dialog = new YellowCardAlertFragment();
         dialog.show(man,"Yellow Card");
     }
 
-    public void showDialogRedCard(View view) {
+    public void showDialogRedCard(View view) { // onClick for redCardButton
         FragmentManager man = this.getFragmentManager();
         RedCardAlertFragment dialog = new RedCardAlertFragment();
         dialog.show(man, "Red Card");

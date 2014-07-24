@@ -14,14 +14,18 @@ public class YellowCardAlertFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.pickFencerYellowCard)
-                .setItems(R.array.fencer_names, new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.pick_fencer_yellow_card)
+                .setItems(R.array.fencer_names, new DialogInterface.OnClickListener() { //TODO: switch to ListAdapter to allow for dynamic names
                     public void onClick(DialogInterface dialog, int which) {
                         // The 'which' argument contains the index position
                         // of the selected item
                     }
                 });
         return builder.create();
+    }
+
+    public interface YellowCardAlertListener {
+        //public void onDialog
     }
 
 }
