@@ -12,98 +12,20 @@
     android:background="#202020">
 
     <!--Timer-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/timer"
-        android:textColor="#FFFFFF"
-        android:text="@string/timer_default"
-        android:textSize="70sp"
-        android:clickable="true"
-        android:onClick="countDown"
-        android:padding="20dp"
-        android:typeface="sans"
-        android:layout_alignParentTop="true"
-        android:gravity="center_horizontal"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 
     <!--Fencer One Score-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fencer_one_score"
-        android:id="@+id/scoreOne"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="130dp"
-        android:layout_marginLeft="20dp"
-        android:onClick="addScore"
-        android:clickable="true"
-        android:textSize="60sp"
-        android:freezesText="true"
-        android:padding="20dp"
-        android:textColor="#FF0000"
-        android:layout_centerHorizontal="true"
-        android:layout_alignStart="@+id/timer" />
 
-   <com.cengalabs.flatui.views.FlatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/double_touch"
-        android:id="@+id/doubleTouchButton"
-        flatui:theme="@array/dark"
-        android:layout_alignTop="@+id/scoreOne"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:onClick="addScore"
-        android:clickable="true"/>
-
-    <!--Double Touch View-->
-    <!--<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/double_touch"
-        android:id="@+id/doubleTouchView"
-        android:textColor="#FFFFFF"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
-        android:textSize="25sp"
-        android:padding="5dp"
-        android:onClick="addScoreBoth"
-        android:linksClickable="false"
-        android:clickable="true" />-->
 
     <!--Fencer Two Score-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fencer_two_score"
-        android:id="@+id/scoreTwo"
-        android:onClick="addScore"
-        android:clickable="true"
-        android:textSize="60sp"
-        android:freezesText="true"
-        android:padding="20dp"
-        android:textColor="#00FF00"
-        android:layout_alignTop="@+id/scoreOne"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentStart="false"
-        android:layout_alignEnd="@+id/timer" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/scoreTwo"
         android:layout_toStartOf="@+id/scoreTwo"
-        android:layout_toRightOf="@+id/scoreOne"
-        android:layout_toEndOf="@+id/scoreOne">
+        android:layout_toEndOf="@+id/scoreOne"
+        android:longClickable="true">
 
         <!--Yellow Card Button-->
         <com.cengalabs.flatui.views.FlatButton
@@ -113,12 +35,13 @@
             android:layout_height="50dp"
             android:id="@+id/yellowCardButton"
             android:clickable="true"
-            android:onClick="showDialogYellowCard"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/doubleTouchView"
+            android:onClick="showCardDialog"
             android:focusableInTouchMode="false"
             android:paddingLeft="10dp"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <!--Red Card Button-->
         <com.cengalabs.flatui.views.FlatButton
@@ -127,11 +50,100 @@
             android:layout_width="35dp"
             android:layout_height="50dp"
             android:id="@+id/redCardButton"
-            android:onClick="showDialogRedCard"
+            android:onClick="showCardDialog"
+            android:layout_marginRight="120dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/periodView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="150dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fencer_one_score"
+            android:id="@+id/scoreOne"
+            android:layout_marginLeft="28dp"
+            android:onClick="addScore"
+            android:clickable="true"
+            android:textSize="60sp"
+            android:freezesText="true"
+            android:padding="20dp"
+            android:textColor="#FF0000"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fencer_two_score"
+            android:id="@+id/scoreTwo"
+            android:onClick="addScore"
+            android:clickable="true"
+            android:textSize="60sp"
+            android:freezesText="true"
+            android:padding="20dp"
+            android:textColor="#00FF00"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="20dp" />
+            android:layout_marginRight="28dp" />
+
+        <com.cengalabs.flatui.views.FlatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/double_touch"
+            android:id="@+id/doubleTouchButton"
+            flatui:theme="@array/dark"
+            android:onClick="addScore"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/timer"
+            android:textColor="#FFFFFF"
+            android:text="@string/timer_default"
+            android:textSize="70sp"
+            android:clickable="true"
+            android:onClick="countDown"
+            android:padding="20dp"
+            android:typeface="sans"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/period"
+            android:id="@+id/periodView"
+            android:textColor="#FFFFFF"
+            android:autoText="false"
+            android:layout_alignBottom="@+id/timer"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.ethanmad.fencingscorekeeper;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.media.Ringtone;
@@ -9,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,11 +17,12 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
-    long time, originalTime;
-    int scoreOne, scoreTwo;
-    TextView timer, scoreOneView, scoreTwoView;
-    boolean timerRunning, oneHasYellow, oneHasRed, twoHasYellow, twoHasRed;
+public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener {
+    long timeRemaining, periodLength, breakLength;
+    long[] startVibrationPattern, endVibrationPattern;
+    int scoreOne, scoreTwo, periodNumber, mode;
+    TextView timer, scoreOneView, scoreTwoView, periodView;
+    boolean timerRunning, inPeriod, inBreak, oneHasYellow, oneHasRed, twoHasYellow, twoHasRed;
     CountDownTimer countDownTimer;
     Vibrator vibrator;
     Uri alert;
@@ -37,18 +38,28 @@ public class MainActivity extends Activity {
         timer = (TextView) findViewById(R.id.timer);
         scoreOneView = (TextView) findViewById(R.id.scoreOne);
         scoreTwoView = (TextView) findViewById(R.id.scoreTwo);
+        periodView = (TextView) findViewById(R.id.periodView);
 
-
-        if (savedInstanceState != null && savedInstanceState.containsKey("time")) { // retrieve previous data
-            time = savedInstanceState.getLong("time");
-            originalTime = savedInstanceState.getLong("originalTime");
+        if (savedInstanceState != null && savedInstanceState.containsKey("timeRemaining")) { // retrieve previous data
+            timeRemaining = savedInstanceState.getLong("timeRemaining");
+            periodLength = savedInstanceState.getLong("periodLength");
             scoreOne = savedInstanceState.getInt("scoreOne");
             scoreTwo = savedInstanceState.getInt("scoreTwo");
             timerRunning = savedInstanceState.getBoolean("timerRunning");
+            periodNumber = savedInstanceState.getInt("periodNumber");
+            breakLength = savedInstanceState.getLong("breakLength");
+            mode = savedInstanceState.getInt("mode");
+            inPeriod = savedInstanceState.getBoolean("inPeriod");
+            inBreak = savedInstanceState.getBoolean("inBreak");
         } else { //create new data
-            time = originalTime =  3 * 60 * 1000;
+            timeRemaining = periodLength = 3 * 3 * 1000;
             scoreOne = scoreTwo = 0;
             timerRunning = false;
+            periodNumber = 1; refreshPeriod();
+            breakLength = 1 * 10 * 1000;
+            mode = 1;
+            inPeriod = true;
+            inBreak = false;
         }
 
         refreshScores(); // update scoreViews
@@ -60,11 +71,12 @@ public class MainActivity extends Activity {
         blink.setRepeatCount(Animation.INFINITE);
         blink.setRepeatMode(Animation.ABSOLUTE);
 
-        // used to signal to user that time has expired
+        // used to signal to user that timeRemaining has expired
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
+        startVibrationPattern = new long[]{0, 50, 100, 50};
+        endVibrationPattern = new long[]{0, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50/**/};
         alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        if (alert == null){
+        if (alert == null) {
             // alert is null, using backup
             alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             // just in case
@@ -79,11 +91,16 @@ public class MainActivity extends Activity {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putLong("time", time);
-        savedInstanceState.putLong("originalTime", originalTime);
+        savedInstanceState.putLong("timeRemaining", timeRemaining);
+        savedInstanceState.putLong("periodLength", periodLength);
         savedInstanceState.putInt("scoreOne", scoreOne);
         savedInstanceState.putInt("scoreTwo", scoreTwo);
         savedInstanceState.putBoolean("timerRunning", timerRunning);
+        savedInstanceState.putInt("periodNumber", periodNumber);
+        savedInstanceState.putLong("breakLength", breakLength);
+        savedInstanceState.putInt("mode", mode);
+        savedInstanceState.putBoolean("inPeriod", inPeriod);
+        savedInstanceState.putBoolean("inBreak", inBreak);
     }
 
     @Override
@@ -109,15 +126,10 @@ public class MainActivity extends Activity {
     public void countDown(View v) { // onClick method for timer
         ringer.stop();
         vibrator.cancel();
-
-        if (timerRunning) {
-            countDownTimer.cancel();
-            timerRunning = false;
-            timer.startAnimation(blink);
-        } else {
-            startTimer();
-        }
+        if (timerRunning) pauseTimer();
+        else startTimer(timeRemaining);
     }
+
     private void refreshTimer(long millisUntilFinished) {
         long minutes = millisUntilFinished / 60000;
         long seconds = millisUntilFinished / 1000 - minutes * 60;
@@ -126,46 +138,65 @@ public class MainActivity extends Activity {
                 seconds, milliseconds);
         timer.setText(timeStr);
     }
-    private void startTimer() {
+
+    private void startTimer(long time) {
         timer.clearAnimation();
+        vibrator.vibrate(startVibrationPattern, -1);
         countDownTimer = new CountDownTimer(time, 10) {
             public void onTick(long millisUntilFinished) {
                 refreshTimer(millisUntilFinished);
-                time = millisUntilFinished;
+                timeRemaining = millisUntilFinished;
             }
 
             public void onFinish() {
-                timer.setText("Done!");
-                vibrator.vibrate(5000);
-                ringer.play();
-                time = originalTime;
-
+                endPeriod();
             }
         }.start();
         timerRunning = true;
     }
+
     private void pauseTimer() {
         ringer.stop();
         vibrator.cancel();
-        if(timerRunning) {
+        vibrator.vibrate(100);
+        if (timerRunning) {
             countDownTimer.cancel();
             timerRunning = false;
             timer.startAnimation(blink);
         }
     }
-    private void endTimer() {
+
+    private void endPeriod() {
         timer.setText("Done!");
-        vibrator.vibrate(5000); //TODO: set vibrate pattern
+        vibrator.vibrate(endVibrationPattern, -1);
+        ringer.play();
+        timerRunning = false;
+        inPeriod = !inPeriod;
+        inBreak = !inBreak;
+        if (inPeriod) {
+            timeRemaining = periodLength;
+            nextPeriod();
+        } else if (inBreak)
+            timeRemaining = breakLength;
     }
+
+    private void nextPeriod() {
+        periodNumber++;
+        refreshPeriod();
+    }
+    private void refreshPeriod() {
+        periodView.setText(getResources().getString(R.string.period) + " " + periodNumber);
+    }
+
     private void resetTime() {
-        time = originalTime;
-        timer.setText("" + time);
-        refreshTimer(time);
-        Log.d("", "Time reset");
+        timeRemaining = periodLength;
+        timer.setText("" + timeRemaining);
+        refreshTimer(timeRemaining);
         timerRunning = false;
         ringer.stop();
         vibrator.cancel();
         timer.clearAnimation();
+        periodNumber = 1;
     }
 
     // methods for scores
@@ -173,7 +204,8 @@ public class MainActivity extends Activity {
         scoreOneView.setText("" + scoreOne);
         scoreTwoView.setText("" + scoreTwo);
     }
-    public void addScore(View view) {
+
+    public void addScore(View view) { //onClick for score textViews
         switch (view.getId()) {
             case R.id.scoreOne:
                 scoreOne++;
@@ -186,10 +218,12 @@ public class MainActivity extends Activity {
                 scoreTwo++;
                 break;
         }
+        pauseTimer();
         refreshScores();
     }
+
     public void subScore(View view) {
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.scoreOne:
                 scoreOne++;
                 break;
@@ -198,9 +232,10 @@ public class MainActivity extends Activity {
                 break;
         }
     }
+
     private void resetScores() {
         scoreOne = 0;
-        if(timerRunning)
+        if (timerRunning)
             countDownTimer.cancel();
         scoreTwo = 0;
         refreshScores();
@@ -208,47 +243,60 @@ public class MainActivity extends Activity {
 
     public void resetAll(MenuItem menuItem) { // onClick for action_reset
         resetScores();
-        if(time != originalTime)
+        if (timeRemaining != periodLength)
             resetTime();
         resetCards();
+
     }
 
     // methods for cards
-    public void giveOneYellow(View view) {
-        if(oneHasYellow) {
-            oneHasRed = true;
-            scoreTwo++;
-        }
-        oneHasYellow = true;
-    }
-    public void giveOneRed(View view) {
-        scoreTwo++;
-        oneHasRed = true;
-    }
-    public void giveTwoYellow(View view){
-        if(twoHasYellow) {
-            twoHasRed = true;
-            scoreOne++;
-        }
-        twoHasYellow = true;
-    }
-    public void giveTwoRed(View view){
-        scoreOne++;
-        twoHasRed = true;
-    }
-    private void resetCards() {
-       oneHasYellow = oneHasRed = twoHasRed = twoHasYellow = false;
+    public void onDialogClick(DialogFragment dialogFragment, int fencer, int cardType) {
+        // TODO: show card!
+        giveCard(fencer, cardType);
     }
 
-    public void showDialogYellowCard(View view) { // onClick for yellowCardButton
-        FragmentManager man = this.getFragmentManager();
-        YellowCardAlertFragment dialog = new YellowCardAlertFragment();
-        dialog.show(man,"Yellow Card");
+    public void giveCard(int fencer, int cardType) {
+        switch (fencer) {
+            case (0):
+                switch (cardType) {
+                    case (0):
+                        if (oneHasYellow) {
+                            oneHasRed = true;
+                            scoreTwo++;
+                        }
+                        oneHasYellow = true;
+                        break;
+                    case (1):
+                        scoreTwo++;
+                        oneHasRed = true;
+                        break;
+                }
+                break;
+            case (1):
+                switch (cardType) {
+                    case (0):
+                        if (twoHasYellow) {
+                            twoHasRed = true;
+                            scoreOne++;
+                        }
+                        twoHasYellow = true;
+                    case (1):
+                        scoreOne++;
+                        twoHasRed = true;
+                }
+        }
+        refreshScores();
+        pauseTimer();
     }
-    public void showDialogRedCard(View view) { // onClick for redCardButton
+
+    private void resetCards() {
+        oneHasYellow = oneHasRed = twoHasRed = twoHasYellow = false;
+    }
+
+    public void showCardDialog(View view) { // onClick for yellowCardButton & redCardButton
         FragmentManager man = this.getFragmentManager();
-        RedCardAlertFragment dialog = new RedCardAlertFragment();
-        dialog.show(man, "Red Card");
+        CardAlertFragment dialog = new CardAlertFragment(view);
+        dialog.show(man, "Penalty Card");
     }
 
 }

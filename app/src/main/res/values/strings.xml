@@ -18,14 +18,12 @@
     <string name="one_period">1 Period</string>
     <string name="three_periods">3 Periods</string>
 
-    <string name="period_one">Period 1</string>
-    <string name="period_two">Period 2</string>
-    <string name="period_three">Period 3</string>
+    <string name="period">Period</string>
 
     <string name="yellow_card">Yellow Card</string>
     <string name="red_card">Red Card</string>
 
-    <string name="pick_fencer_yellow_card">Award yellow card to ...</string>
-    <string name="pick_fencer_red_card">Award red card to ...</string>
+    <string name="yellow_card_dialog">Give  yellow card to &#8230;</string>
+    <string name="red_card_dialog">Give red card to &#8230;</string>
 
 </resources>
