@@ -65,7 +65,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         twoHasYellow = savedInstanceState.getBoolean("twoHasYellow", false);
         twoHasRed = savedInstanceState.getBoolean("twoHasRed", false);
 
-        refreshAll();   // update views
+        updateAll();   // update views
 
         // set-up blinking animation used when timer is paused
         blink = new AlphaAnimation(0.0f, 1.0f);
@@ -134,11 +134,11 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     // METHODS FOR ALL TYPES
-    public void refreshAll() { // call all refresh methods (except refreshTimer)
-        refreshPeriod();
-        refreshScores();
-        refreshCardIndicators();
-        refreshTimer(timeRemaining);
+    public void updateAll() { // call all refresh methods (except updateTimer)
+        updatePeriod();
+        updateScores();
+        updateCardIndicators();
+        updateTimer(timeRemaining);
     }
     public void resetAll(MenuItem menuItem) { // onClick for action_reset
         resetScores();
@@ -150,7 +150,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
 
     // METHODS FOR TIME & PERIODS
-    private void refreshTimer(long millisUntilFinished) {
+    private void updateTimer(long millisUntilFinished) {
         long minutes = millisUntilFinished / 60000;
         long seconds = millisUntilFinished / 1000 - minutes * 60;
         long milliseconds = millisUntilFinished % 1000 / 10;
@@ -164,7 +164,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         vibrator.vibrate(startVibrationPattern, -1);
         countDownTimer = new CountDownTimer(time, 10) {
             public void onTick(long millisUntilFinished) {
-                refreshTimer(millisUntilFinished);
+                updateTimer(millisUntilFinished);
                 timeRemaining = millisUntilFinished;
             }
 
@@ -201,9 +201,9 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
     private void nextPeriod() {
         periodNumber++;
-        refreshPeriod();
+        updatePeriod();
     }
-    private void refreshPeriod() {
+    private void updatePeriod() {
         periodView.setText(getResources().getString(R.string.period) + " " + periodNumber);
     }
     private void resetPeriod() {
@@ -212,7 +212,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private void resetTime() {
         timeRemaining = periodLength;
         timer.setText("" + timeRemaining);
-        refreshTimer(timeRemaining);
+        updateTimer(timeRemaining);
         timerRunning = false;
         ringer.stop();
         vibrator.cancel();
@@ -221,7 +221,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     // METHODS FOR SCORES
-    private void refreshScores() {
+    private void updateScores() {
         scoreOneView.setText("" + scoreOne);
         scoreTwoView.setText("" + scoreTwo);
     }
@@ -239,7 +239,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 break;
         }
         pauseTimer();
-        refreshScores();
+        updateScores();
     }
     public void subScore(View view) {
         switch (view.getId()) {
@@ -256,7 +256,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         if (timerRunning)
             countDownTimer.cancel();
         scoreTwo = 0;
-        refreshScores();
+        updateScores();
     }
 
     // METHODS FOR CARDS
@@ -299,14 +299,14 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 if (twoHasRed) cardIntent.putExtra("red", true);
                 startActivity(cardIntent); // launch card activity
         }
-        refreshAll();
+        updateAll();
         pauseTimer();
     }
     private void resetCards() { // remove all penalties and clear indicator views
         oneHasYellow = oneHasRed = twoHasRed = twoHasYellow = false;
-        refreshCardIndicators();
+        updateCardIndicators();
     }
-    private void refreshCardIndicators() { // update penalty indicator views
+    private void updateCardIndicators() { // update penalty indicator views
         if (oneHasYellow)   yellowIndicatorLeft.setVisibility(View.VISIBLE);
             else yellowIndicatorLeft.setVisibility(View.INVISIBLE);
         if (oneHasRed)  redIndicatorLeft.setVisibility(View.VISIBLE);
