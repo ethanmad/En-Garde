@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener {
@@ -23,6 +24,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     long[] startVibrationPattern, endVibrationPattern;
     int scoreOne, scoreTwo, periodNumber, mode;
     TextView timer, scoreOneView, scoreTwoView, periodView;
+    ImageView yellowIndicatorLeft, redIndicatorLeft, yellowIndicatorRight, redIndicatorRight;
     boolean timerRunning, inPeriod, inBreak, oneHasYellow, oneHasRed, twoHasYellow, twoHasRed;
     CountDownTimer countDownTimer;
     Vibrator vibrator;
@@ -40,32 +42,34 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         scoreOneView = (TextView) findViewById(R.id.scoreOne);
         scoreTwoView = (TextView) findViewById(R.id.scoreTwo);
         periodView = (TextView) findViewById(R.id.periodView);
+        yellowIndicatorLeft = (ImageView) findViewById(R.id.yellowCircleViewOne);
+        redIndicatorLeft = (ImageView) findViewById(R.id.redCircleViewOne);
+        yellowIndicatorRight = (ImageView) findViewById(R.id.yellowCircleViewTwo);
+        redIndicatorRight = (ImageView) findViewById(R.id.redCircleViewTwo);
 
-        if (savedInstanceState != null && savedInstanceState.containsKey("timeRemaining")) { // retrieve previous data
-            timeRemaining = savedInstanceState.getLong("timeRemaining");
-            periodLength = savedInstanceState.getLong("periodLength");
-            scoreOne = savedInstanceState.getInt("scoreOne");
-            scoreTwo = savedInstanceState.getInt("scoreTwo");
-            timerRunning = savedInstanceState.getBoolean("timerRunning");
-            periodNumber = savedInstanceState.getInt("periodNumber");
-            breakLength = savedInstanceState.getLong("breakLength");
-            mode = savedInstanceState.getInt("mode");
-            inPeriod = savedInstanceState.getBoolean("inPeriod");
-            inBreak = savedInstanceState.getBoolean("inBreak");
+        // import previous data if it exists, otherwise use values on right
+        if (savedInstanceState == null) savedInstanceState = new Bundle();
+        periodLength = savedInstanceState.getLong("periodLength", 3 * 60 * 1000);
+        timeRemaining = savedInstanceState.getLong("timeRemaining", periodLength);
+        scoreOne = savedInstanceState.getInt("scoreOne", 0);
+        scoreTwo = savedInstanceState.getInt("scoreTwo", 0);
+        timerRunning = savedInstanceState.getBoolean("timerRunning", false);
+        periodNumber = savedInstanceState.getInt("periodNumber", 1);
 
-        } else { //create new data
-            timeRemaining = periodLength = 3 * 3 * 1000;
-            scoreOne = scoreTwo = 0;
-            timerRunning = false;
-            periodNumber = 1; refreshPeriod();
-            breakLength = 1 * 10 * 1000;
-            mode = 1;
-            inPeriod = true;
-            inBreak = false;
-            oneHasYellow = oneHasRed = twoHasRed = twoHasYellow = false;
-        }
+        breakLength = savedInstanceState.getLong("breakLength", 1 * 60 * 1000);
+        mode = savedInstanceState.getInt("mode", 1);
+        inPeriod = savedInstanceState.getBoolean("inPeriod", true);
+        inBreak = savedInstanceState.getBoolean("inBreak", false);
+        oneHasYellow = savedInstanceState.getBoolean("oneHasYellow", false);
+        oneHasRed = savedInstanceState.getBoolean("oneHasRed", false);
+        twoHasYellow = savedInstanceState.getBoolean("twoHasYellow", false);
+        twoHasRed = savedInstanceState.getBoolean("twoHasRed", false);
+//        yellowIndicatorLeft.setVisibility(yellowIndicatorLeft.INVISIBLE);
+//        redIndicatorLeft.setVisibility(redIndicatorLeft.INVISIBLE);
+//        yellowIndicatorRight.setVisibility(yellowIndicatorRight.INVISIBLE);
+//        redIndicatorRight.setVisibility(redIndicatorRight.INVISIBLE);
 
-        refreshScores(); // update scoreViews
+        refreshAll();   // update views
 
         // set-up blinking animation used when timer is paused
         blink = new AlphaAnimation(0.0f, 1.0f);
@@ -133,6 +137,21 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         else startTimer(timeRemaining);
     }
 
+    // METHODS FOR ALL TYPES
+    public void refreshAll() { // call all refresh methods (except refreshTimer)
+        refreshPeriod();
+        refreshScores();
+        refreshCardIndicators();
+    }
+    public void resetAll(MenuItem menuItem) { // onClick for action_reset
+        resetScores();
+        if (timeRemaining != periodLength)
+            resetTime();
+        resetCards();
+    }
+
+
+    // METHODS FOR TIME & PERIODS
     private void refreshTimer(long millisUntilFinished) {
         long minutes = millisUntilFinished / 60000;
         long seconds = millisUntilFinished / 1000 - minutes * 60;
@@ -141,7 +160,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 seconds, milliseconds);
         timer.setText(timeStr);
     }
-
     private void startTimer(long time) {
         timer.clearAnimation();
         vibrator.vibrate(startVibrationPattern, -1);
@@ -157,7 +175,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         }.start();
         timerRunning = true;
     }
-
     private void pauseTimer() {
         ringer.stop();
         vibrator.cancel();
@@ -168,7 +185,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             timer.startAnimation(blink);
         }
     }
-
     private void endPeriod() {
         timer.setText("Done!");
         vibrator.vibrate(endVibrationPattern, -1);
@@ -182,7 +198,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         } else if (inBreak)
             timeRemaining = breakLength;
     }
-
     private void nextPeriod() {
         periodNumber++;
         refreshPeriod();
@@ -190,7 +205,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private void refreshPeriod() {
         periodView.setText(getResources().getString(R.string.period) + " " + periodNumber);
     }
-
     private void resetTime() {
         timeRemaining = periodLength;
         timer.setText("" + timeRemaining);
@@ -202,12 +216,11 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         periodNumber = 1;
     }
 
-    // methods for scores
+    // METHODS FOR SCORES
     private void refreshScores() {
         scoreOneView.setText("" + scoreOne);
         scoreTwoView.setText("" + scoreTwo);
     }
-
     public void addScore(View view) { //onClick for score textViews
         switch (view.getId()) {
             case R.id.scoreOne:
@@ -224,7 +237,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         pauseTimer();
         refreshScores();
     }
-
     public void subScore(View view) {
         switch (view.getId()) {
             case R.id.scoreOne:
@@ -235,7 +247,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 break;
         }
     }
-
     private void resetScores() {
         scoreOne = 0;
         if (timerRunning)
@@ -244,21 +255,12 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         refreshScores();
     }
 
-    public void resetAll(MenuItem menuItem) { // onClick for action_reset
-        resetScores();
-        if (timeRemaining != periodLength)
-            resetTime();
-        resetCards();
-
-    }
-
-    // methods for cards
+    // METHODS FOR CARDS
     public void onDialogClick(DialogFragment dialogFragment, int fencer, int cardType) {
         giveCard(fencer, cardType);
     }
-
-    public void giveCard(int fencer, int cardType) {
-        Intent intent = new Intent(this, CardActivty.class);
+    public void giveCard(int fencer, int cardType) { // logic for assigning cards
+        Intent cardIntent = new Intent(this, CardActivty.class);
         boolean alreadyHadYellow = false;
         switch (fencer) {
             case (0):
@@ -274,37 +276,45 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         oneHasRed = true;
                         break;
                 }
-                if (oneHasRed) intent.putExtra("red", true);
-                startActivity(intent);
+                if (oneHasRed) cardIntent.putExtra("red", true);
+                startActivity(cardIntent);
                 break;
             case (1):
                 switch (cardType) {
                     case (0):
-                        if(twoHasYellow)
+                        if (twoHasYellow)
                             alreadyHadYellow = true;
                         twoHasYellow = true;
-                        if(!alreadyHadYellow)
+                        if (!alreadyHadYellow)
                             break;
                     case (1):
                         scoreOne++;
                         twoHasRed = true;
                         break;
                 }
-                if (twoHasRed) intent.putExtra("red", true);
-                startActivity(intent);
+                if (twoHasRed) cardIntent.putExtra("red", true);
+                startActivity(cardIntent); // launch card activity
         }
-        refreshScores();
+        refreshAll();
         pauseTimer();
     }
-
-    private void resetCards() {
+    private void resetCards() { // remove all penalties and clear indicator views
         oneHasYellow = oneHasRed = twoHasRed = twoHasYellow = false;
+        refreshCardIndicators();
     }
-
+    private void refreshCardIndicators() { // update penalty indicator views
+        if (oneHasYellow)   yellowIndicatorLeft.setVisibility(View.VISIBLE);
+            else yellowIndicatorLeft.setVisibility(View.INVISIBLE);
+        if (oneHasRed)  redIndicatorLeft.setVisibility(View.VISIBLE);
+            else redIndicatorLeft.setVisibility(View.INVISIBLE);
+        if (twoHasYellow) yellowIndicatorRight.setVisibility(View.VISIBLE);
+            else yellowIndicatorRight.setVisibility(View.INVISIBLE);
+        if (twoHasRed) redIndicatorRight.setVisibility(View.VISIBLE);
+            else redIndicatorRight.setVisibility(View.INVISIBLE);
+    }
     public void showCardDialog(View view) { // onClick for yellowCardButton & redCardButton
         FragmentManager man = this.getFragmentManager();
         CardAlertFragment dialog = new CardAlertFragment(view);
         dialog.show(man, "Penalty Card");
     }
-
 }

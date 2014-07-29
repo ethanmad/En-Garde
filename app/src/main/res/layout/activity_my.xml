@@ -153,34 +153,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:id="@+id/penaltyLayoutRight"
-        android:layout_marginTop="245dp"
-        android:layout_marginRight="44dp"
-        android:layout_alignParentEnd="true">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/yellowCircleViewTwo"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/yellow_circle" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/redCircleViewTwo"
-            android:src="@drawable/red_circle"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="false"
         android:id="@+id/penaltyLayoutLeft"
-        android:layout_marginTop="245dp"
-        android:layout_marginLeft="44dp">
+        android:layout_marginLeft="44dp"
+        android:layout_alignBottom="@+id/scoreLayout">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -193,6 +168,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/redCircleViewOne"
+            android:src="@drawable/red_circle"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:id="@+id/penaltyLayoutRight"
+        android:layout_marginRight="44dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/penaltyLayoutLeft">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/yellowCircleViewTwo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/yellow_circle" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/redCircleViewTwo"
             android:src="@drawable/red_circle"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
