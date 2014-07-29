@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -51,6 +52,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             mode = savedInstanceState.getInt("mode");
             inPeriod = savedInstanceState.getBoolean("inPeriod");
             inBreak = savedInstanceState.getBoolean("inBreak");
+
         } else { //create new data
             timeRemaining = periodLength = 3 * 3 * 1000;
             scoreOne = scoreTwo = 0;
@@ -60,6 +62,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             mode = 1;
             inPeriod = true;
             inBreak = false;
+            oneHasYellow = oneHasRed = twoHasRed = twoHasYellow = false;
         }
 
         refreshScores(); // update scoreViews
@@ -251,39 +254,44 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
     // methods for cards
     public void onDialogClick(DialogFragment dialogFragment, int fencer, int cardType) {
-        // TODO: show card!
         giveCard(fencer, cardType);
     }
 
     public void giveCard(int fencer, int cardType) {
+        Intent intent = new Intent(this, CardActivty.class);
+        boolean alreadyHadYellow = false;
         switch (fencer) {
             case (0):
                 switch (cardType) {
                     case (0):
-                        if (oneHasYellow) {
-                            oneHasRed = true;
-                            scoreTwo++;
-                        }
+                        if (oneHasYellow)
+                            alreadyHadYellow = true;
                         oneHasYellow = true;
-                        break;
+                        if (!alreadyHadYellow)
+                            break;
                     case (1):
                         scoreTwo++;
                         oneHasRed = true;
                         break;
                 }
+                if (oneHasRed) intent.putExtra("red", true);
+                startActivity(intent);
                 break;
             case (1):
                 switch (cardType) {
                     case (0):
-                        if (twoHasYellow) {
-                            twoHasRed = true;
-                            scoreOne++;
-                        }
+                        if(twoHasYellow)
+                            alreadyHadYellow = true;
                         twoHasYellow = true;
+                        if(!alreadyHadYellow)
+                            break;
                     case (1):
                         scoreOne++;
                         twoHasRed = true;
+                        break;
                 }
+                if (twoHasRed) intent.putExtra("red", true);
+                startActivity(intent);
         }
         refreshScores();
         pauseTimer();

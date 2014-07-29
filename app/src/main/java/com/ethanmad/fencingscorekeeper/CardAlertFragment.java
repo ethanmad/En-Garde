@@ -42,7 +42,7 @@ public class CardAlertFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         // The 'which' argument contains the index position of the selected item
                         MainActivity mainActivity = (MainActivity) getActivity();
-                        mainActivity.giveCard(Integer.parseInt(text[index][1]), which);
+                        mainActivity.giveCard(which, Integer.parseInt(text[index][1]));
                     }
                 });
 
