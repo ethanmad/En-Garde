@@ -23,7 +23,7 @@
     <string name="yellow_card">Yellow Card</string>
     <string name="red_card">Red Card</string>
 
-    <string name="yellow_card_dialog">Give  yellow card to &#8230;</string>
-    <string name="red_card_dialog">Give red card to &#8230;</string>
+    <string name="yellow_card_dialog">Ruin whose day?</string>
+    <string name="red_card_dialog">Ruin whose life?</string>
 
 </resources>

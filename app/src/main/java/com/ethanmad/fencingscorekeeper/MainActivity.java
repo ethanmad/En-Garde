@@ -5,6 +5,7 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -55,7 +56,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         scoreTwo = savedInstanceState.getInt("scoreTwo", 0);
         timerRunning = savedInstanceState.getBoolean("timerRunning", false);
         periodNumber = savedInstanceState.getInt("periodNumber", 1);
-
         breakLength = savedInstanceState.getLong("breakLength", 1 * 60 * 1000);
         mode = savedInstanceState.getInt("mode", 1);
         inPeriod = savedInstanceState.getBoolean("inPeriod", true);
@@ -64,10 +64,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         oneHasRed = savedInstanceState.getBoolean("oneHasRed", false);
         twoHasYellow = savedInstanceState.getBoolean("twoHasYellow", false);
         twoHasRed = savedInstanceState.getBoolean("twoHasRed", false);
-//        yellowIndicatorLeft.setVisibility(yellowIndicatorLeft.INVISIBLE);
-//        redIndicatorLeft.setVisibility(redIndicatorLeft.INVISIBLE);
-//        yellowIndicatorRight.setVisibility(yellowIndicatorRight.INVISIBLE);
-//        redIndicatorRight.setVisibility(redIndicatorRight.INVISIBLE);
 
         refreshAll();   // update views
 
@@ -142,12 +138,14 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         refreshPeriod();
         refreshScores();
         refreshCardIndicators();
+        refreshTimer(timeRemaining);
     }
     public void resetAll(MenuItem menuItem) { // onClick for action_reset
         resetScores();
         if (timeRemaining != periodLength)
             resetTime();
         resetCards();
+        resetPeriod();
     }
 
 
@@ -162,6 +160,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
     private void startTimer(long time) {
         timer.clearAnimation();
+        timer.setTextColor(Color.WHITE);
         vibrator.vibrate(startVibrationPattern, -1);
         countDownTimer = new CountDownTimer(time, 10) {
             public void onTick(long millisUntilFinished) {
@@ -187,6 +186,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
     private void endPeriod() {
         timer.setText("Done!");
+        timer.setTextColor(Color.argb(180, 255, 20, 20));
+        timer.setAnimation(blink);
         vibrator.vibrate(endVibrationPattern, -1);
         ringer.play();
         timerRunning = false;
@@ -204,6 +205,9 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
     private void refreshPeriod() {
         periodView.setText(getResources().getString(R.string.period) + " " + periodNumber);
+    }
+    private void resetPeriod() {
+        periodNumber = 1;
     }
     private void resetTime() {
         timeRemaining = periodLength;
