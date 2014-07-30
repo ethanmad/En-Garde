@@ -37,13 +37,13 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     Animation blink;
     ArrayDeque<Integer> recentActions;
     int[] recentActionsArray;
+    MenuItem actionUndo;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
-
         timer = (TextView) findViewById(R.id.timer);
         scoreOneView = (TextView) findViewById(R.id.scoreOne);
         scoreTwoView = (TextView) findViewById(R.id.scoreTwo);
@@ -53,7 +53,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         yellowIndicatorRight = (ImageView) findViewById(R.id.yellowCircleViewTwo);
         redIndicatorRight = (ImageView) findViewById(R.id.redCircleViewTwo);
 
-        // import previous data if it exists, otherwise use values on right
+        // import previous data if it exists, otherwise use default values on right
         if (savedInstanceState == null) savedInstanceState = new Bundle();
         periodLength = savedInstanceState.getLong("periodLength", 3 * 60 * 1000);
         timeRemaining = savedInstanceState.getLong("timeRemaining", periodLength);
@@ -71,13 +71,11 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         twoHasRed = savedInstanceState.getBoolean("twoHasRed", false);
         recentActionsArray = savedInstanceState.getIntArray("recentActionsArray");
 
-        if (recentActionsArray == null)
-            recentActions = new ArrayDeque<Integer>(0);
-        else
-            for (int action : recentActionsArray)
-                recentActions.push(action);
+        updateViews();
 
-        updateAll();   // update views
+        if (recentActionsArray == null) recentActions = new ArrayDeque<Integer>(0);
+        else for (int action : recentActionsArray)
+            recentActions.push(action);
 
         // set-up blinking animation used when timer is paused TODO: make animation better (no fade)
         blink = new AlphaAnimation(0.0f, 1.0f);
@@ -105,6 +103,16 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (recentActionsArray == null) {
+            recentActions = new ArrayDeque<Integer>(0);
+        } else for (int action : recentActionsArray) {
+            recentActions.push(action);
+        }
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putLong("timeRemaining", timeRemaining);
         savedInstanceState.putLong("periodLength", periodLength);
@@ -121,18 +129,17 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         savedInstanceState.putBoolean("twoHasYellow", twoHasYellow);
         savedInstanceState.putBoolean("twoHasRed", twoHasRed);
         recentActionsArray = new int[recentActions.size()];
-        for (int i = recentActions.size() - 1; i >= 0; i--) {
-            Log.d("", "adding " + recentActions.peek());
+        for (int i = recentActions.size() - 1; i >= 0; i--)
             recentActionsArray[i] = recentActions.pop();
-        }
         savedInstanceState.putIntArray("recentActionsArray", recentActionsArray);
-        Log.d("", "recentActions: " + recentActions + " recentActionsArray: " + recentActionsArray);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.items, menu);
+        actionUndo = menu.findItem(R.id.action_undo);
+        updateUndoButton();
         return true;
     }
 
@@ -142,23 +149,23 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
     // METHODS FOR ALL TYPES
-    public void updateAll() { // call all refresh methods (except updateTimer)
+    private void updateViews() { // call all refresh methods (except updateTimer)
         updatePeriod();
         updateScores();
         updateCardIndicators();
         updateTimer(timeRemaining);
     }
+    public void updateAll() {
+        updateViews();
+        updateUndoButton();
+    }
     public void resetAll(MenuItem menuItem) { // onClick for action_reset
         resetScores();
-        if (timeRemaining != periodLength)
-            resetTime();
+        if (timeRemaining != periodLength) resetTime();
         resetCards();
         resetPeriod();
         resetRecentActions();
@@ -264,7 +271,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 break;
         }
         pauseTimer();
-        updateScores();
+        updateAll();
     }
     private void subScore(int fencer) {
         switch (fencer) {
@@ -398,6 +405,11 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
     public void undoMostRecent(MenuItem item) {
         undoAction(recentActions.peek());
+    }
+    private void updateUndoButton() {
+        Log.d("", "updating actionUndo!");
+        if(recentActions.isEmpty()) { actionUndo.setVisible(false); Log.d("", "set it invisible");}
+        else {actionUndo.setVisible(true);Log.d("", "set it visible");}
     }
 
 
