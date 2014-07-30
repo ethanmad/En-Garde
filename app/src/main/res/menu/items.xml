@@ -5,9 +5,15 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
-    <item android:id="@+id/reset_settings"
+    <item android:id="@+id/action_reset"
         android:title="@string/action_reset"
         android:orderInCategory="0"
         android:showAsAction="never"
         android:onClick="resetAll"/>
+    <item android:id="@+id/action_undo"
+        android:title="@string/action_undo"
+        android:orderInCategory="0"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_undo"
+        android:onClick="undoMostRecent" />
 </menu>

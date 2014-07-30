@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayDeque;
 
 public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener {
     long timeRemaining, periodLength, breakLength;
@@ -32,6 +35,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     Uri alert;
     Ringtone ringer;
     Animation blink;
+    ArrayDeque<Integer> recentActions;
+    int[] recentActionsArray;
 
 
     @Override
@@ -64,10 +69,17 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         oneHasRed = savedInstanceState.getBoolean("oneHasRed", false);
         twoHasYellow = savedInstanceState.getBoolean("twoHasYellow", false);
         twoHasRed = savedInstanceState.getBoolean("twoHasRed", false);
+        recentActionsArray = savedInstanceState.getIntArray("recentActionsArray");
+
+        if (recentActionsArray == null)
+            recentActions = new ArrayDeque<Integer>(0);
+        else
+            for (int action : recentActionsArray)
+                recentActions.push(action);
 
         updateAll();   // update views
 
-        // set-up blinking animation used when timer is paused
+        // set-up blinking animation used when timer is paused TODO: make animation better (no fade)
         blink = new AlphaAnimation(0.0f, 1.0f);
         blink.setDuration(1000);
         blink.setStartOffset(0);
@@ -104,6 +116,17 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         savedInstanceState.putInt("mode", mode);
         savedInstanceState.putBoolean("inPeriod", inPeriod);
         savedInstanceState.putBoolean("inBreak", inBreak);
+        savedInstanceState.putBoolean("oneHasYellow", oneHasYellow);
+        savedInstanceState.putBoolean("oneHasRed", oneHasRed);
+        savedInstanceState.putBoolean("twoHasYellow", twoHasYellow);
+        savedInstanceState.putBoolean("twoHasRed", twoHasRed);
+        recentActionsArray = new int[recentActions.size()];
+        for (int i = recentActions.size() - 1; i >= 0; i--) {
+            Log.d("", "adding " + recentActions.peek());
+            recentActionsArray[i] = recentActions.pop();
+        }
+        savedInstanceState.putIntArray("recentActionsArray", recentActionsArray);
+        Log.d("", "recentActions: " + recentActions + " recentActionsArray: " + recentActionsArray);
     }
 
     @Override
@@ -125,14 +148,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         return super.onOptionsItemSelected(item);
     }
 
-    //methods for timer
-    public void countDown(View v) { // onClick method for timer
-        ringer.stop();
-        vibrator.cancel();
-        if (timerRunning) pauseTimer();
-        else startTimer(timeRemaining);
-    }
-
     // METHODS FOR ALL TYPES
     public void updateAll() { // call all refresh methods (except updateTimer)
         updatePeriod();
@@ -146,10 +161,17 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             resetTime();
         resetCards();
         resetPeriod();
+        resetRecentActions();
     }
 
 
     // METHODS FOR TIME & PERIODS
+    public void countDown(View v) { // onClick method for timer
+        ringer.stop();
+        vibrator.cancel();
+        if (timerRunning) pauseTimer();
+        else startTimer(timeRemaining);
+    }
     private void updateTimer(long millisUntilFinished) {
         long minutes = millisUntilFinished / 60000;
         long seconds = millisUntilFinished / 1000 - minutes * 60;
@@ -229,25 +251,32 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         switch (view.getId()) {
             case R.id.scoreOne:
                 scoreOne++;
+                recentActions.push(0);
                 break;
             case R.id.scoreTwo:
                 scoreTwo++;
+                recentActions.push(1);
                 break;
             case R.id.doubleTouchButton:
                 scoreOne++;
                 scoreTwo++;
+                recentActions.push(2);
                 break;
         }
         pauseTimer();
         updateScores();
     }
-    public void subScore(View view) {
-        switch (view.getId()) {
-            case R.id.scoreOne:
-                scoreOne++;
+    private void subScore(int fencer) {
+        switch (fencer) {
+            case 0:
+                scoreOne--;
                 break;
-            case R.id.scoreTwo:
-                scoreTwo++;
+            case 1:
+                scoreTwo--;
+                break;
+            case 2:
+                scoreOne--;
+                scoreTwo--;
                 break;
         }
     }
@@ -270,14 +299,19 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             case (0):
                 switch (cardType) {
                     case (0):
-                        if (oneHasYellow)
+                        if (oneHasYellow) {
                             alreadyHadYellow = true;
+                            recentActions.push(4);
+                        }
                         oneHasYellow = true;
-                        if (!alreadyHadYellow)
+                        if (!alreadyHadYellow) {
+                            recentActions.push(3);
                             break;
+                        }
                     case (1):
                         scoreTwo++;
                         oneHasRed = true;
+                        recentActions.push(4);
                         break;
                 }
                 if (oneHasRed) cardIntent.putExtra("red", true);
@@ -286,14 +320,19 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             case (1):
                 switch (cardType) {
                     case (0):
-                        if (twoHasYellow)
+                        if (twoHasYellow) {
                             alreadyHadYellow = true;
+                            recentActions.push(6);
+                        }
                         twoHasYellow = true;
-                        if (!alreadyHadYellow)
+                        if (!alreadyHadYellow) {
+                            recentActions.push(5);
                             break;
+                        }
                     case (1):
                         scoreOne++;
                         twoHasRed = true;
+                        recentActions.push(6);
                         break;
                 }
                 if (twoHasRed) cardIntent.putExtra("red", true);
@@ -321,4 +360,45 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         CardAlertFragment dialog = new CardAlertFragment(view);
         dialog.show(man, "Penalty Card");
     }
+
+    // METHODS FOR RECENT ACTIONS & UNDO
+    // 0 = touch left, 1 = touch right, 2 = double touch,
+    // 3 = yellow to left, 4 = red to left, 5 = yellow to right, 6 = red to right
+    private void resetRecentActions() {
+        recentActions = new ArrayDeque<Integer>(0);
+    }
+    private void undoAction(Integer action) {
+        switch(action) {
+            case 0:
+                subScore(0);
+                break;
+            case 1:
+                subScore(1);
+                break;
+            case 2:
+                subScore(2);
+                break;
+            case 3:
+                oneHasYellow = false;
+                break;
+            case 4:
+                oneHasRed = false;
+                subScore(1);
+                break;
+            case 5:
+                twoHasYellow = false;
+                break;
+            case  6:
+                twoHasRed = false;
+                subScore(0);
+                break;
+        }
+        recentActions.pop();
+        updateAll();
+    }
+    public void undoMostRecent(MenuItem item) {
+        undoAction(recentActions.peek());
+    }
+
+
 }
