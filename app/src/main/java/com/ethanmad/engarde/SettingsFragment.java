@@ -25,6 +25,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             ListPreference listPref = (ListPreference) pref;
             pref.setSummary(listPref.getEntry());
         }
+
     }
 
 }

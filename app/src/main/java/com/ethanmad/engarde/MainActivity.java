@@ -21,6 +21,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayDeque;
 
@@ -39,6 +40,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     ArrayDeque<Integer> recentActions;
     int[] recentActionsArray;
     MenuItem actionUndo;
+    Toast toast;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -114,6 +117,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         } else for (int action : recentActionsArray) {
             recentActions.push(action);
         }
+
+        loadSettings();
     }
 
     @Override
@@ -163,10 +168,12 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         updateCardIndicators();
         updateTimer(timeRemaining);
     }
+
     public void updateAll() {
         updateViews();
         updateUndoButton();
     }
+
     public void resetAll(MenuItem menuItem) { // onClick for action_reset
         resetScores();
         if (timeRemaining != periodLength) resetTime();
@@ -174,6 +181,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         resetPeriod();
         resetRecentActions();
         updateAll();
+        if(toast != null) toast.cancel();
     }
 
 
@@ -184,6 +192,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         if (timerRunning) pauseTimer();
         else startTimer(timeRemaining);
     }
+
     private void updateTimer(long millisUntilFinished) {
         long minutes = millisUntilFinished / 60000;
         long seconds = millisUntilFinished / 1000 - minutes * 60;
@@ -192,6 +201,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 seconds, milliseconds);
         timer.setText(timeStr);
     }
+
     private void startTimer(long time) {
         timer.clearAnimation();
         timer.setTextColor(Color.WHITE);
@@ -208,6 +218,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         }.start();
         timerRunning = true;
     }
+
     private void pauseTimer() {
         ringer.stop();
         vibrator.cancel();
@@ -218,6 +229,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             timer.startAnimation(blink);
         }
     }
+
     private void endPeriod() {
         timer.setText("Done!");
         timer.setTextColor(Color.argb(180, 255, 20, 20));
@@ -233,16 +245,20 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         } else if (inBreak)
             timeRemaining = breakLength;
     }
+
     private void nextPeriod() {
         periodNumber++;
         updatePeriod();
     }
+
     private void updatePeriod() {
         periodView.setText(getResources().getString(R.string.period) + " " + periodNumber);
     }
+
     private void resetPeriod() {
         periodNumber = 1;
     }
+
     private void resetTime() {
         timeRemaining = periodLength;
         timer.setText("" + timeRemaining);
@@ -259,25 +275,33 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         scoreOneView.setText("" + scoreOne);
         scoreTwoView.setText("" + scoreTwo);
     }
+
     public void addScore(View view) { //onClick for score textViews
         switch (view.getId()) {
             case R.id.scoreOne:
                 scoreOne++;
                 recentActions.push(0);
+                showToast(getResources().getString(R.string.gave), getResources().getString(R.string.touch),
+                        getResources().getString(R.string.left));
                 break;
             case R.id.scoreTwo:
                 scoreTwo++;
                 recentActions.push(1);
+                showToast(getResources().getString(R.string.gave), getResources().getString(R.string.touch),
+                        getResources().getString(R.string.right));
                 break;
             case R.id.doubleTouchButton:
                 scoreOne++;
                 scoreTwo++;
                 recentActions.push(2);
+                showToast(getResources().getString(R.string.gave),getResources().getString(R.string.double_toast),
+                        getResources().getString(R.string.touch));
                 break;
         }
         pauseTimer();
         updateAll();
     }
+
     private void subScore(int fencer) {
         switch (fencer) {
             case 0:
@@ -292,6 +316,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 break;
         }
     }
+
     private void resetScores() {
         scoreOne = 0;
         if (timerRunning)
@@ -304,6 +329,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     public void onDialogClick(DialogFragment dialogFragment, int fencer, int cardType) {
         giveCard(fencer, cardType);
     }
+
     public void giveCard(int fencer, int cardType) { // logic for assigning cards
         Intent cardIntent = new Intent(this, CardActivity.class);
         boolean alreadyHadYellow = false;
@@ -318,12 +344,16 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         oneHasYellow = true;
                         if (!alreadyHadYellow) {
                             recentActions.push(3);
+                            showToast(getResources().getString(R.string.gave), getResources().getString(R.string.yellow),
+                                    getResources().getString(R.string.card), getResources().getString(R.string.left));
                             break;
                         }
                     case (1):
                         scoreTwo++;
                         oneHasRed = true;
                         recentActions.push(4);
+                        showToast(getResources().getString(R.string.gave), getResources().getString(R.string.red),
+                                getResources().getString(R.string.card), getResources().getString(R.string.left));
                         break;
                 }
                 if (oneHasRed) cardIntent.putExtra("red", true);
@@ -339,12 +369,16 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         twoHasYellow = true;
                         if (!alreadyHadYellow) {
                             recentActions.push(5);
+                            showToast(getResources().getString(R.string.gave), getResources().getString(R.string.yellow),
+                                    getResources().getString(R.string.card), getResources().getString(R.string.right));
                             break;
                         }
                     case (1):
                         scoreOne++;
                         twoHasRed = true;
                         recentActions.push(6);
+                        showToast(getResources().getString(R.string.gave), getResources().getString(R.string.red),
+                                getResources().getString(R.string.card), getResources().getString(R.string.right));
                         break;
                 }
                 if (twoHasRed) cardIntent.putExtra("red", true);
@@ -353,20 +387,23 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         updateAll();
         pauseTimer();
     }
+
     private void resetCards() { // remove all penalties and clear indicator views
         oneHasYellow = oneHasRed = twoHasRed = twoHasYellow = false;
         updateCardIndicators();
     }
+
     private void updateCardIndicators() { // update penalty indicator views
-        if (oneHasYellow)   yellowIndicatorLeft.setVisibility(View.VISIBLE);
-            else yellowIndicatorLeft.setVisibility(View.INVISIBLE);
-        if (oneHasRed)  redIndicatorLeft.setVisibility(View.VISIBLE);
-            else redIndicatorLeft.setVisibility(View.INVISIBLE);
+        if (oneHasYellow) yellowIndicatorLeft.setVisibility(View.VISIBLE);
+        else yellowIndicatorLeft.setVisibility(View.INVISIBLE);
+        if (oneHasRed) redIndicatorLeft.setVisibility(View.VISIBLE);
+        else redIndicatorLeft.setVisibility(View.INVISIBLE);
         if (twoHasYellow) yellowIndicatorRight.setVisibility(View.VISIBLE);
-            else yellowIndicatorRight.setVisibility(View.INVISIBLE);
+        else yellowIndicatorRight.setVisibility(View.INVISIBLE);
         if (twoHasRed) redIndicatorRight.setVisibility(View.VISIBLE);
-            else redIndicatorRight.setVisibility(View.INVISIBLE);
+        else redIndicatorRight.setVisibility(View.INVISIBLE);
     }
+
     public void showCardDialog(View view) { // onClick for yellowCardButton & redCardButton
         FragmentManager man = this.getFragmentManager();
         CardAlertFragment dialog = new CardAlertFragment(view);
@@ -379,40 +416,57 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private void resetRecentActions() {
         recentActions = new ArrayDeque<Integer>(0);
     }
+
     private void undoAction(Integer action) {
-        switch(action) {
+        switch (action) {
             case 0:
                 subScore(0);
+                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.touch),
+                        getResources().getString(R.string.left));
                 break;
             case 1:
                 subScore(1);
+                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.touch),
+                        getResources().getString(R.string.right));
                 break;
             case 2:
                 subScore(2);
+                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.double_toast),
+                        getResources().getString(R.string.touch));
                 break;
             case 3:
                 oneHasYellow = false;
+                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.yellow),
+                        getResources().getString(R.string.card), getResources().getString(R.string.left));
                 break;
             case 4:
                 oneHasRed = false;
                 subScore(1);
+                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.red),
+                        getResources().getString(R.string.card), getResources().getString(R.string.left));
                 break;
             case 5:
                 twoHasYellow = false;
+                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.yellow),
+                        getResources().getString(R.string.card), getResources().getString(R.string.right));
                 break;
-            case  6:
+            case 6:
                 twoHasRed = false;
                 subScore(0);
+                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.red),
+                        getResources().getString(R.string.card), getResources().getString(R.string.right));
                 break;
         }
         recentActions.pop();
         updateAll();
     }
+
     public void undoMostRecent(MenuItem item) {
         undoAction(recentActions.peek());
     }
+
     private void updateUndoButton() {
-        if(recentActions.isEmpty()) actionUndo.setVisible(false);
+        if (recentActions.isEmpty()) actionUndo.setVisible(false);
         else actionUndo.setVisible(true);
     }
 
@@ -422,7 +476,26 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void loadSettings() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mode = Integer.parseInt(sharedPreferences.getString("pref_mode", "5"));
     }
+
+    private void showToast(String verb, String noun, String toWhom) {
+        Context context = getApplicationContext();
+        CharSequence text = verb + " " + noun + " " + toWhom + ".";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
+    private void showToast(String verb, String noun, String color, String toWhom) {
+        Context context = getApplicationContext();
+        CharSequence text = verb + " " + " " + color + " " + noun + " " + toWhom + ".";
+        int duration = Toast.LENGTH_SHORT;
+
+        toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
 }

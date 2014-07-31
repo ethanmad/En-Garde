@@ -16,12 +16,22 @@
 
     <string name="period">Period</string>
 
-    <string name="penalty_card">Penalty Card</string>
-    <string name="yellow_card">Yellow Card</string>
-    <string name="red_card">Red Card</string>
+    <string name="penalty_card">Penalty card</string>
+    <string name="yellow_card">Yellow card</string>
+    <string name="red_card">Red card</string>
 
     <string name="yellow_card_dialog">Give yellow card to &#8230;</string>
     <string name="red_card_dialog">Give red card to &#8230;</string>
+
+    <string name="gave">Gave</string>
+    <string name="undid">Undid</string>
+    <string name="touch">touch</string>
+    <string name="card">card</string>
+    <string name="yellow">yellow</string>
+    <string name="red">red</string>
+    <string name="left">to left fencer</string>
+    <string name="right">to right fencer</string>
+    <string name="double_toast">double</string>
 
     <string name="pref_mode">Choose a mode</string>
     <string name="pref_choose_mode"></string>
