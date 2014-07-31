@@ -169,6 +169,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         resetCards();
         resetPeriod();
         resetRecentActions();
+        updateAll();
     }
 
 
