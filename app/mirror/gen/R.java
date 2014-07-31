@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.ethanmad.fencingscorekeeper;
+package com.ethanmad.engarde;
 
 public final class R {
     public static final class array {
@@ -372,7 +372,7 @@ containing a value of this type.
         */
         public static final int FlatButton_blockButtonEffectHeight = 6;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#cornerRadius}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
           attribute's value can be found in the {@link #FlatButton} array.
 
 
@@ -388,7 +388,7 @@ containing a value of this type.
         */
         public static final int FlatButton_cornerRadius = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontExtension}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
           attribute's value can be found in the {@link #FlatButton} array.
 
 
@@ -402,7 +402,7 @@ containing a value of this type.
         */
         public static final int FlatButton_fontExtension = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontFamily}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
           attribute's value can be found in the {@link #FlatButton} array.
 
 
@@ -416,7 +416,7 @@ containing a value of this type.
         */
         public static final int FlatButton_fontFamily = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontWeight}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
           attribute's value can be found in the {@link #FlatButton} array.
 
 
@@ -430,7 +430,7 @@ containing a value of this type.
         */
         public static final int FlatButton_fontWeight = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#textAppearance}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#textAppearance}
           attribute's value can be found in the {@link #FlatButton} array.
 
 
@@ -454,7 +454,7 @@ containing a value of this type.
         */
         public static final int FlatButton_textAppearance = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#theme}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
           attribute's value can be found in the {@link #FlatButton} array.
 
 
@@ -490,7 +490,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010005, 0x7f010006, 0x7f010008
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#cornerRadius}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
           attribute's value can be found in the {@link #FlatCheckBox} array.
 
 
@@ -506,7 +506,7 @@ containing a value of this type.
         */
         public static final int FlatCheckBox_cornerRadius = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#dotMargin}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#dotMargin}
           attribute's value can be found in the {@link #FlatCheckBox} array.
 
 
@@ -522,7 +522,7 @@ containing a value of this type.
         */
         public static final int FlatCheckBox_dotMargin = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontExtension}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
           attribute's value can be found in the {@link #FlatCheckBox} array.
 
 
@@ -536,7 +536,7 @@ containing a value of this type.
         */
         public static final int FlatCheckBox_fontExtension = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontFamily}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
           attribute's value can be found in the {@link #FlatCheckBox} array.
 
 
@@ -550,7 +550,7 @@ containing a value of this type.
         */
         public static final int FlatCheckBox_fontFamily = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontWeight}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
           attribute's value can be found in the {@link #FlatCheckBox} array.
 
 
@@ -564,7 +564,7 @@ containing a value of this type.
         */
         public static final int FlatCheckBox_fontWeight = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#size}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#size}
           attribute's value can be found in the {@link #FlatCheckBox} array.
 
 
@@ -580,7 +580,7 @@ containing a value of this type.
         */
         public static final int FlatCheckBox_size = 5;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#theme}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
           attribute's value can be found in the {@link #FlatCheckBox} array.
 
 
@@ -618,7 +618,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010005, 0x7f010007, 0x7f010008, 0x7f01000a
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#borderWidth}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#borderWidth}
           attribute's value can be found in the {@link #FlatEditText} array.
 
 
@@ -634,7 +634,7 @@ containing a value of this type.
         */
         public static final int FlatEditText_borderWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#cornerRadius}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
           attribute's value can be found in the {@link #FlatEditText} array.
 
 
@@ -650,7 +650,7 @@ containing a value of this type.
         */
         public static final int FlatEditText_cornerRadius = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fieldStyle}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fieldStyle}
           attribute's value can be found in the {@link #FlatEditText} array.
 
 
@@ -674,7 +674,7 @@ containing a value of this type.
         */
         public static final int FlatEditText_fieldStyle = 7;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontExtension}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
           attribute's value can be found in the {@link #FlatEditText} array.
 
 
@@ -688,7 +688,7 @@ containing a value of this type.
         */
         public static final int FlatEditText_fontExtension = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontFamily}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
           attribute's value can be found in the {@link #FlatEditText} array.
 
 
@@ -702,7 +702,7 @@ containing a value of this type.
         */
         public static final int FlatEditText_fontFamily = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontWeight}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
           attribute's value can be found in the {@link #FlatEditText} array.
 
 
@@ -716,7 +716,7 @@ containing a value of this type.
         */
         public static final int FlatEditText_fontWeight = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#textAppearance}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#textAppearance}
           attribute's value can be found in the {@link #FlatEditText} array.
 
 
@@ -740,7 +740,7 @@ containing a value of this type.
         */
         public static final int FlatEditText_textAppearance = 5;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#theme}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
           attribute's value can be found in the {@link #FlatEditText} array.
 
 
@@ -776,7 +776,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010005, 0x7f010006, 0x7f010008
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#borderWidth}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#borderWidth}
           attribute's value can be found in the {@link #FlatRadioButton} array.
 
 
@@ -792,7 +792,7 @@ containing a value of this type.
         */
         public static final int FlatRadioButton_borderWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#dotMargin}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#dotMargin}
           attribute's value can be found in the {@link #FlatRadioButton} array.
 
 
@@ -808,7 +808,7 @@ containing a value of this type.
         */
         public static final int FlatRadioButton_dotMargin = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontExtension}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
           attribute's value can be found in the {@link #FlatRadioButton} array.
 
 
@@ -822,7 +822,7 @@ containing a value of this type.
         */
         public static final int FlatRadioButton_fontExtension = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontFamily}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
           attribute's value can be found in the {@link #FlatRadioButton} array.
 
 
@@ -836,7 +836,7 @@ containing a value of this type.
         */
         public static final int FlatRadioButton_fontFamily = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontWeight}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
           attribute's value can be found in the {@link #FlatRadioButton} array.
 
 
@@ -850,7 +850,7 @@ containing a value of this type.
         */
         public static final int FlatRadioButton_fontWeight = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#size}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#size}
           attribute's value can be found in the {@link #FlatRadioButton} array.
 
 
@@ -866,7 +866,7 @@ containing a value of this type.
         */
         public static final int FlatRadioButton_size = 5;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#theme}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
           attribute's value can be found in the {@link #FlatRadioButton} array.
 
 
@@ -891,7 +891,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010006, 0x7f010008
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#size}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#size}
           attribute's value can be found in the {@link #FlatSeekBar} array.
 
 
@@ -907,7 +907,7 @@ containing a value of this type.
         */
         public static final int FlatSeekBar_size = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#theme}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
           attribute's value can be found in the {@link #FlatSeekBar} array.
 
 
@@ -948,7 +948,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01000d
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#backgroundColor}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#backgroundColor}
           attribute's value can be found in the {@link #FlatTextView} array.
 
 
@@ -973,7 +973,7 @@ containing a value of this type.
         */
         public static final int FlatTextView_backgroundColor = 7;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#borderWidth}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#borderWidth}
           attribute's value can be found in the {@link #FlatTextView} array.
 
 
@@ -989,7 +989,7 @@ containing a value of this type.
         */
         public static final int FlatTextView_borderWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#cornerRadius}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
           attribute's value can be found in the {@link #FlatTextView} array.
 
 
@@ -1005,7 +1005,7 @@ containing a value of this type.
         */
         public static final int FlatTextView_cornerRadius = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#customBackgroundColor}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#customBackgroundColor}
           attribute's value can be found in the {@link #FlatTextView} array.
 
 
@@ -1020,7 +1020,7 @@ containing a value of this type.
         */
         public static final int FlatTextView_customBackgroundColor = 8;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontExtension}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
           attribute's value can be found in the {@link #FlatTextView} array.
 
 
@@ -1034,7 +1034,7 @@ containing a value of this type.
         */
         public static final int FlatTextView_fontExtension = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontFamily}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
           attribute's value can be found in the {@link #FlatTextView} array.
 
 
@@ -1048,7 +1048,7 @@ containing a value of this type.
         */
         public static final int FlatTextView_fontFamily = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#fontWeight}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
           attribute's value can be found in the {@link #FlatTextView} array.
 
 
@@ -1062,7 +1062,7 @@ containing a value of this type.
         */
         public static final int FlatTextView_fontWeight = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#textColor}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#textColor}
           attribute's value can be found in the {@link #FlatTextView} array.
 
 
@@ -1087,7 +1087,7 @@ containing a value of this type.
         */
         public static final int FlatTextView_textColor = 6;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#theme}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
           attribute's value can be found in the {@link #FlatTextView} array.
 
 
@@ -1114,7 +1114,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010001, 0x7f010008, 0x7f01000e
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#cornerRadius}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
           attribute's value can be found in the {@link #FlatToggleButton} array.
 
 
@@ -1130,7 +1130,7 @@ containing a value of this type.
         */
         public static final int FlatToggleButton_cornerRadius = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#space}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#space}
           attribute's value can be found in the {@link #FlatToggleButton} array.
 
 
@@ -1146,7 +1146,7 @@ containing a value of this type.
         */
         public static final int FlatToggleButton_space = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.fencingscorekeeper.R.attr#theme}
+          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
           attribute's value can be found in the {@link #FlatToggleButton} array.
 
 

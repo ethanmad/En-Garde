@@ -1,4 +1,4 @@
-package com.ethanmad.fencingscorekeeper;
+package com.ethanmad.engarde;
 
 import android.app.Activity;
 import android.app.AlertDialog;

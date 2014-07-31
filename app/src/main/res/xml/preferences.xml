@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Basic Functions">
+        <ListPreference
+        android:title="@string/pref_mode"
+        android:dialogTitle="@string/pref_choose_mode"
+        android:summary="@string/pref_mode_summary"
+        android:key="pref_mode"
+        android:defaultValue="5"
+        android:entries="@array/mode_entries"
+        android:entryValues="@array/mode_values"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

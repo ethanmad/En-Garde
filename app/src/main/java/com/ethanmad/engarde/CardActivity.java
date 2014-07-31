@@ -1,4 +1,4 @@
-package com.ethanmad.fencingscorekeeper;
+package com.ethanmad.engarde;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -8,7 +8,7 @@ import android.view.View;
 /**
  * Created by ethan on 7/28/14.
  */
-public class CardActivty extends Activity{
+public class CardActivity extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

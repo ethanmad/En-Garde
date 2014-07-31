@@ -4,7 +4,8 @@
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        android:showAsAction="never"
+        android:onClick="openSettings"/>
     <item android:id="@+id/action_reset"
         android:title="@string/action_reset"
         android:orderInCategory="0"

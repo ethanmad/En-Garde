@@ -1,4 +1,4 @@
-package com.ethanmad.fencingscorekeeper;
+package com.ethanmad.engarde;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

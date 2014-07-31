@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FencingScorekeeper</string>
+    <string name="app_name">En Garde</string>
 
+    <string name="activity_settings">Settings</string>
     <string name="action_settings">Settings</string>
     <string name="action_reset">Reset</string>
     <string name="action_undo">Undo</string>
@@ -13,19 +14,18 @@
     <string name="fencer_two_score">0</string>
     <string name="double_touch">Double</string>
 
-    <string name="mode_5touch">5 Touches</string>
-    <string name="mode_15touch">15 Touches</string>
-
-    <string name="one_period">1 Period</string>
-    <string name="three_periods">3 Periods</string>
-
     <string name="period">Period</string>
 
+    <string name="penalty_card">Penalty Card</string>
     <string name="yellow_card">Yellow Card</string>
     <string name="red_card">Red Card</string>
 
-    <string name="yellow_card_dialog">Ruin whose day?</string>
-    <string name="red_card_dialog">Ruin whose life?</string>
+    <string name="yellow_card_dialog">Give yellow card to &#8230;</string>
+    <string name="red_card_dialog">Give red card to &#8230;</string>
 
-
+    <string name="pref_mode">Choose a mode</string>
+    <string name="pref_choose_mode"></string>
+    <string name="pref_mode_summary">Choose the number of touches/periods</string>
+    <string name="pref_mode_5touch">Five touches (one period)</string>
+    <string name="pref_mode_15touch">Fifteen touches (three periods)</string>
 </resources>

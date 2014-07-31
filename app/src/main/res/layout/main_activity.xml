@@ -11,14 +11,6 @@
     android:id="@+id/mainLayout"
     android:background="#202020">
 
-    <!--Timer-->
-
-
-    <!--Fencer One Score-->
-
-
-    <!--Fencer Two Score-->
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -66,6 +58,7 @@
         android:layout_marginTop="150dp"
         android:id="@+id/scoreLayout">
 
+        <!--Fencer One Score-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,6 +76,7 @@
             android:layout_alignParentStart="true"
             android:longClickable="true" />
 
+        <!--Fencer Two Score-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,6 +94,7 @@
             android:layout_marginRight="28dp"
             android:longClickable="true" />
 
+        <!--Double Touch Button-->
         <com.cengalabs.flatui.views.FlatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -119,6 +114,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/timerLayout">
 
+        <!--Timer-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,6 +134,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
+        <!--Period Indicator-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -150,6 +147,7 @@
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
+    <!--Penalty Indicators-->
     <RelativeLayout
         android:layout_width="40dp"
         android:layout_height="wrap_content"

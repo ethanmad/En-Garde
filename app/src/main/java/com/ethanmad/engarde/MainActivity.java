@@ -1,10 +1,11 @@
-package com.ethanmad.fencingscorekeeper;
+package com.ethanmad.engarde;
 
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -12,7 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import android.util.Log;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,7 +44,9 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my);
+        setContentView(R.layout.main_activity);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
         timer = (TextView) findViewById(R.id.timer);
         scoreOneView = (TextView) findViewById(R.id.scoreOne);
         scoreTwoView = (TextView) findViewById(R.id.scoreTwo);
@@ -62,7 +65,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         timerRunning = savedInstanceState.getBoolean("timerRunning", false);
         periodNumber = savedInstanceState.getInt("periodNumber", 1);
         breakLength = savedInstanceState.getLong("breakLength", 1 * 60 * 1000);
-        mode = savedInstanceState.getInt("mode", 1);
+        mode = savedInstanceState.getInt("mode", 5);
         inPeriod = savedInstanceState.getBoolean("inPeriod", true);
         inBreak = savedInstanceState.getBoolean("inBreak", false);
         oneHasYellow = savedInstanceState.getBoolean("oneHasYellow", false);
@@ -71,7 +74,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         twoHasRed = savedInstanceState.getBoolean("twoHasRed", false);
         recentActionsArray = savedInstanceState.getIntArray("recentActionsArray");
 
-        updateViews();
+        updateViews(); // update all views from default strings to real data
+        loadSettings(); // load user settings
 
         if (recentActionsArray == null) recentActions = new ArrayDeque<Integer>(0);
         else for (int action : recentActionsArray)
@@ -301,7 +305,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         giveCard(fencer, cardType);
     }
     public void giveCard(int fencer, int cardType) { // logic for assigning cards
-        Intent cardIntent = new Intent(this, CardActivty.class);
+        Intent cardIntent = new Intent(this, CardActivity.class);
         boolean alreadyHadYellow = false;
         switch (fencer) {
             case (0):
@@ -408,10 +412,17 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         undoAction(recentActions.peek());
     }
     private void updateUndoButton() {
-        Log.d("", "updating actionUndo!");
-        if(recentActions.isEmpty()) { actionUndo.setVisible(false); Log.d("", "set it invisible");}
-        else {actionUndo.setVisible(true);Log.d("", "set it visible");}
+        if(recentActions.isEmpty()) actionUndo.setVisible(false);
+        else actionUndo.setVisible(true);
     }
 
+    public void openSettings(MenuItem item) {
+        Intent settingsIntent = new Intent(this, Settings.class);
+        startActivity(settingsIntent);
+    }
 
+    private void loadSettings() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mode = Integer.parseInt(sharedPreferences.getString("pref_mode", "5"));
+    }
 }
