@@ -485,7 +485,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         CharSequence text = verb + " " + noun + " " + toWhom + ".";
         int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(context, text, duration);
+        toast = Toast.makeText(context, text, duration);
         toast.show();
     }
 
