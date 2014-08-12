@@ -12,14 +12,27 @@ import android.view.View;
  * Created by ethan on 7/23/14.
  */
 public class CardAlertFragment extends DialogFragment {
-    View view;
+    int mViewId;
 
-    public CardAlertFragment() {
+
+    public static CardAlertFragment newInstance(View view) {
+        CardAlertFragment cardAlertFragment = new CardAlertFragment();
+
+        Bundle args = new Bundle();
+        args.putInt("view.getId()", view.getId());
+        cardAlertFragment.setArguments(args);
+
+        return cardAlertFragment;
     }
 
-    public CardAlertFragment(View view) {
-        this.view = view;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mViewId = getArguments().getInt("view.getId()", mViewId);
     }
+
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -27,7 +40,7 @@ public class CardAlertFragment extends DialogFragment {
         int whichArray = -1;
         final String[][] text = new String[][] {new String[] {getResources().getString(R.string.yellow_card_dialog), "0"}, new String[] {getResources().getString(R.string.red_card_dialog), "1"}};
 
-        switch(view.getId()) {
+        switch(mViewId) {
             case R.id.yellowCardButton:
                 whichArray = 0;
                 break;
@@ -70,7 +83,7 @@ public class CardAlertFragment extends DialogFragment {
     }
 
     public String getTitle() {
-        switch (view.getId()) {
+        switch (mViewId) {
             case R.id.yellowCardButton:
                 return "" + R.string.yellow_card_dialog;
             case R.id.redCardButton:
