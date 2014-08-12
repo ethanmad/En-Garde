@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ethanmad.engarde" >
+    package="com.ethanmad.engarde"
+    android:versionCode="0"
+    android:versionName="0.1">
     <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:allowBackup="true"
