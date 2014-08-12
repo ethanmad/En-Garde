@@ -89,7 +89,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         blink.setDuration(1000);
         blink.setStartOffset(0);
         blink.setRepeatCount(Animation.INFINITE);
-        blink.setRepeatMode(Animation.ABSOLUTE);
+        blink.setRepeatMode(Animation.START_ON_FIRST_FRAME);
 
         // used to signal to user that timeRemaining has expired
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
