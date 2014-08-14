@@ -5,6 +5,7 @@ En Garde is the first fencing scorekeeping app built with a focus on simplicity,
 I realized the need for such an app when a referee at a local tournament came to me asking how to use the scorekeeping app he had just downloaded. I, of course, had no idea either, so I decided to make a new scorekeeping app that anyone can use.
 
 Current features:
+-----------------
   *  Large timer and score indicators.
   *  Clean UI showing only the most important information.
   *  Full featured penalties and cards.
@@ -17,9 +18,11 @@ Current features:
 
 
 Project goals:
+-------------
   *  Manage entire poules from within the app: completely eliminate the need for pencil and paper in fencing.
   *  Integrate with tournament management software (either Fencing Time or FOSS alternative): wirelessly send scores, poules, etc.  to tournament administration
   *  Create "scoreboard": use a large-screen device as a scoreboard (tablet, PC, etc.) that is controlled by the handheld device to allow fencers and spectators to see important information.
 
 Ultimate goal:
+--------------
   *  Eliminate the need for expensive scoreboards and other hardware with cheaper devices, make directing less frustrating, help fencing grow as a sport.
