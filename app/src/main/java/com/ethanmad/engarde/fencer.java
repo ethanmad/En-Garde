@@ -1,47 +1,66 @@
 package com.ethanmad.engarde;
 
+import android.os.Bundle;
+
 /**
  * Created by ethan on 8/14/14.
  */
 public class Fencer {
-    private int score;
-    private boolean hasYellowCard, hasRedCard;
-    private boolean hasPriority;
+    private int mScore;
+    private boolean mHasYellowCard, mHasRedCard;
+    private boolean mHasPriority;
+
+    protected void onCreate(Bundle savedInstanceState)  {
+        mScore = savedInstanceState.getInt("mScore", 0);
+        mHasYellowCard = savedInstanceState.getBoolean("mHasYellowCard", false);
+        mHasRedCard = savedInstanceState.getBoolean("mHasRedCard", false);
+        mHasPriority = savedInstanceState.getBoolean("mHasPriority", false);
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt("mScore", mScore);
+        savedInstanceState.putBoolean("mHasYellowCard", mHasYellowCard);
+        savedInstanceState.putBoolean("mHasRedCard", mHasRedCard);
+        savedInstanceState.putBoolean("mHasPriority", mHasPriority);
+    }
 
     public int getScore() {
-        return score;
+        return mScore;
     }
     public void addScore() {
-        score++;
+        mScore++;
     }
     public void subtractScore() {
-        score--;
+        mScore--;
+    }
+    public void resetScore() {
+        mScore = 0;
     }
 
     public boolean hasYellowCard() {
-        return hasYellowCard;
+        return mHasYellowCard;
     }
     public void giveYellowCard() {
-        hasYellowCard = true;
+        mHasYellowCard = true;
     }
     public void takeYellowCard() {
-        hasYellowCard = false;
+        mHasYellowCard = false;
     }
 
     public boolean hasRedCard() {
-        return hasRedCard;
+        return mHasRedCard;
     }
     public void giveRedCard() {
-        hasRedCard = true;
+        mHasRedCard = true;
     }
     public void takeRedCard() {
-        hasRedCard = false;
+        mHasRedCard = false;
     }
 
     public boolean hasPriority() {
-        return hasPriority;
+        return mHasPriority;
     }
     public void givePriority() {
-        hasPriority = true;
+        mHasPriority = true;
     }
 }
