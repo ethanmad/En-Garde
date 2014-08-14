@@ -110,6 +110,7 @@
             android:onClick="addScore"
             android:text="@string/double_touch"
             flatui:theme="@array/dark" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -176,6 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:src="@drawable/red_circle" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -203,5 +205,27 @@
             android:layout_alignParentEnd="true"
             android:src="@drawable/red_circle" />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/priorityCircleViewLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:src="@drawable/priority_circle"
+        android:longClickable="false"
+        android:layout_alignLeft="@+id/penaltyLayoutLeft"
+        android:layout_below="@+id/penaltyLayoutLeft"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/priority_circle"
+        android:longClickable="false"
+        android:layout_alignTop="@+id/priorityCircleViewLeft"
+        android:layout_alignLeft="@+id/penaltyLayoutRight"
+        android:layout_marginLeft="12dp" />
 
 </RelativeLayout>

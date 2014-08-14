@@ -202,4 +202,26 @@
             android:src="@drawable/red_circle" />
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/priority_circle"
+        android:layout_below="@+id/scoreLayout"
+        android:layout_alignLeft="@+id/penaltyLayoutLeft"
+        android:layout_alignStart="@+id/penaltyLayoutLeft"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/priority_circle"
+        android:layout_below="@+id/scoreLayout"
+        android:layout_alignLeft="@+id/penaltyLayoutRight"
+        android:layout_alignStart="@+id/penaltyLayoutRight"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp" />
+
 </RelativeLayout>

@@ -70,7 +70,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mTimeRemaining = savedInstanceState.getLong("mTimeRemaining", mPeriodLength);
         mTimerRunning = savedInstanceState.getBoolean("mTimerRunning", false);
         mPeriodNumber = savedInstanceState.getInt("mPeriodNumber", 1);
-        mBreakLength = savedInstanceState.getLong("mBreakLength", 1 * 60 * 1000);
+        mBreakLength = savedInstanceState.getLong("mBreakLength", 1 * 3 * 1000);
         mMode = savedInstanceState.getInt("mMode", 5);
         mInPeriod = savedInstanceState.getBoolean("mInPeriod", true);
         mInBreak = savedInstanceState.getBoolean("mInBreak", false);
@@ -276,14 +276,11 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
     public void determinePriority() {
         int rand  = (int) (Math.random() * 100);
-        Log.v("En Garde", "Random number is: " + rand);
         if (rand % 2 == 0) {
             leftFencer.givePriority();
-            Log.v("En Garde", "Left fencer has priority");
         }
         else if (rand % 2 == 1) {
             rightFencer.givePriority();
-            Log.v("En Garde", "Right fencer has priority");
         }
     }
 
