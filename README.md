@@ -38,4 +38,5 @@ En Garde is currently available as a beta on Google Play. Here are instructions 
   -  Join the Google+ community.
   -  Visit the tester page and become a beta tester.
   -  Get it on Google Play.
+
 If you really don't want anything to do with Google+, you can [download the APK directly](https://github.com/ethanmad/En-Garde/blob/master/app/app-release.apk?raw=true). Make sure to enable "Unknown sources" in Settings -> Security on your phone!
