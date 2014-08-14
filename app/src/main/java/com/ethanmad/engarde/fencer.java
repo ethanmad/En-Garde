@@ -10,7 +10,7 @@ public class Fencer extends Object {
     private boolean mHasYellowCard, mHasRedCard;
     private boolean mHasPriority;
 
-    protected void onCreate(Bundle savedInstanceState)  {
+    protected void onCreate(Bundle savedInstanceState) {
         mScore = savedInstanceState.getInt("mScore", 0);
         mHasYellowCard = savedInstanceState.getBoolean("mHasYellowCard", false);
         mHasRedCard = savedInstanceState.getBoolean("mHasRedCard", false);
@@ -27,12 +27,15 @@ public class Fencer extends Object {
     public int getScore() {
         return mScore;
     }
+
     public void addScore() {
         mScore++;
     }
+
     public void subtractScore() {
         mScore--;
     }
+
     public void resetScore() {
         mScore = 0;
     }
@@ -40,9 +43,11 @@ public class Fencer extends Object {
     public boolean hasYellowCard() {
         return mHasYellowCard;
     }
+
     public void giveYellowCard() {
         mHasYellowCard = true;
     }
+
     public void takeYellowCard() {
         mHasYellowCard = false;
     }
@@ -50,9 +55,11 @@ public class Fencer extends Object {
     public boolean hasRedCard() {
         return mHasRedCard;
     }
+
     public void giveRedCard() {
         mHasRedCard = true;
     }
+
     public void takeRedCard() {
         mHasRedCard = false;
     }
@@ -60,9 +67,11 @@ public class Fencer extends Object {
     public boolean hasPriority() {
         return mHasPriority;
     }
+
     public void givePriority() {
         mHasPriority = true;
     }
+
     public void resetPriority() {
         mHasPriority = false;
     }

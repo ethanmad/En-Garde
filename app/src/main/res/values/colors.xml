@@ -7,10 +7,14 @@
     <color name="yellow_light">#fffaffac</color>
 
     <integer-array name="flat_yellow">
-        <item>@color/yellow_darker</item> <!-- really much darker color of main color -->
-        <item>@color/yellow_dark</item> <!-- a bit darker color of your main color -->
-        <item>@color/yellow_primary</item> <!-- main color of your theme -->
-        <item>@color/yellow_light</item> <!-- really much lighter color of main color -->
+        <item>@color/yellow_darker</item>
+        <!-- really much darker color of main color -->
+        <item>@color/yellow_dark</item>
+        <!-- a bit darker color of your main color -->
+        <item>@color/yellow_primary</item>
+        <!-- main color of your theme -->
+        <item>@color/yellow_light</item>
+        <!-- really much lighter color of main color -->
     </integer-array>
 
 

@@ -1,20 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MyActivity" >
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    tools:context=".MyActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:onClick="openSettings"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:onClick="openSettings"/>
-    <item android:id="@+id/action_reset"
-        android:title="@string/action_reset"
+        android:title="@string/action_settings" />
+    <item
+        android:id="@+id/action_reset"
+        android:onClick="resetAll"
         android:orderInCategory="0"
         android:showAsAction="never"
-        android:onClick="resetAll"/>
-    <item android:id="@+id/action_undo"
-        android:title="@string/action_undo"
+        android:title="@string/action_reset" />
+    <item
+        android:id="@+id/action_undo"
+        android:icon="@drawable/ic_action_undo"
+        android:onClick="undoMostRecent"
         android:orderInCategory="0"
         android:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_undo"
-        android:onClick="undoMostRecent" />
+        android:title="@string/action_undo" />
 </menu>

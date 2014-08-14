@@ -27,6 +27,7 @@ import android.widget.Toast;
 import java.util.ArrayDeque;
 
 public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener {
+    int[] mRecentActionArray;
     private Fencer leftFencer, rightFencer;
     private long mTimeRemaining, mPeriodLength, mBreakLength, mPriorityLength;
     private long[] mStartVibrationPattern, mEndVibrationPattern;
@@ -40,7 +41,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private Ringtone mRinger;
     private Animation mBlink;
     private ArrayDeque<Integer> mRecentActions;
-    int[] mRecentActionArray;
     private MenuItem mActionUndo;
     private Toast mToast;
     private SharedPreferences mSharedPreferences;
@@ -183,12 +183,12 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         resetPeriod();
         resetRecentActions();
         updateAll();
-        if(mToast != null) mToast.cancel();
+        if (mToast != null) mToast.cancel();
     }
 
 
     // METHODS FOR TIME & PERIODS
-    public void onClickTimer(View v)  { // onClick method for mTimer
+    public void onClickTimer(View v) { // onClick method for mTimer
         if (mInPeriod || mInBreak || mInPriority)
             countDown();
         else {
@@ -232,7 +232,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mTimer.clearAnimation();
         mTimer.setTextColor(Color.WHITE);
         mVibrator.vibrate(mStartVibrationPattern, -1);
-        if(mInPriority) time = mPriorityLength; // do 1 minute priority rather than normal period
+        if (mInPriority) time = mPriorityLength; // do 1 minute priority rather than normal period
         mCountDownTimer = new CountDownTimer(time, 10) {
             public void onTick(long millisUntilFinished) {
                 updateTimer(millisUntilFinished);
@@ -268,7 +268,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             if (leftFencer.getScore() == rightFencer.getScore()) {
                 if (leftFencer.hasPriority() && !rightFencer.hasPriority())
                     leftFencer.addScore();
-                else if(rightFencer.hasPriority() && !leftFencer.hasPriority())
+                else if (rightFencer.hasPriority() && !leftFencer.hasPriority())
                     rightFencer.addScore();
                 else if (leftFencer.hasPriority() && rightFencer.hasPriority())
                     Log.v("En Garde", "Both fencers have priority.");
@@ -283,7 +283,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                     mNextSectionType = 0;
                     mInBreak = false;
                 }
-            } else if(leftFencer.getScore() == rightFencer.getScore()) {
+            } else if (leftFencer.getScore() == rightFencer.getScore()) {
                 mInPeriod = mInBreak = false;
                 mNextSectionType = 2;
             }
@@ -296,30 +296,29 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void updatePeriod() {
-        if(mInPeriod)
+        if (mInPeriod)
             mPeriodView.setText(getResources().getString(R.string.period) + " " + mPeriodNumber);
-        else if(mInBreak)
+        else if (mInBreak)
             mPeriodView.setText(getResources().getString(R.string.rest) + " " + mPeriodNumber);
-        else if(mInPriority)
+        else if (mInPriority)
             mPeriodView.setText(getResources().getString(R.string.priority));
     }
 
     public void determinePriority() {
-        int rand  = (int) (Math.random() * 100);
+        int rand = (int) (Math.random() * 100);
         if (rand % 2 == 0) {
             leftFencer.givePriority();
             mPriorityIndicatorLeft.setVisibility(View.VISIBLE);
-        }
-        else if (rand % 2 == 1) {
+        } else if (rand % 2 == 1) {
             rightFencer.givePriority();
             mPriorityIndicatorRight.setVisibility(View.VISIBLE);
         }
     }
 
     private void updatePriorityIndicators() {
-        if(leftFencer.hasPriority()) mPriorityIndicatorLeft.setVisibility(View.VISIBLE);
+        if (leftFencer.hasPriority()) mPriorityIndicatorLeft.setVisibility(View.VISIBLE);
         else mPriorityIndicatorLeft.setVisibility(View.INVISIBLE);
-        if(rightFencer.hasPriority()) mPriorityIndicatorRight.setVisibility(View.VISIBLE);
+        if (rightFencer.hasPriority()) mPriorityIndicatorRight.setVisibility(View.VISIBLE);
         else mPriorityIndicatorRight.setVisibility(View.INVISIBLE);
     }
 
@@ -341,6 +340,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mVibrator.cancel();
         mTimer.clearAnimation();
     }
+
     private void resetPriority() {
         mInPriority = false;
         leftFencer.resetPriority();
@@ -373,7 +373,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 leftFencer.addScore();
                 rightFencer.addScore();
                 mRecentActions.push(2);
-                showToast(getResources().getString(R.string.gave),getResources().getString(R.string.double_toast),
+                showToast(getResources().getString(R.string.gave), getResources().getString(R.string.double_toast),
                         getResources().getString(R.string.touch));
                 break;
         }
@@ -384,6 +384,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private void subScore(Fencer fencer) {
         fencer.subtractScore();
     }
+
     private void subScore(int both) {
         leftFencer.subtractScore();
         rightFencer.subtractScore();

@@ -9,1151 +9,1238 @@ package com.ethanmad.engarde;
 
 public final class R {
     public static final class array {
-        public static final int blood=0x7f040000;
-        public static final int blossom=0x7f040001;
-        public static final int candy=0x7f040002;
-        public static final int dark=0x7f040003;
-        public static final int deep=0x7f040004;
-        public static final int fencer_names=0x7f04000c;
-        public static final int flat_red=0x7f04000e;
-        /**  really much lighter color of main color 
+        public static final int blood = 0x7f040000;
+        public static final int blossom = 0x7f040001;
+        public static final int candy = 0x7f040002;
+        public static final int dark = 0x7f040003;
+        public static final int deep = 0x7f040004;
+        public static final int fencer_names = 0x7f04000c;
+        public static final int flat_red = 0x7f04000e;
+        /**
+         * really much lighter color of main color
          */
-        public static final int flat_yellow=0x7f04000d;
-        public static final int grape=0x7f040005;
-        public static final int grass=0x7f040006;
-        public static final int orange=0x7f040007;
-        public static final int sand=0x7f040008;
-        public static final int sea=0x7f040009;
-        public static final int sky=0x7f04000a;
-        public static final int snow=0x7f04000b;
+        public static final int flat_yellow = 0x7f04000d;
+        public static final int grape = 0x7f040005;
+        public static final int grass = 0x7f040006;
+        public static final int orange = 0x7f040007;
+        public static final int sand = 0x7f040008;
+        public static final int sea = 0x7f040009;
+        public static final int sky = 0x7f04000a;
+        public static final int snow = 0x7f04000b;
     }
+
     public static final class attr {
-        /** <p>May be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-<p>May be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>darker</code></td><td>0</td><td></td></tr>
-<tr><td><code>dark</code></td><td>1</td><td></td></tr>
-<tr><td><code>main</code></td><td>2</td><td></td></tr>
-<tr><td><code>light</code></td><td>3</td><td></td></tr>
-</table>
+        /**
+         * <p>May be an integer value, such as "<code>100</code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         * <p>May be one of the following constant values.</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+         * <tr><td><code>darker</code></td><td>0</td><td></td></tr>
+         * <tr><td><code>dark</code></td><td>1</td><td></td></tr>
+         * <tr><td><code>main</code></td><td>2</td><td></td></tr>
+         * <tr><td><code>light</code></td><td>3</td><td></td></tr>
+         * </table>
          */
-        public static final int backgroundColor=0x7f01000c;
-        /**  Defines the height of the border bottom of the button 
-         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        public static final int backgroundColor = 0x7f01000c;
+        /**
+         * Defines the height of the border bottom of the button
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
          */
-        public static final int blockButtonEffectHeight=0x7f010009;
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        public static final int blockButtonEffectHeight = 0x7f010009;
+        /**
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
          */
-        public static final int borderWidth=0x7f010000;
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        public static final int borderWidth = 0x7f010000;
+        /**
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
          */
-        public static final int cornerRadius=0x7f010001;
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        public static final int cornerRadius = 0x7f010001;
+        /**
+         * <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+         * "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
          */
-        public static final int customBackgroundColor=0x7f01000d;
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        public static final int customBackgroundColor = 0x7f01000d;
+        /**
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
          */
-        public static final int dotMargin=0x7f010002;
-        /** <p>May be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-<p>May be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>flat</code></td><td>0</td><td></td></tr>
-<tr><td><code>box</code></td><td>1</td><td></td></tr>
-<tr><td><code>transparent</code></td><td>2</td><td></td></tr>
-</table>
+        public static final int dotMargin = 0x7f010002;
+        /**
+         * <p>May be an integer value, such as "<code>100</code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         * <p>May be one of the following constant values.</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+         * <tr><td><code>flat</code></td><td>0</td><td></td></tr>
+         * <tr><td><code>box</code></td><td>1</td><td></td></tr>
+         * <tr><td><code>transparent</code></td><td>2</td><td></td></tr>
+         * </table>
          */
-        public static final int fieldStyle=0x7f01000a;
-        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        public static final int fieldStyle = 0x7f01000a;
+        /**
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
          */
-        public static final int fontExtension=0x7f010003;
-        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        public static final int fontExtension = 0x7f010003;
+        /**
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
          */
-        public static final int fontFamily=0x7f010004;
-        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        public static final int fontFamily = 0x7f010004;
+        /**
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
          */
-        public static final int fontWeight=0x7f010005;
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        public static final int fontWeight = 0x7f010005;
+        /**
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
          */
-        public static final int size=0x7f010006;
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        public static final int size = 0x7f010006;
+        /**
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
          */
-        public static final int space=0x7f01000e;
-        /** <p>May be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-<p>May be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>none</code></td><td>0</td><td></td></tr>
-<tr><td><code>dark</code></td><td>1</td><td></td></tr>
-<tr><td><code>light</code></td><td>2</td><td></td></tr>
-</table>
+        public static final int space = 0x7f01000e;
+        /**
+         * <p>May be an integer value, such as "<code>100</code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         * <p>May be one of the following constant values.</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+         * <tr><td><code>none</code></td><td>0</td><td></td></tr>
+         * <tr><td><code>dark</code></td><td>1</td><td></td></tr>
+         * <tr><td><code>light</code></td><td>2</td><td></td></tr>
+         * </table>
          */
-        public static final int textAppearance=0x7f010007;
-        /** <p>May be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-<p>May be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>darker</code></td><td>0</td><td></td></tr>
-<tr><td><code>dark</code></td><td>1</td><td></td></tr>
-<tr><td><code>main</code></td><td>2</td><td></td></tr>
-<tr><td><code>light</code></td><td>3</td><td></td></tr>
-</table>
+        public static final int textAppearance = 0x7f010007;
+        /**
+         * <p>May be an integer value, such as "<code>100</code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         * <p>May be one of the following constant values.</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+         * <tr><td><code>darker</code></td><td>0</td><td></td></tr>
+         * <tr><td><code>dark</code></td><td>1</td><td></td></tr>
+         * <tr><td><code>main</code></td><td>2</td><td></td></tr>
+         * <tr><td><code>light</code></td><td>3</td><td></td></tr>
+         * </table>
          */
-        public static final int textColor=0x7f01000b;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+        public static final int textColor = 0x7f01000b;
+        /**
+         * <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+         * or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int theme=0x7f010008;
+        public static final int theme = 0x7f010008;
     }
+
     public static final class color {
-        public static final int blood_dark=0x7f060000;
-        public static final int blood_darker=0x7f060001;
-        public static final int blood_light=0x7f060002;
-        public static final int blood_primary=0x7f060003;
-        public static final int blossom_dark=0x7f060004;
-        public static final int blossom_darker=0x7f060005;
-        public static final int blossom_light=0x7f060006;
-        public static final int blossom_primary=0x7f060007;
-        public static final int candy_dark=0x7f060008;
-        public static final int candy_darker=0x7f060009;
-        public static final int candy_light=0x7f06000a;
-        public static final int candy_primary=0x7f06000b;
-        public static final int dark_dark=0x7f06000c;
-        public static final int dark_darker=0x7f06000d;
-        public static final int dark_light=0x7f06000e;
-        public static final int dark_primary=0x7f06000f;
-        public static final int deep_dark=0x7f060010;
-        public static final int deep_darker=0x7f060011;
-        public static final int deep_light=0x7f060012;
-        public static final int deep_primary=0x7f060013;
-        public static final int grape_dark=0x7f060014;
-        public static final int grape_darker=0x7f060015;
-        public static final int grape_light=0x7f060016;
-        public static final int grape_primary=0x7f060017;
-        public static final int grass_dark=0x7f060018;
-        public static final int grass_darker=0x7f060019;
-        public static final int grass_light=0x7f06001a;
-        public static final int grass_primary=0x7f06001b;
-        public static final int orange_dark=0x7f06001c;
-        public static final int orange_darker=0x7f06001d;
-        public static final int orange_light=0x7f06001e;
-        public static final int orange_primary=0x7f06001f;
-        public static final int red_dark=0x7f060035;
-        /** RED CARD COLOR
+        public static final int blood_dark = 0x7f060000;
+        public static final int blood_darker = 0x7f060001;
+        public static final int blood_light = 0x7f060002;
+        public static final int blood_primary = 0x7f060003;
+        public static final int blossom_dark = 0x7f060004;
+        public static final int blossom_darker = 0x7f060005;
+        public static final int blossom_light = 0x7f060006;
+        public static final int blossom_primary = 0x7f060007;
+        public static final int candy_dark = 0x7f060008;
+        public static final int candy_darker = 0x7f060009;
+        public static final int candy_light = 0x7f06000a;
+        public static final int candy_primary = 0x7f06000b;
+        public static final int dark_dark = 0x7f06000c;
+        public static final int dark_darker = 0x7f06000d;
+        public static final int dark_light = 0x7f06000e;
+        public static final int dark_primary = 0x7f06000f;
+        public static final int deep_dark = 0x7f060010;
+        public static final int deep_darker = 0x7f060011;
+        public static final int deep_light = 0x7f060012;
+        public static final int deep_primary = 0x7f060013;
+        public static final int grape_dark = 0x7f060014;
+        public static final int grape_darker = 0x7f060015;
+        public static final int grape_light = 0x7f060016;
+        public static final int grape_primary = 0x7f060017;
+        public static final int grass_dark = 0x7f060018;
+        public static final int grass_darker = 0x7f060019;
+        public static final int grass_light = 0x7f06001a;
+        public static final int grass_primary = 0x7f06001b;
+        public static final int orange_dark = 0x7f06001c;
+        public static final int orange_darker = 0x7f06001d;
+        public static final int orange_light = 0x7f06001e;
+        public static final int orange_primary = 0x7f06001f;
+        public static final int red_dark = 0x7f060035;
+        /**
+         * RED CARD COLOR
          */
-        public static final int red_darker=0x7f060034;
-        public static final int red_light=0x7f060037;
-        public static final int red_primary=0x7f060036;
-        public static final int sand_dark=0x7f060020;
-        public static final int sand_darker=0x7f060021;
-        public static final int sand_light=0x7f060022;
-        public static final int sand_primary=0x7f060023;
-        public static final int sea_dark=0x7f060024;
-        public static final int sea_darker=0x7f060025;
-        public static final int sea_light=0x7f060026;
-        public static final int sea_primary=0x7f060027;
-        public static final int sky_dark=0x7f060028;
-        public static final int sky_darker=0x7f060029;
-        public static final int sky_light=0x7f06002a;
-        public static final int sky_primary=0x7f06002b;
-        public static final int snow_dark=0x7f06002c;
-        public static final int snow_darker=0x7f06002d;
-        public static final int snow_light=0x7f06002e;
-        public static final int snow_primary=0x7f06002f;
-        public static final int yellow_dark=0x7f060031;
-        /** YELLOW CARD COLOR
+        public static final int red_darker = 0x7f060034;
+        public static final int red_light = 0x7f060037;
+        public static final int red_primary = 0x7f060036;
+        public static final int sand_dark = 0x7f060020;
+        public static final int sand_darker = 0x7f060021;
+        public static final int sand_light = 0x7f060022;
+        public static final int sand_primary = 0x7f060023;
+        public static final int sea_dark = 0x7f060024;
+        public static final int sea_darker = 0x7f060025;
+        public static final int sea_light = 0x7f060026;
+        public static final int sea_primary = 0x7f060027;
+        public static final int sky_dark = 0x7f060028;
+        public static final int sky_darker = 0x7f060029;
+        public static final int sky_light = 0x7f06002a;
+        public static final int sky_primary = 0x7f06002b;
+        public static final int snow_dark = 0x7f06002c;
+        public static final int snow_darker = 0x7f06002d;
+        public static final int snow_light = 0x7f06002e;
+        public static final int snow_primary = 0x7f06002f;
+        public static final int yellow_dark = 0x7f060031;
+        /**
+         * YELLOW CARD COLOR
          */
-        public static final int yellow_darker=0x7f060030;
-        public static final int yellow_light=0x7f060033;
-        public static final int yellow_primary=0x7f060032;
+        public static final int yellow_darker = 0x7f060030;
+        public static final int yellow_light = 0x7f060033;
+        public static final int yellow_primary = 0x7f060032;
     }
+
     public static final class dimen {
-        /**  Default screen margins, per the Android Design guidelines. 
- Example customization of dimensions originally defined in res/values/dimens.xml
-         (such as screen margins) for screens with more than 820dp of available width. This
-         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). 
+        /**
+         * Default screen margins, per the Android Design guidelines.
+         * Example customization of dimensions originally defined in res/values/dimens.xml
+         * (such as screen margins) for screens with more than 820dp of available width. This
+         * would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
          */
-        public static final int activity_horizontal_margin=0x7f080000;
-        public static final int activity_vertical_margin=0x7f080001;
+        public static final int activity_horizontal_margin = 0x7f080000;
+        public static final int activity_vertical_margin = 0x7f080001;
     }
+
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int ic_launcher = 0x7f020000;
     }
+
     public static final class id {
-        public static final int action_settings=0x7f050010;
-        public static final int box=0x7f050004;
-        public static final int dark=0x7f050001;
-        public static final int darker=0x7f050006;
-        public static final int doubleTouchButton=0x7f05000b;
-        public static final int doubleTouchView=0x7f05000e;
-        public static final int flat=0x7f050003;
-        public static final int layout=0x7f050008;
-        public static final int light=0x7f050002;
-        public static final int main=0x7f050007;
-        public static final int none=0x7f050000;
-        public static final int redCardButton=0x7f05000f;
-        public static final int scoreOne=0x7f05000a;
-        public static final int scoreTwo=0x7f05000c;
-        public static final int timer=0x7f050009;
-        public static final int transparent=0x7f050005;
-        public static final int yellowCardButton=0x7f05000d;
+        public static final int action_settings = 0x7f050010;
+        public static final int box = 0x7f050004;
+        public static final int dark = 0x7f050001;
+        public static final int darker = 0x7f050006;
+        public static final int doubleTouchButton = 0x7f05000b;
+        public static final int doubleTouchView = 0x7f05000e;
+        public static final int flat = 0x7f050003;
+        public static final int layout = 0x7f050008;
+        public static final int light = 0x7f050002;
+        public static final int main = 0x7f050007;
+        public static final int none = 0x7f050000;
+        public static final int redCardButton = 0x7f05000f;
+        public static final int scoreOne = 0x7f05000a;
+        public static final int scoreTwo = 0x7f05000c;
+        public static final int timer = 0x7f050009;
+        public static final int transparent = 0x7f050005;
+        public static final int yellowCardButton = 0x7f05000d;
     }
+
     public static final class layout {
-        public static final int activity_my=0x7f030000;
+        public static final int activity_my = 0x7f030000;
     }
+
     public static final class menu {
-        public static final int my=0x7f0a0000;
+        public static final int my = 0x7f0a0000;
     }
+
     public static final class string {
-        public static final int action_reset=0x7f070002;
-        public static final int action_settings=0x7f070001;
-        public static final int app_name=0x7f070000;
-        public static final int double_touch=0x7f070006;
-        public static final int fencer_one_score=0x7f070004;
-        public static final int fencer_two_score=0x7f070005;
-        public static final int mode_15touch=0x7f070008;
-        public static final int mode_5touch=0x7f070007;
-        public static final int one_period=0x7f070009;
-        public static final int period_one=0x7f07000b;
-        public static final int period_three=0x7f07000d;
-        public static final int period_two=0x7f07000c;
-        public static final int pick_fencer_red_card=0x7f070011;
-        public static final int pick_fencer_yellow_card=0x7f070010;
-        public static final int red_card=0x7f07000f;
-        public static final int three_periods=0x7f07000a;
-        public static final int timer_default=0x7f070003;
-        public static final int yellow_card=0x7f07000e;
+        public static final int action_reset = 0x7f070002;
+        public static final int action_settings = 0x7f070001;
+        public static final int app_name = 0x7f070000;
+        public static final int double_touch = 0x7f070006;
+        public static final int fencer_one_score = 0x7f070004;
+        public static final int fencer_two_score = 0x7f070005;
+        public static final int mode_15touch = 0x7f070008;
+        public static final int mode_5touch = 0x7f070007;
+        public static final int one_period = 0x7f070009;
+        public static final int period_one = 0x7f07000b;
+        public static final int period_three = 0x7f07000d;
+        public static final int period_two = 0x7f07000c;
+        public static final int pick_fencer_red_card = 0x7f070011;
+        public static final int pick_fencer_yellow_card = 0x7f070010;
+        public static final int red_card = 0x7f07000f;
+        public static final int three_periods = 0x7f07000a;
+        public static final int timer_default = 0x7f070003;
+        public static final int yellow_card = 0x7f07000e;
     }
+
     public static final class style {
-        /**  Base application theme. 
- Customize your theme here. 
+        /**
+         * Base application theme.
+         * Customize your theme here.
          */
-        public static final int AppTheme=0x7f090000;
+        public static final int AppTheme = 0x7f090000;
     }
+
     public static final class styleable {
-        /** Attributes that can be used with a FlatButton.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FlatButton_blockButtonEffectHeight com.ethanmad.fencingscorekeeper:blockButtonEffectHeight}</code></td><td> Defines the height of the border bottom of the button </td></tr>
-           <tr><td><code>{@link #FlatButton_cornerRadius com.ethanmad.fencingscorekeeper:cornerRadius}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatButton_fontExtension com.ethanmad.fencingscorekeeper:fontExtension}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatButton_fontFamily com.ethanmad.fencingscorekeeper:fontFamily}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatButton_fontWeight com.ethanmad.fencingscorekeeper:fontWeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatButton_textAppearance com.ethanmad.fencingscorekeeper:textAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatButton_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
-           </table>
-           @see #FlatButton_blockButtonEffectHeight
-           @see #FlatButton_cornerRadius
-           @see #FlatButton_fontExtension
-           @see #FlatButton_fontFamily
-           @see #FlatButton_fontWeight
-           @see #FlatButton_textAppearance
-           @see #FlatButton_theme
+        /**
+         * Attributes that can be used with a FlatButton.
+         * <p>Includes the following attributes:</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Attribute</th><th>Description</th></tr>
+         * <tr><td><code>{@link #FlatButton_blockButtonEffectHeight com.ethanmad.fencingscorekeeper:blockButtonEffectHeight}</code></td><td> Defines the height of the border bottom of the button </td></tr>
+         * <tr><td><code>{@link #FlatButton_cornerRadius com.ethanmad.fencingscorekeeper:cornerRadius}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatButton_fontExtension com.ethanmad.fencingscorekeeper:fontExtension}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatButton_fontFamily com.ethanmad.fencingscorekeeper:fontFamily}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatButton_fontWeight com.ethanmad.fencingscorekeeper:fontWeight}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatButton_textAppearance com.ethanmad.fencingscorekeeper:textAppearance}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatButton_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
+         * </table>
+         *
+         * @see #FlatButton_blockButtonEffectHeight
+         * @see #FlatButton_cornerRadius
+         * @see #FlatButton_fontExtension
+         * @see #FlatButton_fontFamily
+         * @see #FlatButton_fontWeight
+         * @see #FlatButton_textAppearance
+         * @see #FlatButton_theme
          */
         public static final int[] FlatButton = {
-            0x7f010001, 0x7f010003, 0x7f010004, 0x7f010005,
-            0x7f010007, 0x7f010008, 0x7f010009
+                0x7f010001, 0x7f010003, 0x7f010004, 0x7f010005,
+                0x7f010007, 0x7f010008, 0x7f010009
         };
         /**
-          <p>
-          @attr description
-           Defines the height of the border bottom of the button 
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          <p>This is a private symbol.
-          @attr name com.ethanmad.fencingscorekeeper:blockButtonEffectHeight
-        */
+         * @attr description
+         * Defines the height of the border bottom of the button
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         * <p>This is a private symbol.
+         * @attr name com.ethanmad.fencingscorekeeper:blockButtonEffectHeight
+         */
         public static final int FlatButton_blockButtonEffectHeight = 6;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
-          attribute's value can be found in the {@link #FlatButton} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:cornerRadius
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
+         * attribute's value can be found in the {@link #FlatButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:cornerRadius
+         */
         public static final int FlatButton_cornerRadius = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
-          attribute's value can be found in the {@link #FlatButton} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontExtension
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
+         * attribute's value can be found in the {@link #FlatButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontExtension
+         */
         public static final int FlatButton_fontExtension = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
-          attribute's value can be found in the {@link #FlatButton} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontFamily
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
+         * attribute's value can be found in the {@link #FlatButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontFamily
+         */
         public static final int FlatButton_fontFamily = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
-          attribute's value can be found in the {@link #FlatButton} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontWeight
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
+         * attribute's value can be found in the {@link #FlatButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontWeight
+         */
         public static final int FlatButton_fontWeight = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#textAppearance}
-          attribute's value can be found in the {@link #FlatButton} array.
-
-
-          <p>May be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-<p>May be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>none</code></td><td>0</td><td></td></tr>
-<tr><td><code>dark</code></td><td>1</td><td></td></tr>
-<tr><td><code>light</code></td><td>2</td><td></td></tr>
-</table>
-          @attr name com.ethanmad.fencingscorekeeper:textAppearance
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#textAppearance}
+         * attribute's value can be found in the {@link #FlatButton} array.
+         * <p/>
+         * <p/>
+         * <p>May be an integer value, such as "<code>100</code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         * <p>May be one of the following constant values.</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+         * <tr><td><code>none</code></td><td>0</td><td></td></tr>
+         * <tr><td><code>dark</code></td><td>1</td><td></td></tr>
+         * <tr><td><code>light</code></td><td>2</td><td></td></tr>
+         * </table>
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:textAppearance
+         */
         public static final int FlatButton_textAppearance = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
-          attribute's value can be found in the {@link #FlatButton} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.ethanmad.fencingscorekeeper:theme
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
+         * attribute's value can be found in the {@link #FlatButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+         * or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:theme
+         */
         public static final int FlatButton_theme = 5;
-        /** Attributes that can be used with a FlatCheckBox.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FlatCheckBox_cornerRadius com.ethanmad.fencingscorekeeper:cornerRadius}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatCheckBox_dotMargin com.ethanmad.fencingscorekeeper:dotMargin}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatCheckBox_fontExtension com.ethanmad.fencingscorekeeper:fontExtension}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatCheckBox_fontFamily com.ethanmad.fencingscorekeeper:fontFamily}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatCheckBox_fontWeight com.ethanmad.fencingscorekeeper:fontWeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatCheckBox_size com.ethanmad.fencingscorekeeper:size}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatCheckBox_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
-           </table>
-           @see #FlatCheckBox_cornerRadius
-           @see #FlatCheckBox_dotMargin
-           @see #FlatCheckBox_fontExtension
-           @see #FlatCheckBox_fontFamily
-           @see #FlatCheckBox_fontWeight
-           @see #FlatCheckBox_size
-           @see #FlatCheckBox_theme
+        /**
+         * Attributes that can be used with a FlatCheckBox.
+         * <p>Includes the following attributes:</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Attribute</th><th>Description</th></tr>
+         * <tr><td><code>{@link #FlatCheckBox_cornerRadius com.ethanmad.fencingscorekeeper:cornerRadius}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatCheckBox_dotMargin com.ethanmad.fencingscorekeeper:dotMargin}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatCheckBox_fontExtension com.ethanmad.fencingscorekeeper:fontExtension}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatCheckBox_fontFamily com.ethanmad.fencingscorekeeper:fontFamily}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatCheckBox_fontWeight com.ethanmad.fencingscorekeeper:fontWeight}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatCheckBox_size com.ethanmad.fencingscorekeeper:size}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatCheckBox_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
+         * </table>
+         *
+         * @see #FlatCheckBox_cornerRadius
+         * @see #FlatCheckBox_dotMargin
+         * @see #FlatCheckBox_fontExtension
+         * @see #FlatCheckBox_fontFamily
+         * @see #FlatCheckBox_fontWeight
+         * @see #FlatCheckBox_size
+         * @see #FlatCheckBox_theme
          */
         public static final int[] FlatCheckBox = {
-            0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004,
-            0x7f010005, 0x7f010006, 0x7f010008
+                0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004,
+                0x7f010005, 0x7f010006, 0x7f010008
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
-          attribute's value can be found in the {@link #FlatCheckBox} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:cornerRadius
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
+         * attribute's value can be found in the {@link #FlatCheckBox} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:cornerRadius
+         */
         public static final int FlatCheckBox_cornerRadius = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#dotMargin}
-          attribute's value can be found in the {@link #FlatCheckBox} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:dotMargin
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#dotMargin}
+         * attribute's value can be found in the {@link #FlatCheckBox} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:dotMargin
+         */
         public static final int FlatCheckBox_dotMargin = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
-          attribute's value can be found in the {@link #FlatCheckBox} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontExtension
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
+         * attribute's value can be found in the {@link #FlatCheckBox} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontExtension
+         */
         public static final int FlatCheckBox_fontExtension = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
-          attribute's value can be found in the {@link #FlatCheckBox} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontFamily
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
+         * attribute's value can be found in the {@link #FlatCheckBox} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontFamily
+         */
         public static final int FlatCheckBox_fontFamily = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
-          attribute's value can be found in the {@link #FlatCheckBox} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontWeight
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
+         * attribute's value can be found in the {@link #FlatCheckBox} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontWeight
+         */
         public static final int FlatCheckBox_fontWeight = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#size}
-          attribute's value can be found in the {@link #FlatCheckBox} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:size
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#size}
+         * attribute's value can be found in the {@link #FlatCheckBox} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:size
+         */
         public static final int FlatCheckBox_size = 5;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
-          attribute's value can be found in the {@link #FlatCheckBox} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.ethanmad.fencingscorekeeper:theme
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
+         * attribute's value can be found in the {@link #FlatCheckBox} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+         * or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:theme
+         */
         public static final int FlatCheckBox_theme = 6;
-        /** Attributes that can be used with a FlatEditText.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FlatEditText_borderWidth com.ethanmad.fencingscorekeeper:borderWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatEditText_cornerRadius com.ethanmad.fencingscorekeeper:cornerRadius}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatEditText_fieldStyle com.ethanmad.fencingscorekeeper:fieldStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatEditText_fontExtension com.ethanmad.fencingscorekeeper:fontExtension}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatEditText_fontFamily com.ethanmad.fencingscorekeeper:fontFamily}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatEditText_fontWeight com.ethanmad.fencingscorekeeper:fontWeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatEditText_textAppearance com.ethanmad.fencingscorekeeper:textAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatEditText_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
-           </table>
-           @see #FlatEditText_borderWidth
-           @see #FlatEditText_cornerRadius
-           @see #FlatEditText_fieldStyle
-           @see #FlatEditText_fontExtension
-           @see #FlatEditText_fontFamily
-           @see #FlatEditText_fontWeight
-           @see #FlatEditText_textAppearance
-           @see #FlatEditText_theme
+        /**
+         * Attributes that can be used with a FlatEditText.
+         * <p>Includes the following attributes:</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Attribute</th><th>Description</th></tr>
+         * <tr><td><code>{@link #FlatEditText_borderWidth com.ethanmad.fencingscorekeeper:borderWidth}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatEditText_cornerRadius com.ethanmad.fencingscorekeeper:cornerRadius}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatEditText_fieldStyle com.ethanmad.fencingscorekeeper:fieldStyle}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatEditText_fontExtension com.ethanmad.fencingscorekeeper:fontExtension}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatEditText_fontFamily com.ethanmad.fencingscorekeeper:fontFamily}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatEditText_fontWeight com.ethanmad.fencingscorekeeper:fontWeight}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatEditText_textAppearance com.ethanmad.fencingscorekeeper:textAppearance}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatEditText_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
+         * </table>
+         *
+         * @see #FlatEditText_borderWidth
+         * @see #FlatEditText_cornerRadius
+         * @see #FlatEditText_fieldStyle
+         * @see #FlatEditText_fontExtension
+         * @see #FlatEditText_fontFamily
+         * @see #FlatEditText_fontWeight
+         * @see #FlatEditText_textAppearance
+         * @see #FlatEditText_theme
          */
         public static final int[] FlatEditText = {
-            0x7f010000, 0x7f010001, 0x7f010003, 0x7f010004,
-            0x7f010005, 0x7f010007, 0x7f010008, 0x7f01000a
+                0x7f010000, 0x7f010001, 0x7f010003, 0x7f010004,
+                0x7f010005, 0x7f010007, 0x7f010008, 0x7f01000a
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#borderWidth}
-          attribute's value can be found in the {@link #FlatEditText} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:borderWidth
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#borderWidth}
+         * attribute's value can be found in the {@link #FlatEditText} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:borderWidth
+         */
         public static final int FlatEditText_borderWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
-          attribute's value can be found in the {@link #FlatEditText} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:cornerRadius
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
+         * attribute's value can be found in the {@link #FlatEditText} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:cornerRadius
+         */
         public static final int FlatEditText_cornerRadius = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fieldStyle}
-          attribute's value can be found in the {@link #FlatEditText} array.
-
-
-          <p>May be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-<p>May be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>flat</code></td><td>0</td><td></td></tr>
-<tr><td><code>box</code></td><td>1</td><td></td></tr>
-<tr><td><code>transparent</code></td><td>2</td><td></td></tr>
-</table>
-          @attr name com.ethanmad.fencingscorekeeper:fieldStyle
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fieldStyle}
+         * attribute's value can be found in the {@link #FlatEditText} array.
+         * <p/>
+         * <p/>
+         * <p>May be an integer value, such as "<code>100</code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         * <p>May be one of the following constant values.</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+         * <tr><td><code>flat</code></td><td>0</td><td></td></tr>
+         * <tr><td><code>box</code></td><td>1</td><td></td></tr>
+         * <tr><td><code>transparent</code></td><td>2</td><td></td></tr>
+         * </table>
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fieldStyle
+         */
         public static final int FlatEditText_fieldStyle = 7;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
-          attribute's value can be found in the {@link #FlatEditText} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontExtension
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
+         * attribute's value can be found in the {@link #FlatEditText} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontExtension
+         */
         public static final int FlatEditText_fontExtension = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
-          attribute's value can be found in the {@link #FlatEditText} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontFamily
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
+         * attribute's value can be found in the {@link #FlatEditText} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontFamily
+         */
         public static final int FlatEditText_fontFamily = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
-          attribute's value can be found in the {@link #FlatEditText} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontWeight
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
+         * attribute's value can be found in the {@link #FlatEditText} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontWeight
+         */
         public static final int FlatEditText_fontWeight = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#textAppearance}
-          attribute's value can be found in the {@link #FlatEditText} array.
-
-
-          <p>May be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-<p>May be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>none</code></td><td>0</td><td></td></tr>
-<tr><td><code>dark</code></td><td>1</td><td></td></tr>
-<tr><td><code>light</code></td><td>2</td><td></td></tr>
-</table>
-          @attr name com.ethanmad.fencingscorekeeper:textAppearance
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#textAppearance}
+         * attribute's value can be found in the {@link #FlatEditText} array.
+         * <p/>
+         * <p/>
+         * <p>May be an integer value, such as "<code>100</code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         * <p>May be one of the following constant values.</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+         * <tr><td><code>none</code></td><td>0</td><td></td></tr>
+         * <tr><td><code>dark</code></td><td>1</td><td></td></tr>
+         * <tr><td><code>light</code></td><td>2</td><td></td></tr>
+         * </table>
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:textAppearance
+         */
         public static final int FlatEditText_textAppearance = 5;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
-          attribute's value can be found in the {@link #FlatEditText} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.ethanmad.fencingscorekeeper:theme
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
+         * attribute's value can be found in the {@link #FlatEditText} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+         * or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:theme
+         */
         public static final int FlatEditText_theme = 6;
-        /** Attributes that can be used with a FlatRadioButton.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FlatRadioButton_borderWidth com.ethanmad.fencingscorekeeper:borderWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatRadioButton_dotMargin com.ethanmad.fencingscorekeeper:dotMargin}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatRadioButton_fontExtension com.ethanmad.fencingscorekeeper:fontExtension}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatRadioButton_fontFamily com.ethanmad.fencingscorekeeper:fontFamily}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatRadioButton_fontWeight com.ethanmad.fencingscorekeeper:fontWeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatRadioButton_size com.ethanmad.fencingscorekeeper:size}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatRadioButton_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
-           </table>
-           @see #FlatRadioButton_borderWidth
-           @see #FlatRadioButton_dotMargin
-           @see #FlatRadioButton_fontExtension
-           @see #FlatRadioButton_fontFamily
-           @see #FlatRadioButton_fontWeight
-           @see #FlatRadioButton_size
-           @see #FlatRadioButton_theme
+        /**
+         * Attributes that can be used with a FlatRadioButton.
+         * <p>Includes the following attributes:</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Attribute</th><th>Description</th></tr>
+         * <tr><td><code>{@link #FlatRadioButton_borderWidth com.ethanmad.fencingscorekeeper:borderWidth}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatRadioButton_dotMargin com.ethanmad.fencingscorekeeper:dotMargin}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatRadioButton_fontExtension com.ethanmad.fencingscorekeeper:fontExtension}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatRadioButton_fontFamily com.ethanmad.fencingscorekeeper:fontFamily}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatRadioButton_fontWeight com.ethanmad.fencingscorekeeper:fontWeight}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatRadioButton_size com.ethanmad.fencingscorekeeper:size}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatRadioButton_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
+         * </table>
+         *
+         * @see #FlatRadioButton_borderWidth
+         * @see #FlatRadioButton_dotMargin
+         * @see #FlatRadioButton_fontExtension
+         * @see #FlatRadioButton_fontFamily
+         * @see #FlatRadioButton_fontWeight
+         * @see #FlatRadioButton_size
+         * @see #FlatRadioButton_theme
          */
         public static final int[] FlatRadioButton = {
-            0x7f010000, 0x7f010002, 0x7f010003, 0x7f010004,
-            0x7f010005, 0x7f010006, 0x7f010008
+                0x7f010000, 0x7f010002, 0x7f010003, 0x7f010004,
+                0x7f010005, 0x7f010006, 0x7f010008
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#borderWidth}
-          attribute's value can be found in the {@link #FlatRadioButton} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:borderWidth
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#borderWidth}
+         * attribute's value can be found in the {@link #FlatRadioButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:borderWidth
+         */
         public static final int FlatRadioButton_borderWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#dotMargin}
-          attribute's value can be found in the {@link #FlatRadioButton} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:dotMargin
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#dotMargin}
+         * attribute's value can be found in the {@link #FlatRadioButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:dotMargin
+         */
         public static final int FlatRadioButton_dotMargin = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
-          attribute's value can be found in the {@link #FlatRadioButton} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontExtension
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
+         * attribute's value can be found in the {@link #FlatRadioButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontExtension
+         */
         public static final int FlatRadioButton_fontExtension = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
-          attribute's value can be found in the {@link #FlatRadioButton} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontFamily
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
+         * attribute's value can be found in the {@link #FlatRadioButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontFamily
+         */
         public static final int FlatRadioButton_fontFamily = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
-          attribute's value can be found in the {@link #FlatRadioButton} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontWeight
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
+         * attribute's value can be found in the {@link #FlatRadioButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontWeight
+         */
         public static final int FlatRadioButton_fontWeight = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#size}
-          attribute's value can be found in the {@link #FlatRadioButton} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:size
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#size}
+         * attribute's value can be found in the {@link #FlatRadioButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:size
+         */
         public static final int FlatRadioButton_size = 5;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
-          attribute's value can be found in the {@link #FlatRadioButton} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.ethanmad.fencingscorekeeper:theme
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
+         * attribute's value can be found in the {@link #FlatRadioButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+         * or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:theme
+         */
         public static final int FlatRadioButton_theme = 6;
-        /** Attributes that can be used with a FlatSeekBar.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FlatSeekBar_size com.ethanmad.fencingscorekeeper:size}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatSeekBar_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
-           </table>
-           @see #FlatSeekBar_size
-           @see #FlatSeekBar_theme
+        /**
+         * Attributes that can be used with a FlatSeekBar.
+         * <p>Includes the following attributes:</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Attribute</th><th>Description</th></tr>
+         * <tr><td><code>{@link #FlatSeekBar_size com.ethanmad.fencingscorekeeper:size}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatSeekBar_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
+         * </table>
+         *
+         * @see #FlatSeekBar_size
+         * @see #FlatSeekBar_theme
          */
         public static final int[] FlatSeekBar = {
-            0x7f010006, 0x7f010008
+                0x7f010006, 0x7f010008
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#size}
-          attribute's value can be found in the {@link #FlatSeekBar} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:size
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#size}
+         * attribute's value can be found in the {@link #FlatSeekBar} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:size
+         */
         public static final int FlatSeekBar_size = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
-          attribute's value can be found in the {@link #FlatSeekBar} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.ethanmad.fencingscorekeeper:theme
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
+         * attribute's value can be found in the {@link #FlatSeekBar} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+         * or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:theme
+         */
         public static final int FlatSeekBar_theme = 1;
-        /** Attributes that can be used with a FlatTextView.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FlatTextView_backgroundColor com.ethanmad.fencingscorekeeper:backgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatTextView_borderWidth com.ethanmad.fencingscorekeeper:borderWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatTextView_cornerRadius com.ethanmad.fencingscorekeeper:cornerRadius}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatTextView_customBackgroundColor com.ethanmad.fencingscorekeeper:customBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatTextView_fontExtension com.ethanmad.fencingscorekeeper:fontExtension}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatTextView_fontFamily com.ethanmad.fencingscorekeeper:fontFamily}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatTextView_fontWeight com.ethanmad.fencingscorekeeper:fontWeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatTextView_textColor com.ethanmad.fencingscorekeeper:textColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatTextView_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
-           </table>
-           @see #FlatTextView_backgroundColor
-           @see #FlatTextView_borderWidth
-           @see #FlatTextView_cornerRadius
-           @see #FlatTextView_customBackgroundColor
-           @see #FlatTextView_fontExtension
-           @see #FlatTextView_fontFamily
-           @see #FlatTextView_fontWeight
-           @see #FlatTextView_textColor
-           @see #FlatTextView_theme
+        /**
+         * Attributes that can be used with a FlatTextView.
+         * <p>Includes the following attributes:</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Attribute</th><th>Description</th></tr>
+         * <tr><td><code>{@link #FlatTextView_backgroundColor com.ethanmad.fencingscorekeeper:backgroundColor}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatTextView_borderWidth com.ethanmad.fencingscorekeeper:borderWidth}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatTextView_cornerRadius com.ethanmad.fencingscorekeeper:cornerRadius}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatTextView_customBackgroundColor com.ethanmad.fencingscorekeeper:customBackgroundColor}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatTextView_fontExtension com.ethanmad.fencingscorekeeper:fontExtension}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatTextView_fontFamily com.ethanmad.fencingscorekeeper:fontFamily}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatTextView_fontWeight com.ethanmad.fencingscorekeeper:fontWeight}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatTextView_textColor com.ethanmad.fencingscorekeeper:textColor}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatTextView_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
+         * </table>
+         *
+         * @see #FlatTextView_backgroundColor
+         * @see #FlatTextView_borderWidth
+         * @see #FlatTextView_cornerRadius
+         * @see #FlatTextView_customBackgroundColor
+         * @see #FlatTextView_fontExtension
+         * @see #FlatTextView_fontFamily
+         * @see #FlatTextView_fontWeight
+         * @see #FlatTextView_textColor
+         * @see #FlatTextView_theme
          */
         public static final int[] FlatTextView = {
-            0x7f010000, 0x7f010001, 0x7f010003, 0x7f010004,
-            0x7f010005, 0x7f010008, 0x7f01000b, 0x7f01000c,
-            0x7f01000d
+                0x7f010000, 0x7f010001, 0x7f010003, 0x7f010004,
+                0x7f010005, 0x7f010008, 0x7f01000b, 0x7f01000c,
+                0x7f01000d
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#backgroundColor}
-          attribute's value can be found in the {@link #FlatTextView} array.
-
-
-          <p>May be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-<p>May be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>darker</code></td><td>0</td><td></td></tr>
-<tr><td><code>dark</code></td><td>1</td><td></td></tr>
-<tr><td><code>main</code></td><td>2</td><td></td></tr>
-<tr><td><code>light</code></td><td>3</td><td></td></tr>
-</table>
-          @attr name com.ethanmad.fencingscorekeeper:backgroundColor
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#backgroundColor}
+         * attribute's value can be found in the {@link #FlatTextView} array.
+         * <p/>
+         * <p/>
+         * <p>May be an integer value, such as "<code>100</code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         * <p>May be one of the following constant values.</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+         * <tr><td><code>darker</code></td><td>0</td><td></td></tr>
+         * <tr><td><code>dark</code></td><td>1</td><td></td></tr>
+         * <tr><td><code>main</code></td><td>2</td><td></td></tr>
+         * <tr><td><code>light</code></td><td>3</td><td></td></tr>
+         * </table>
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:backgroundColor
+         */
         public static final int FlatTextView_backgroundColor = 7;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#borderWidth}
-          attribute's value can be found in the {@link #FlatTextView} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:borderWidth
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#borderWidth}
+         * attribute's value can be found in the {@link #FlatTextView} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:borderWidth
+         */
         public static final int FlatTextView_borderWidth = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
-          attribute's value can be found in the {@link #FlatTextView} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:cornerRadius
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
+         * attribute's value can be found in the {@link #FlatTextView} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:cornerRadius
+         */
         public static final int FlatTextView_cornerRadius = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#customBackgroundColor}
-          attribute's value can be found in the {@link #FlatTextView} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:customBackgroundColor
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#customBackgroundColor}
+         * attribute's value can be found in the {@link #FlatTextView} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+         * "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:customBackgroundColor
+         */
         public static final int FlatTextView_customBackgroundColor = 8;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
-          attribute's value can be found in the {@link #FlatTextView} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontExtension
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontExtension}
+         * attribute's value can be found in the {@link #FlatTextView} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontExtension
+         */
         public static final int FlatTextView_fontExtension = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
-          attribute's value can be found in the {@link #FlatTextView} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontFamily
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontFamily}
+         * attribute's value can be found in the {@link #FlatTextView} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontFamily
+         */
         public static final int FlatTextView_fontFamily = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
-          attribute's value can be found in the {@link #FlatTextView} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:fontWeight
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#fontWeight}
+         * attribute's value can be found in the {@link #FlatTextView} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:fontWeight
+         */
         public static final int FlatTextView_fontWeight = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#textColor}
-          attribute's value can be found in the {@link #FlatTextView} array.
-
-
-          <p>May be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-<p>May be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>darker</code></td><td>0</td><td></td></tr>
-<tr><td><code>dark</code></td><td>1</td><td></td></tr>
-<tr><td><code>main</code></td><td>2</td><td></td></tr>
-<tr><td><code>light</code></td><td>3</td><td></td></tr>
-</table>
-          @attr name com.ethanmad.fencingscorekeeper:textColor
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#textColor}
+         * attribute's value can be found in the {@link #FlatTextView} array.
+         * <p/>
+         * <p/>
+         * <p>May be an integer value, such as "<code>100</code>".
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         * <p>May be one of the following constant values.</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+         * <tr><td><code>darker</code></td><td>0</td><td></td></tr>
+         * <tr><td><code>dark</code></td><td>1</td><td></td></tr>
+         * <tr><td><code>main</code></td><td>2</td><td></td></tr>
+         * <tr><td><code>light</code></td><td>3</td><td></td></tr>
+         * </table>
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:textColor
+         */
         public static final int FlatTextView_textColor = 6;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
-          attribute's value can be found in the {@link #FlatTextView} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.ethanmad.fencingscorekeeper:theme
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
+         * attribute's value can be found in the {@link #FlatTextView} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+         * or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:theme
+         */
         public static final int FlatTextView_theme = 5;
-        /** Attributes that can be used with a FlatToggleButton.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FlatToggleButton_cornerRadius com.ethanmad.fencingscorekeeper:cornerRadius}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatToggleButton_space com.ethanmad.fencingscorekeeper:space}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlatToggleButton_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
-           </table>
-           @see #FlatToggleButton_cornerRadius
-           @see #FlatToggleButton_space
-           @see #FlatToggleButton_theme
+        /**
+         * Attributes that can be used with a FlatToggleButton.
+         * <p>Includes the following attributes:</p>
+         * <table>
+         * <colgroup align="left" />
+         * <colgroup align="left" />
+         * <tr><th>Attribute</th><th>Description</th></tr>
+         * <tr><td><code>{@link #FlatToggleButton_cornerRadius com.ethanmad.fencingscorekeeper:cornerRadius}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatToggleButton_space com.ethanmad.fencingscorekeeper:space}</code></td><td></td></tr>
+         * <tr><td><code>{@link #FlatToggleButton_theme com.ethanmad.fencingscorekeeper:theme}</code></td><td></td></tr>
+         * </table>
+         *
+         * @see #FlatToggleButton_cornerRadius
+         * @see #FlatToggleButton_space
+         * @see #FlatToggleButton_theme
          */
         public static final int[] FlatToggleButton = {
-            0x7f010001, 0x7f010008, 0x7f01000e
+                0x7f010001, 0x7f010008, 0x7f01000e
         };
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
-          attribute's value can be found in the {@link #FlatToggleButton} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:cornerRadius
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#cornerRadius}
+         * attribute's value can be found in the {@link #FlatToggleButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:cornerRadius
+         */
         public static final int FlatToggleButton_cornerRadius = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#space}
-          attribute's value can be found in the {@link #FlatToggleButton} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.ethanmad.fencingscorekeeper:space
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#space}
+         * attribute's value can be found in the {@link #FlatToggleButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+         * Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+         * in (inches), mm (millimeters).
+         * <p>This may also be a reference to a resource (in the form
+         * "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+         * theme attribute (in the form
+         * "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+         * containing a value of this type.
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:space
+         */
         public static final int FlatToggleButton_space = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
-          attribute's value can be found in the {@link #FlatToggleButton} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.ethanmad.fencingscorekeeper:theme
-        */
+         * <p>This symbol is the offset where the {@link com.ethanmad.engarde.R.attr#theme}
+         * attribute's value can be found in the {@link #FlatToggleButton} array.
+         * <p/>
+         * <p/>
+         * <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+         * or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         *
+         * @attr name com.ethanmad.fencingscorekeeper:theme
+         */
         public static final int FlatToggleButton_theme = 1;
-    };
+    }
+
+    ;
 }

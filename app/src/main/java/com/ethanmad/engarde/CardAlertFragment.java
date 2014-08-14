@@ -13,7 +13,7 @@ import android.view.View;
  */
 public class CardAlertFragment extends DialogFragment {
     int mViewId;
-
+    CardAlertListener mListener;
 
     public static CardAlertFragment newInstance(View view) {
         CardAlertFragment cardAlertFragment = new CardAlertFragment();
@@ -25,22 +25,19 @@ public class CardAlertFragment extends DialogFragment {
         return cardAlertFragment;
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewId = getArguments().getInt("view.getId()", mViewId);
     }
 
-
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         int whichArray = -1;
-        final String[][] text = new String[][] {new String[] {getResources().getString(R.string.yellow_card_dialog), "0"}, new String[] {getResources().getString(R.string.red_card_dialog), "1"}};
+        final String[][] text = new String[][]{new String[]{getResources().getString(R.string.yellow_card_dialog), "0"}, new String[]{getResources().getString(R.string.red_card_dialog), "1"}};
 
-        switch(mViewId) {
+        switch (mViewId) {
             case R.id.yellowCardButton:
                 whichArray = 0;
                 break;
@@ -62,13 +59,6 @@ public class CardAlertFragment extends DialogFragment {
         return builder.create();
     }
 
-    public interface CardAlertListener {
-        public void onDialogClick(DialogFragment dialogFragment, int fencer, int cardType);
-//        public void onDialogClickBottom(DialogFragment dialogFragment, int fencer, int cardType);
-    }
-
-    CardAlertListener mListener;
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -78,7 +68,7 @@ public class CardAlertFragment extends DialogFragment {
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(activity.toString()
-                + " must implement CardAlertListener");
+                    + " must implement CardAlertListener");
         }
     }
 
@@ -91,5 +81,10 @@ public class CardAlertFragment extends DialogFragment {
         }
 
         return "Neither yellow nor red card.";
+    }
+
+    public interface CardAlertListener {
+        public void onDialogClick(DialogFragment dialogFragment, int fencer, int cardType);
+//        public void onDialogClickBottom(DialogFragment dialogFragment, int fencer, int cardType);
     }
 }

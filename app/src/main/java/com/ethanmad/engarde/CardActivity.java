@@ -8,7 +8,7 @@ import android.view.View;
 /**
  * Created by ethan on 7/28/14.
  */
-public class CardActivity extends Activity{
+public class CardActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class CardActivity extends Activity{
 
         if (red) {
             v.setBackgroundColor(Color.RED);
-        }else {
+        } else {
             v.setBackgroundColor(Color.YELLOW);
         }
     }
