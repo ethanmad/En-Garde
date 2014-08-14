@@ -1,29 +1,32 @@
 package com.ethanmad.engarde;
 
-import android.os.Bundle;
-
 /**
  * Created by ethan on 8/14/14.
  */
 public class Fencer extends Object {
-    private int mScore;
-    private boolean mHasYellowCard, mHasRedCard;
-    private boolean mHasPriority;
+    private String mName = "";
+    private int mNumber = -1, mScore = 0, mIndicator = 0, mNumWins = 0, mNumLosses = 0;
+    private boolean mHasYellowCard = false, mHasRedCard = false, mHasPriority = false, winner = false;
 
-    protected void onCreate(Bundle savedInstanceState) {
-        mScore = savedInstanceState.getInt("mScore", 0);
-        mHasYellowCard = savedInstanceState.getBoolean("mHasYellowCard", false);
-        mHasRedCard = savedInstanceState.getBoolean("mHasRedCard", false);
-        mHasPriority = savedInstanceState.getBoolean("mHasPriority", false);
+    // POOL METHODS
+    public void setName(String newName) {
+        mName = newName;
+    }
+    public String getName() {
+        return mName;
     }
 
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putInt("mScore", mScore);
-        savedInstanceState.putBoolean("mHasYellowCard", mHasYellowCard);
-        savedInstanceState.putBoolean("mHasRedCard", mHasRedCard);
-        savedInstanceState.putBoolean("mHasPriority", mHasPriority);
+    public void setNumber(int newNumber) {
+        mNumber = newNumber;
+    }
+    public int getNumber() {
+        return mNumber;
+    }
+    public void updateIndicator(int touchesReceived) {
+        mIndicator = mIndicator + this.getScore() - touchesReceived;
     }
 
+    // BOUT METHODS
     public int getScore() {
         return mScore;
     }
@@ -74,5 +77,14 @@ public class Fencer extends Object {
 
     public void resetPriority() {
         mHasPriority = false;
+    }
+
+    public void makeWinner(int touchesReceived) {
+        mNumWins++;
+        updateIndicator(touchesReceived);
+    }
+    public void makeLoser(int touchesReceived) {
+        mNumLosses++;
+        updateIndicator(touchesReceived);
     }
 }

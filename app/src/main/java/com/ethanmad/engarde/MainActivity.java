@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -189,9 +188,9 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
     // METHODS FOR TIME & PERIODS
     public void onClickTimer(View v) { // onClick method for mTimer
-        if (mInPeriod || mInBreak || mInPriority)
+        if (mInPeriod || mInBreak || mInPriority) // if in a time section, start/stop
             countDown();
-        else {
+        else { // if in between sections, get ready for next one
             mVibrator.cancel();
             mRinger.stop();
             mTimer.setTextColor(Color.WHITE);
@@ -257,25 +256,37 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         }
     }
 
-    private void endSection() {
+    private void endSection() { // called when time section is over
         mTimer.setText("0:00.00");
-        mTimer.setTextColor(Color.argb(180, 255, 20, 20));
+        mTimer.setTextColor(Color.argb(180, 255, 20, 20)); // change timer to red
         mTimer.setAnimation(mBlink);
         mVibrator.vibrate(mEndVibrationPattern, -1);
         mRinger.play();
         mTimerRunning = false;
-        if (mInPriority) {
+
+        // Determine if the bout is in regulation time or overtime
+        if (mInPriority) { // overtime
             if (leftFencer.getScore() == rightFencer.getScore()) {
-                if (leftFencer.hasPriority() && !rightFencer.hasPriority())
+                if (leftFencer.hasPriority() && !rightFencer.hasPriority()) { // left fencer won by priority
                     leftFencer.addScore();
-                else if (rightFencer.hasPriority() && !leftFencer.hasPriority())
+                    leftFencer.makeWinner(rightFencer.getScore());
+                    rightFencer.makeLoser(leftFencer.getScore());
+                } else if (rightFencer.hasPriority() && !leftFencer.hasPriority()) { // right fencer won by priority
                     rightFencer.addScore();
-                else if (leftFencer.hasPriority() && rightFencer.hasPriority())
-                    Log.v("En Garde", "Both fencers have priority.");
-                else Log.v("En Garde", "Nobody has priority");
+                    rightFencer.makeWinner(leftFencer.getScore());
+                    leftFencer.makeLoser(rightFencer.getScore());
+                }
+            } else {
+                if (leftFencer.getScore() > rightFencer.getScore()) { // left fencer won in priority by a touch
+                    leftFencer.makeWinner(rightFencer.getScore());
+                    rightFencer.makeLoser(leftFencer.getScore());
+                } else if (leftFencer.getScore() < rightFencer.getScore()) { // right fencer won in priority by a touch
+                    leftFencer.makeLoser(rightFencer.getScore());
+                    rightFencer.makeWinner(leftFencer.getScore());
+                }
             }
-        } else {
-            if (mPeriodNumber < mMaxPeriods) {
+        } else { // regulation time
+            if (mPeriodNumber < mMaxPeriods) { // next period will also be regulation time
                 if (mInPeriod) {
                     mNextSectionType = 1;
                     mInPeriod = false;
@@ -283,7 +294,14 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                     mNextSectionType = 0;
                     mInBreak = false;
                 }
-            } else if (leftFencer.getScore() == rightFencer.getScore()) {
+            } else if (leftFencer.getScore() > rightFencer.getScore()) { // left fencer won in regulation time
+                leftFencer.makeWinner(rightFencer.getScore());
+                rightFencer.makeLoser(leftFencer.getScore());
+
+            } else if (leftFencer.getScore() < rightFencer.getScore()) { // right fencer won in regulation time
+                leftFencer.makeLoser(rightFencer.getScore());
+                rightFencer.makeWinner(leftFencer.getScore());
+            } else if (leftFencer.getScore() == rightFencer.getScore()) { // scores tied; go to priority
                 mInPeriod = mInBreak = false;
                 mNextSectionType = 2;
             }
