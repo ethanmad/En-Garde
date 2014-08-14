@@ -326,6 +326,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private void resetTime() {
         mTimeRemaining = mPeriodLength;
         mTimer.setText("" + mTimeRemaining);
+        mTimer.setTextColor(Color.WHITE);
         updateTimer(mTimeRemaining);
         mTimerRunning = false;
         mRinger.stop();
