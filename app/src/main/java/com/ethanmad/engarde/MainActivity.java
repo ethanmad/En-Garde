@@ -27,23 +27,23 @@ import android.widget.Toast;
 import java.util.ArrayDeque;
 
 public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener {
-    Fencer leftFencer, rightFencer;
-    long mTimeRemaining, mPeriodLength, mBreakLength;
-    long[] mStartVibrationPattern, mEndVibrationPattern;
-    int mPeriodNumber, mMode, mMaxPeriods;
-    TextView mTimer, mScoreLeftView, mRightScoreView, mPeriodView;
-    ImageView mYellowIndicatorLeft, mRedIndicatorLeft, mYellowIndicatorRight, mRedIndicatorRight;
-    boolean mTimerRunning, mInPeriod, mInBreak, mInPriority;
-    CountDownTimer mCountDownTimer;
-    Vibrator mVibrator;
-    Uri mAlert;
-    Ringtone mRinger;
-    Animation mBlink;
-    ArrayDeque<Integer> mRecentActions;
+    private Fencer leftFencer, rightFencer;
+    private long mTimeRemaining, mPeriodLength, mBreakLength;
+    private long[] mStartVibrationPattern, mEndVibrationPattern;
+    private int mPeriodNumber, mMode, mMaxPeriods;
+    private TextView mTimer, mScoreLeftView, mRightScoreView, mPeriodView;
+    private ImageView mYellowIndicatorLeft, mRedIndicatorLeft, mYellowIndicatorRight, mRedIndicatorRight;
+    private boolean mTimerRunning, mInPeriod, mInBreak, mInPriority;
+    private CountDownTimer mCountDownTimer;
+    private Vibrator mVibrator;
+    private Uri mAlert;
+    private Ringtone mRinger;
+    private Animation mBlink;
+    private ArrayDeque<Integer> mRecentActions;
     int[] mRecentActionArray;
-    MenuItem mActionUndo;
-    Toast mToast;
-    SharedPreferences mSharedPreferences;
+    private MenuItem mActionUndo;
+    private Toast mToast;
+    private SharedPreferences mSharedPreferences;
 
 
     @Override
@@ -51,6 +51,9 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+        leftFencer = new Fencer();
+        rightFencer = new Fencer();
 
         mTimer = (TextView) findViewById(R.id.timer);
         mScoreLeftView = (TextView) findViewById(R.id.scoreOne);
@@ -63,7 +66,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
         // import previous data if it exists, otherwise use default values on right
         if (savedInstanceState == null) savedInstanceState = new Bundle();
-        mPeriodLength = savedInstanceState.getLong("mPeriodLength", 3 * 60 * 1000);
+        mPeriodLength = savedInstanceState.getLong("mPeriodLength", 3 * 3 * 1000);
         mTimeRemaining = savedInstanceState.getLong("mTimeRemaining", mPeriodLength);
         mTimerRunning = savedInstanceState.getBoolean("mTimerRunning", false);
         mPeriodNumber = savedInstanceState.getInt("mPeriodNumber", 1);
@@ -104,6 +107,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         }
 
         mRinger = RingtoneManager.getRingtone(getApplicationContext(), mAlert);
+
     }
 
     @Override
@@ -169,6 +173,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     public void resetAll(MenuItem menuItem) { // onClick for action_reset
         resetScores();
         if (mTimeRemaining != mPeriodLength) resetTime();
+        resetPriority();
         resetCards();
         resetPeriod();
         resetRecentActions();
@@ -198,6 +203,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mTimer.clearAnimation();
         mTimer.setTextColor(Color.WHITE);
         mVibrator.vibrate(mStartVibrationPattern, -1);
+        if(mInPriority) time = 60 * 1000;
         mCountDownTimer = new CountDownTimer(time, 10) {
             public void onTick(long millisUntilFinished) {
                 updateTimer(millisUntilFinished);
@@ -233,9 +239,11 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             if (leftFencer.getScore() == rightFencer.getScore()) {
                 if (leftFencer.hasPriority() && !rightFencer.hasPriority())
                     leftFencer.addScore();
-                if(rightFencer.hasPriority() && !leftFencer.hasPriority())
+                else if(rightFencer.hasPriority() && !leftFencer.hasPriority())
                     rightFencer.addScore();
-                else Log.v("En Garde", "BOTH FENCERS HAVE PRIORITY -> DO NOTHING");
+                else if (leftFencer.hasPriority() && rightFencer.hasPriority())
+                    Log.v("En Garde", "BOTH FENCERS HAVE PRIORITY -> DO NOTHING");
+                else Log.v("En Garde", "Nobody has priority");
             }
         } else {
             if (mPeriodNumber < mMaxPeriods) {
@@ -248,8 +256,10 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                     mTimeRemaining = mBreakLength;
             } else if(leftFencer.getScore() == rightFencer.getScore()) {
                 determinePriority();
+                mInPeriod = false;
+                mInBreak = false;
                 mInPriority = true;
-                startPriority();
+                pauseTimer();
             }
         }
         updateAll();
@@ -264,13 +274,21 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mPeriodView.setText(getResources().getString(R.string.period) + " " + mPeriodNumber);
     }
 
-    public double determinePriority() {
-        double rand  = Math.random() * 100 + 1;
-        return rand % 2;
+    public void determinePriority() {
+        int rand  = (int) (Math.random() * 100);
+        Log.v("En Garde", "Random number is: " + rand);
+        if (rand % 2 == 0) {
+            leftFencer.givePriority();
+            Log.v("En Garde", "Left fencer has priority");
+        }
+        else if (rand % 2 == 1) {
+            rightFencer.givePriority();
+            Log.v("En Garde", "Right fencer has priority");
+        }
     }
 
     private void startPriority() {
-        startTimer(60 * 1000);
+        startTimer(3 * 1000);
     }
 
     private void resetPeriod() {
@@ -286,6 +304,11 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mVibrator.cancel();
         mTimer.clearAnimation();
         mPeriodNumber = 1;
+    }
+    private void resetPriority() {
+        mInPriority = false;
+        leftFencer.resetPriority();
+        rightFencer.resetPriority();
     }
 
     // METHODS FOR SCORES

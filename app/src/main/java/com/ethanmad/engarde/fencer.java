@@ -5,7 +5,7 @@ import android.os.Bundle;
 /**
  * Created by ethan on 8/14/14.
  */
-public class Fencer {
+public class Fencer extends Object {
     private int mScore;
     private boolean mHasYellowCard, mHasRedCard;
     private boolean mHasPriority;
@@ -62,5 +62,8 @@ public class Fencer {
     }
     public void givePriority() {
         mHasPriority = true;
+    }
+    public void resetPriority() {
+        mHasPriority = false;
     }
 }
