@@ -28,11 +28,11 @@ import java.util.ArrayDeque;
 
 public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener {
     private Fencer leftFencer, rightFencer;
-    private long mTimeRemaining, mPeriodLength, mBreakLength;
+    private long mTimeRemaining, mPeriodLength, mBreakLength, mPriorityLength;
     private long[] mStartVibrationPattern, mEndVibrationPattern;
-    private int mPeriodNumber, mMode, mMaxPeriods;
+    private int mPeriodNumber, mNextSectionType, mMode, mMaxPeriods;
     private TextView mTimer, mScoreLeftView, mRightScoreView, mPeriodView;
-    private ImageView mYellowIndicatorLeft, mRedIndicatorLeft, mYellowIndicatorRight, mRedIndicatorRight;
+    private ImageView mYellowIndicatorLeft, mRedIndicatorLeft, mPriorityIndicatorLeft, mYellowIndicatorRight, mRedIndicatorRight, mPriorityIndicatorRight;
     private boolean mTimerRunning, mInPeriod, mInBreak, mInPriority;
     private CountDownTimer mCountDownTimer;
     private Vibrator mVibrator;
@@ -61,13 +61,16 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mPeriodView = (TextView) findViewById(R.id.periodView);
         mYellowIndicatorLeft = (ImageView) findViewById(R.id.yellowCircleViewOne);
         mRedIndicatorLeft = (ImageView) findViewById(R.id.redCircleViewOne);
+        mPriorityIndicatorLeft = (ImageView) findViewById(R.id.priorityCircleViewLeft);
         mYellowIndicatorRight = (ImageView) findViewById(R.id.yellowCircleViewTwo);
         mRedIndicatorRight = (ImageView) findViewById(R.id.redCircleViewTwo);
+        mPriorityIndicatorRight = (ImageView) findViewById(R.id.priorityCircleViewRight);
 
         // import previous data if it exists, otherwise use default values on right
         if (savedInstanceState == null) savedInstanceState = new Bundle();
         mPeriodLength = savedInstanceState.getLong("mPeriodLength", 3 * 3 * 1000);
         mTimeRemaining = savedInstanceState.getLong("mTimeRemaining", mPeriodLength);
+        mPriorityLength = savedInstanceState.getLong("mPriorityLength", 3 * 1 * 1000);
         mTimerRunning = savedInstanceState.getBoolean("mTimerRunning", false);
         mPeriodNumber = savedInstanceState.getInt("mPeriodNumber", 1);
         mBreakLength = savedInstanceState.getLong("mBreakLength", 1 * 3 * 1000);
@@ -126,6 +129,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putLong("mTimeRemaining", mTimeRemaining);
         savedInstanceState.putLong("mPeriodLength", mPeriodLength);
+        savedInstanceState.putLong("mPriorityLength", mPriorityLength);
         savedInstanceState.putBoolean("mTimerRunning", mTimerRunning);
         savedInstanceState.putInt("mPeriodNumber", mPeriodNumber);
         savedInstanceState.putLong("mBreakLength", mBreakLength);
@@ -163,6 +167,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         updateScores();
         updateCardIndicators();
         updateTimer(mTimeRemaining);
+        updatePriorityIndicators();
     }
 
     public void updateAll() {
@@ -183,7 +188,15 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
 
     // METHODS FOR TIME & PERIODS
-    public void countDown(View v) { // onClick method for mTimer
+    public void onClickTimer(View v)  { // onClick method for mTimer
+        if (mInPeriod || mInBreak || mInPriority)
+            countDown();
+//        else {
+//            if ()
+//        }
+    }
+
+    public void countDown() {
         mRinger.stop();
         mVibrator.cancel();
         if (mTimerRunning) pauseTimer();
@@ -203,7 +216,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mTimer.clearAnimation();
         mTimer.setTextColor(Color.WHITE);
         mVibrator.vibrate(mStartVibrationPattern, -1);
-        if(mInPriority) time = 60 * 1000;
+        if(mInPriority) time = mPriorityLength; // do 1 minute priority rather than normal period
         mCountDownTimer = new CountDownTimer(time, 10) {
             public void onTick(long millisUntilFinished) {
                 updateTimer(millisUntilFinished);
@@ -211,7 +224,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             }
 
             public void onFinish() {
-                endPeriod();
+                endSection();
             }
         }.start();
         mTimerRunning = true;
@@ -228,7 +241,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         }
     }
 
-    private void endPeriod() {
+    private void endSection() {
         mTimer.setText("Done!");
         mTimer.setTextColor(Color.argb(180, 255, 20, 20));
         mTimer.setAnimation(mBlink);
@@ -251,14 +264,18 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 mInBreak = !mInBreak;
                 if (mInPeriod) {
                     mTimeRemaining = mPeriodLength;
+                    mNextSectionType = 0;
                     nextPeriod();
-                } else if (mInBreak)
+                } else if (mInBreak) {
                     mTimeRemaining = mBreakLength;
+                    mNextSectionType = 1;
+                }
             } else if(leftFencer.getScore() == rightFencer.getScore()) {
                 determinePriority();
                 mInPeriod = false;
                 mInBreak = false;
                 mInPriority = true;
+                mNextSectionType = 2;
                 pauseTimer();
             }
         }
@@ -271,25 +288,39 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void updatePeriod() {
-        mPeriodView.setText(getResources().getString(R.string.period) + " " + mPeriodNumber);
+        if(mInPeriod)
+            mPeriodView.setText(getResources().getString(R.string.period) + " " + mPeriodNumber);
+        else if(mInBreak)
+            mPeriodView.setText(getResources().getString(R.string.rest) + " " + mPeriodNumber);
+        else if(mInPriority)
+            mPeriodView.setText(getResources().getString(R.string.priority));
     }
 
     public void determinePriority() {
         int rand  = (int) (Math.random() * 100);
         if (rand % 2 == 0) {
             leftFencer.givePriority();
+            mPriorityIndicatorLeft.setVisibility(View.VISIBLE);
         }
         else if (rand % 2 == 1) {
             rightFencer.givePriority();
+            mPriorityIndicatorRight.setVisibility(View.VISIBLE);
         }
     }
 
-    private void startPriority() {
-        startTimer(3 * 1000);
+    private void updatePriorityIndicators() {
+        if(leftFencer.hasPriority()) mPriorityIndicatorLeft.setVisibility(View.VISIBLE);
+        else mPriorityIndicatorLeft.setVisibility(View.INVISIBLE);
+        if(rightFencer.hasPriority()) mPriorityIndicatorRight.setVisibility(View.VISIBLE);
+        else mPriorityIndicatorRight.setVisibility(View.INVISIBLE);
     }
+
 
     private void resetPeriod() {
         mPeriodNumber = 1;
+        mInPeriod = true;
+        mInPriority = false;
+        mInBreak = false;
     }
 
     private void resetTime() {
@@ -300,12 +331,13 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mRinger.stop();
         mVibrator.cancel();
         mTimer.clearAnimation();
-        mPeriodNumber = 1;
     }
     private void resetPriority() {
         mInPriority = false;
         leftFencer.resetPriority();
         rightFencer.resetPriority();
+        mPriorityIndicatorLeft.setVisibility(View.INVISIBLE);
+        mPriorityIndicatorRight.setVisibility(View.INVISIBLE);
     }
 
     // METHODS FOR SCORES

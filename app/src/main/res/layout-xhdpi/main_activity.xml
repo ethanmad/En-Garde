@@ -132,7 +132,7 @@
             android:layout_alignParentTop="true"
             android:clickable="true"
             android:gravity="center_horizontal"
-            android:onClick="countDown"
+            android:onClick="onClickTimer"
             android:padding="20dp"
             android:text="@string/timer_default"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -219,7 +219,7 @@
         android:layout_marginLeft="12dp" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/priorityCircleViewRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/priority_circle"
