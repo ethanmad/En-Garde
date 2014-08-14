@@ -21,12 +21,27 @@ public class Fencer {
     public boolean hasYellowCard() {
         return hasYellowCard;
     }
+    public void giveYellowCard() {
+        hasYellowCard = true;
+    }
+    public void takeYellowCard() {
+        hasYellowCard = false;
+    }
 
     public boolean hasRedCard() {
         return hasRedCard;
     }
+    public void giveRedCard() {
+        hasRedCard = true;
+    }
+    public void takeRedCard() {
+        hasRedCard = false;
+    }
 
     public boolean hasPriority() {
         return hasPriority;
+    }
+    public void givePriority() {
+        hasPriority = true;
     }
 }
