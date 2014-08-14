@@ -68,12 +68,12 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
         // import previous data if it exists, otherwise use default values on right
         if (savedInstanceState == null) savedInstanceState = new Bundle();
-        mPeriodLength = savedInstanceState.getLong("mPeriodLength", 3 * 3 * 1000);
+        mPeriodLength = savedInstanceState.getLong("mPeriodLength", 3 * 60 * 1000);
+        mBreakLength = savedInstanceState.getLong("mBreakLength", 1 * 60 * 1000);
+        mPriorityLength = savedInstanceState.getLong("mPriorityLength", 1 * 60 * 1000);
         mTimeRemaining = savedInstanceState.getLong("mTimeRemaining", mPeriodLength);
-        mPriorityLength = savedInstanceState.getLong("mPriorityLength", 3 * 1 * 1000);
         mTimerRunning = savedInstanceState.getBoolean("mTimerRunning", false);
         mPeriodNumber = savedInstanceState.getInt("mPeriodNumber", 1);
-        mBreakLength = savedInstanceState.getLong("mBreakLength", 1 * 3 * 1000);
         mMode = savedInstanceState.getInt("mMode", 5);
         mInPeriod = savedInstanceState.getBoolean("mInPeriod", true);
         mInBreak = savedInstanceState.getBoolean("mInBreak", false);
@@ -191,9 +191,25 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     public void onClickTimer(View v)  { // onClick method for mTimer
         if (mInPeriod || mInBreak || mInPriority)
             countDown();
-//        else {
-//            if ()
-//        }
+        else {
+            mVibrator.cancel();
+            mRinger.stop();
+            mTimer.setTextColor(Color.WHITE);
+            mTimer.clearAnimation();
+            if (mNextSectionType == 0) {
+                mTimeRemaining = mPeriodLength;
+                nextPeriod();
+                mInPeriod = true;
+            } else if (mNextSectionType == 1) {
+                mTimeRemaining = mBreakLength;
+                mInBreak = true;
+            } else if (mNextSectionType == 2) {
+                mTimeRemaining = mPriorityLength;
+                mInPriority = true;
+                determinePriority();
+            }
+            updateAll();
+        }
     }
 
     public void countDown() {
@@ -242,7 +258,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void endSection() {
-        mTimer.setText("Done!");
+        mTimer.setText("0:00.00");
         mTimer.setTextColor(Color.argb(180, 255, 20, 20));
         mTimer.setAnimation(mBlink);
         mVibrator.vibrate(mEndVibrationPattern, -1);
@@ -255,31 +271,23 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 else if(rightFencer.hasPriority() && !leftFencer.hasPriority())
                     rightFencer.addScore();
                 else if (leftFencer.hasPriority() && rightFencer.hasPriority())
-                    Log.v("En Garde", "BOTH FENCERS HAVE PRIORITY -> DO NOTHING");
+                    Log.v("En Garde", "Both fencers have priority.");
                 else Log.v("En Garde", "Nobody has priority");
             }
         } else {
             if (mPeriodNumber < mMaxPeriods) {
-                mInPeriod = !mInPeriod;
-                mInBreak = !mInBreak;
                 if (mInPeriod) {
-                    mTimeRemaining = mPeriodLength;
-                    mNextSectionType = 0;
-                    nextPeriod();
-                } else if (mInBreak) {
-                    mTimeRemaining = mBreakLength;
                     mNextSectionType = 1;
+                    mInPeriod = false;
+                } else if (mInBreak) {
+                    mNextSectionType = 0;
+                    mInBreak = false;
                 }
             } else if(leftFencer.getScore() == rightFencer.getScore()) {
-                determinePriority();
-                mInPeriod = false;
-                mInBreak = false;
-                mInPriority = true;
+                mInPeriod = mInBreak = false;
                 mNextSectionType = 2;
-                pauseTimer();
             }
         }
-        updateAll();
     }
 
     private void nextPeriod() {

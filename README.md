@@ -15,6 +15,7 @@ Current features:
   *  Haptic feedback (vibration) on each interaction, allowing focus to remain on the bout.
   *  Loud noise at the end of each period (turn your volume up).
   *  Automatic minute break between periods.
+  *  Automatic priority when applicable.
 
 
 Project goals:
