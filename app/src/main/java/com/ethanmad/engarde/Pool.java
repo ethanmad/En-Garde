@@ -5,15 +5,27 @@ package com.ethanmad.engarde;
  */
 public class Pool extends Object {
     private int numFencers;
-    private int[][] poolOf5 = new int[5][5];
+    private fencer[] pool = new fencer[numFencers];
+    private String teams = new String[numFencers];
+    private int[] order  = new int[numFencers];
 
-
-    private int[][] order6, order7, order8, order9, order10;
-
-
+    private void findTeammates() {
+        if (numFencers > 0) {
+            currentTeam = teams[0];
+            for(team : teams) {
+            
+            }
+        }
     public void createPool(int numFencers) {
         switch (numFencers) {
-            case (4):
+            case 5:
+	    	   
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+	
         }
     }
 }
