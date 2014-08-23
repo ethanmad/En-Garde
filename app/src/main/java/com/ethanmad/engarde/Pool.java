@@ -1,31 +1,31 @@
 package com.ethanmad.engarde;
 
+import java.util.ArrayList;
+
 /**
  * Created by ethan on 8/14/14.
  */
 public class Pool extends Object {
     private int numFencers;
-    private fencer[] pool = new fencer[numFencers];
-    private String teams = new String[numFencers];
+    private ArrayList<Fencer> pool = new ArrayList<Fencer>(numFencers);
+    private ArrayList<Fencer> teams = new ArrayList<Fencer>(numFencers);
     private int[] order  = new int[numFencers];
 
     private void findTeammates() {
-        if (numFencers > 0) {
-            currentTeam = teams[0];
-            for(team : teams) {
-            
+        if (numFencers > 1) {
+            for (Fencer fencer : pool) {
+                String currentTeam = fencer.getTeam();
+                if (currentTeam != null && !currentTeam.equals("")) {
+                    for (Fencer otherFencer : pool) {
+                        if ()
+                    }
+                }
             }
         }
-    public void createPool(int numFencers) {
-        switch (numFencers) {
-            case 5:
-	    	   
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-	
-        }
+    }
+
+    public void addFencer(Fencer ) {
+        numFencers++;
+        pool.add()
     }
 }

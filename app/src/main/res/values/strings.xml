@@ -37,6 +37,7 @@
     <string name="double_toast">double</string>
 
     <string name="pref_mode">Choose a mode</string>
+    <string name="pref_choose_mode"></string>
     <string name="pref_mode_summary">Choose the number of touches/periods</string>
     <string name="pref_mode_5touch">Five touches (one period)</string>
     <string name="pref_mode_15touch">Fifteen touches (three periods)</string>

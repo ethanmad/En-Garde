@@ -4,26 +4,41 @@ package com.ethanmad.engarde;
  * Created by ethan on 8/14/14.
  */
 public class Fencer extends Object {
-    private String mName = "";
+    private String mName = "", mTeam = "";
     private int mNumber = -1, mScore = 0, mIndicator = 0, mNumWins = 0, mNumLosses = 0;
     private boolean mHasYellowCard = false, mHasRedCard = false, mHasPriority = false, winner = false;
 
     // POOL METHODS
-    public void setName(String newName) {
-        mName = newName;
+    public void setName(String name) {
+        mName = name;
     }
+
     public String getName() {
         return mName;
     }
 
-    public void setNumber(int newNumber) {
-        mNumber = newNumber;
+    public void setTeam(String team) {
+        mTeam = team;
     }
+
+    public String getTeam() {
+        return mTeam;
+    }
+
+    public void setNumber(int number) {
+        mNumber = number;
+    }
+
     public int getNumber() {
         return mNumber;
     }
+
     public void updateIndicator(int touchesReceived) {
         mIndicator = mIndicator + this.getScore() - touchesReceived;
+    }
+
+    public int getIndicator() {
+        return mIndicator;
     }
 
     // BOUT METHODS
@@ -83,6 +98,7 @@ public class Fencer extends Object {
         mNumWins++;
         updateIndicator(touchesReceived);
     }
+
     public void makeLoser(int touchesReceived) {
         mNumLosses++;
         updateIndicator(touchesReceived);
