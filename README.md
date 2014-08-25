@@ -14,19 +14,22 @@ Current features:
   *  Large timer and score indicators.
   *  Clean UI showing only the most important information.
   *  Full featured penalties and cards.
-  *  Undo function.
+  *  Undo recent actions (FIFO ordering).
   *  Tap indicators to interact (e.g. tap on a score to add a point, tap on time to start/stop the timer).
-  *  Timer stops when score is added or card is issued.
-  *  Haptic feedback (vibration) on each interaction, allowing focus to remain on the bout.
-  *  Loud noise at the end of each period (turn your volume up).
+  *  Timer stops when score is added, card is issued, or any blank space is touched.
+  *  Haptic feedback (vibration) when timer is paused or resumed interaction, allowing focus to remain on the bout.
+  *  Alarm at the end of each period (turn your volume up).
   *  Automatic minute break between periods.
   *  Automatic priority when applicable.
+  *  Skip periods from the overflow menu.
+  *  Show or hide the 'double touch' button based on preferences.
+  *  AMOLED black mode: conserve battery on devices with AMOLED screens by changing the background color to true black.
 
 
 Project goals:
 -------------
-  *  Manage entire poules from within the app: completely eliminate the need for pencil and paper in fencing.
-  *  Integrate with tournament management software (either Fencing Time or FOSS alternative): wirelessly send scores, poules, etc.  to tournament administration
+  *  Manage entire pools from within the app: completely eliminate the need for pencil and paper in fencing.
+  *  Integrate with tournament management software (either Fencing Time or FOSS alternative): wirelessly send scores, pools, etc.  to tournament administration
   *  Create "scoreboard": use a large-screen device as a scoreboard (tablet, PC, etc.) that is controlled by the handheld device to allow fencers and spectators to see important information.
 
 Ultimate goal:
