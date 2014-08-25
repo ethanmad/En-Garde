@@ -178,7 +178,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         savedInstanceState.putIntArray("mRecentActionArray", mRecentActionArray);
 
         mPreviousTimesArray = new long[mPreviousTimes.size()];
-        System.out.println("mPreviousTimes.peek(): " + mPreviousTimes.peek());
         if (mPreviousTimes.size() > 0)
             for (int i = mPreviousTimes.size() - 1; i >= 0; i--)
                 mPreviousTimesArray[i] = mPreviousTimes.pop();
@@ -599,7 +598,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void undoAction(Integer action) {
-        System.out.println("action = " + action);
         switch (action) {
             case 0:
                 subScore(leftFencer);
