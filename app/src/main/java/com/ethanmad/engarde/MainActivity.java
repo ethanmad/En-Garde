@@ -286,11 +286,14 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mTimerRunning = true;
     }
 
+    public void pauseTimer(View view) {
+        pauseTimer();
+    }
     private void pauseTimer() {
         mRinger.stop();
         mVibrator.cancel();
-        mVibrator.vibrate(100);
         if (mTimerRunning) {
+            mVibrator.vibrate(100);
             mCountDownTimer.cancel();
             mTimerRunning = false;
             mTimer.startAnimation(mBlink);
