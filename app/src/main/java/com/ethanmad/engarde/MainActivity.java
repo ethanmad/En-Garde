@@ -507,6 +507,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     public void showCardDialog(View view) { // onClick for yellowCardButton & redCardButton
+        pauseTimer();
         FragmentManager man = this.getFragmentManager();
 //        CardAlertFragment dialog = new CardAlertFragment(view);
         CardAlertFragment dialog = CardAlertFragment.newInstance(view);
