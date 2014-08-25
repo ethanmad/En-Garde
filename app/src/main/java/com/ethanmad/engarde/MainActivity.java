@@ -24,6 +24,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ethanmad.engarde.R;
+
 import java.util.ArrayDeque;
 
 public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener {

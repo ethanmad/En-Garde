@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
+import com.ethanmad.engarde.R;
+
 /**
  * Created by ethan on 7/28/14.
  */

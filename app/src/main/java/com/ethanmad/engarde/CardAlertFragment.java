@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 
+import com.ethanmad.engarde.R;
+
 /**
  * Created by ethan on 7/23/14.
  */

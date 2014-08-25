@@ -7,6 +7,9 @@ import android.media.AudioTrack;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.ethanmad.engarde.R;
+
+
 /**
  * Created by ethan on 7/31/14.
  */

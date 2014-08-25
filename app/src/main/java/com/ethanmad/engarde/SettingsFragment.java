@@ -6,6 +6,8 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
+import com.ethanmad.engarde.R;
+
 /**
  * Created by ethan on 7/31/14.
  */
