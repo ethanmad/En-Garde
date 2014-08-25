@@ -98,11 +98,11 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
         if (mPreviousTimesArray == null) mPreviousTimes = new ArrayDeque<Long>(0);
         else for (long time : mPreviousTimesArray)
-                mPreviousTimes.push(time);
+            mPreviousTimes.push(time);
 
         if (mPreviousPeriodNumbers == null) mPreviousPeriodNumbers = new ArrayDeque<Integer>(0);
         else for (int sectionType : mPreviousPeriodNumbersArray)
-                mPreviousPeriodNumbers.push(sectionType);
+            mPreviousPeriodNumbers.push(sectionType);
 
         if (mPreviousSectionTypesArray == null) mPreviousSectionTypes = new ArrayDeque<Integer>(0);
         else for (int sectionType : mPreviousSectionTypesArray)
@@ -160,19 +160,26 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         savedInstanceState.putBoolean("mInPeriod", mInPeriod);
         savedInstanceState.putBoolean("mInBreak", mInBreak);
         savedInstanceState.putBoolean("mInPriority", mInPriority);
+
         mRecentActionArray = new int[mRecentActions.size()];
         for (int i = mRecentActions.size() - 1; i >= 0; i--)
             mRecentActionArray[i] = mRecentActions.pop();
         savedInstanceState.putIntArray("mRecentActionArray", mRecentActionArray);
+
         mPreviousTimesArray = new long[mPreviousTimes.size()];
-        for (int i = mPreviousTimes.size() -1; i >= 0; i--)
-            mPreviousTimesArray[i] = mPreviousTimes.pop();
+        if (mPreviousTimes.size() > 0)
+            for (int i = mPreviousTimes.size() - 1; i >= 0; i--)
+                mPreviousTimesArray[i] = mPreviousTimes.pop();
         savedInstanceState.putLongArray("mPreviousTimesArray", mPreviousTimesArray);
-        for (int i = mPreviousPeriodNumbers.size() -1; i >= 0; i--)
-            mPreviousPeriodNumbersArray[i] = mPreviousPeriodNumbers.pop();
+
+        if (mPreviousPeriodNumbers.size() > 0)
+            for (int i = mPreviousPeriodNumbers.size() - 1; i >= 0; i--)
+                mPreviousPeriodNumbersArray[i] = mPreviousPeriodNumbers.pop();
         savedInstanceState.putIntArray("mPreviousPeriodNumbersArray", mPreviousPeriodNumbersArray);
-        for (int i = mPreviousSectionTypes.size() -1; i >= 0; i--)
-            mPreviousSectionTypesArray[i] = mPreviousSectionTypes.pop();
+
+        if (mPreviousSectionTypes.size() > 0)
+            for (int i = mPreviousSectionTypes.size() - 1; i >= 0; i--)
+                mPreviousSectionTypesArray[i] = mPreviousSectionTypes.pop();
         savedInstanceState.putIntArray("mPreviousSectionTypesArray", mPreviousSectionTypesArray);
 
     }
@@ -344,19 +351,20 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
     public void skipSection(MenuItem menuItem) {
         pauseTimer();
-        if(mInPriority)
+        if (mInPriority)
             showToast(getResources().getString(R.string.toast_unable), "", getResources().getString(R.string.toast_skip), getResources().getString(R.string.toast_priority));
         else {
             mPreviousTimes.push(mTimeRemaining);
             if (mInPriority) mPreviousSectionTypes.push(2);
             else if (mInBreak) mPreviousSectionTypes.push(1);
-            else if(mInPeriod) mPreviousSectionTypes.push(0);
+            else if (mInPeriod) mPreviousSectionTypes.push(0);
             mPreviousPeriodNumbers.push(mPeriodNumber);
-            System.out.println("mTimeRemaining = " + mTimeRemaining);
             endSection();
             mRecentActions.push(7);
-            if(!mInPeriod) showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_period), "");
-            else showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_break), "");
+            if (!mInPeriod)
+                showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_period), "");
+            else
+                showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_break), "");
         }
     }
 
@@ -436,7 +444,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             case R.id.scoreTwo:
                 rightFencer.addScore();
                 mRecentActions.push(1);
-                showToast(getResources().getString(R.string.toast_gave), "",  getResources().getString(R.string.toast_touch),
+                showToast(getResources().getString(R.string.toast_gave), "", getResources().getString(R.string.toast_touch),
                         getResources().getString(R.string.toast_right));
                 break;
             case R.id.doubleTouchButton:
@@ -570,7 +578,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         switch (action) {
             case 0:
                 subScore(leftFencer);
-                showToast(getResources().getString(R.string.toast_undid), "",  getResources().getString(R.string.toast_touch),
+                showToast(getResources().getString(R.string.toast_undid), "", getResources().getString(R.string.toast_touch),
                         getResources().getString(R.string.toast_left));
                 break;
             case 1:
@@ -580,7 +588,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 break;
             case 2:
                 subScore("both");
-                showToast(getResources().getString(R.string.toast_undid), "",  getResources().getString(R.string.toast_double),
+                showToast(getResources().getString(R.string.toast_undid), "", getResources().getString(R.string.toast_double),
                         getResources().getString(R.string.toast_touch));
                 break;
             case 3:
@@ -611,7 +619,20 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 long previousTime = mPreviousTimes.pop();
                 startTimer(previousTime);
                 mNextSectionType = mPreviousSectionTypes.pop();
-                mPeriodNumber = mPreviousPeriodNumbers.pop() - 1;
+                mPeriodNumber = mPreviousPeriodNumbers.pop();
+
+                if (mMaxPeriods == 1) {
+                    mPeriodNumber--;
+                } else {
+                    if (mNextSectionType == 0) {
+                        mInPeriod = true;
+                        mInBreak = true;
+                    } else if (mNextSectionType == 1) {
+                        mInPeriod = false;
+                        mInBreak = true;
+                    }
+                }
+
                 onClickTimer(mTimer);
                 mTimeRemaining = previousTime;
                 updateTimer(mTimeRemaining);
@@ -658,18 +679,19 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
         // make background color grey or black based on preferences
         mBlackBackground = mSharedPreferences.getBoolean("pref_black", false);
-        System.out.println("mBlackBackground = " + mBlackBackground);
-        if (mBlackBackground) { mMainLayout.setBackgroundColor(Color.BLACK); System.out.println("Trying to make BG black"); }
-        else mMainLayout.setBackgroundColor(Color.rgb(32, 32, 32));
+        if (mBlackBackground) {
+            mMainLayout.setBackgroundColor(Color.BLACK);
+        } else mMainLayout.setBackgroundColor(Color.rgb(32, 32, 32));
     }
 
     private void showToast(String verb, String color, String noun, String recipient) {
         Context context = getApplicationContext();
 
         CharSequence text;
-        if ((recipient == null || recipient.equals("")) && (color == null || color.equals("")))    text = verb + " " + noun;
-        else if (noun == null || noun.equals(""))   text = verb + " " + recipient;
-        else if (color == null || color.equals(""))   text = verb + " " + noun + " " + recipient;
+        if ((recipient == null || recipient.equals("")) && (color == null || color.equals("")))
+            text = verb + " " + noun;
+        else if (noun == null || noun.equals("")) text = verb + " " + recipient;
+        else if (color == null || color.equals("")) text = verb + " " + noun + " " + recipient;
         else text = verb + " " + color + " " + noun + " " + recipient;
 
         int duration = Toast.LENGTH_SHORT;
