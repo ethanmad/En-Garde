@@ -178,7 +178,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 mPreviousPeriodNumbersArray[i] = mPreviousPeriodNumbers.pop();
         savedInstanceState.putIntArray("mPreviousPeriodNumbersArray", mPreviousPeriodNumbersArray);
 
-        mPreviousSectionTypesArray = new int[mPreviousPeriodNumbers.size()];
+        mPreviousSectionTypesArray = new int[mPreviousSectionTypes.size()];
         if (mPreviousSectionTypes.size() > 0)
             for (int i = mPreviousSectionTypes.size() - 1; i >= 0; i--)
                 mPreviousSectionTypesArray[i] = mPreviousSectionTypes.pop();
