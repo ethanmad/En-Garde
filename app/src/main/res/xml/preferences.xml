@@ -9,18 +9,18 @@
             android:entryValues="@array/mode_values"
             android:key="@string/pref_mode"
             android:summary="@string/pref_mode_summary"
-            android:title="@string/pref_mode" />
+            android:title="pref_mode" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:title="@string/pref_show_double"
-            android:key="@string/pref_show_double"/>
+            android:key="pref_show_double"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_looks">
         <CheckBoxPreference
             android:defaultValue="false"
             android:summary="@string/pref_black_summary"
             android:title="@string/pref_black"
-            android:key="@string/pref_black"/>
+            android:key="pref_black"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_about">

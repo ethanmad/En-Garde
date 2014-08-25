@@ -578,7 +578,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         // make bout end based on preferences
-        mMode = Integer.parseInt(mSharedPreferences.getString("@string/pref_mode", "5"));
+        mMode = Integer.parseInt(mSharedPreferences.getString("pref_mode", "5"));
         switch (mMode) {
             case (5):
                 mMaxPeriods = 1;
@@ -589,12 +589,13 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         }
 
         // show or hide double touch button based on preferences
-        mShowDouble = mSharedPreferences.getBoolean("@string/pref_show_double", true);
+        mShowDouble = mSharedPreferences.getBoolean("pref_show_double", true);
         if (mShowDouble) findViewById(R.id.doubleTouchButton).setVisibility(View.VISIBLE);
         else findViewById(R.id.doubleTouchButton).setVisibility(View.INVISIBLE);
 
         // make background color grey or black based on preferences
-        mBlackBackground = mSharedPreferences.getBoolean("@string/pref_black", true);
+        mBlackBackground = mSharedPreferences.getBoolean("pref_black", false);
+        System.out.println("mBlackBackground = " + mBlackBackground);
         if (mBlackBackground) getWindow().getDecorView().setBackgroundColor(Color.BLACK);
         else getWindow().getDecorView().setBackgroundColor(Color.rgb(20, 20, 20));
     }
