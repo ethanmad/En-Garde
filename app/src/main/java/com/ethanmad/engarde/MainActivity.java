@@ -33,7 +33,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private int mPeriodNumber, mNextSectionType, mMode, mMaxPeriods;
     private int[] mRecentActionArray, mPreviousPeriodNumbersArray, mPreviousSectionTypesArray;
     private TextView mTimer, mScoreLeftView, mRightScoreView, mPeriodView;
-    private ImageView mYellowIndicatorLeft, mRedIndicatorLeft, mPriorityIndicatorLeft, mYellowIndicatorRight, mRedIndicatorRight, mPriorityIndicatorRight;
+    private ImageView mLeftPenaltyIndicator, mLeftPriorityIndicator, mRightPenaltyIndicator, mRightPriorityIndicator;
     private boolean mTimerRunning, mInPeriod, mInBreak, mInPriority, mShowDouble, mBlackBackground;
     private CountDownTimer mCountDownTimer;
     private Vibrator mVibrator;
@@ -61,12 +61,10 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mScoreLeftView = (TextView) findViewById(R.id.scoreOne);
         mRightScoreView = (TextView) findViewById(R.id.scoreTwo);
         mPeriodView = (TextView) findViewById(R.id.periodView);
-        mYellowIndicatorLeft = (ImageView) findViewById(R.id.yellowCircleViewOne);
-        mRedIndicatorLeft = (ImageView) findViewById(R.id.redCircleViewOne);
-        mPriorityIndicatorLeft = (ImageView) findViewById(R.id.priorityCircleViewLeft);
-        mYellowIndicatorRight = (ImageView) findViewById(R.id.yellowCircleViewTwo);
-        mRedIndicatorRight = (ImageView) findViewById(R.id.redCircleViewTwo);
-        mPriorityIndicatorRight = (ImageView) findViewById(R.id.priorityCircleViewRight);
+        mLeftPenaltyIndicator = (ImageView) findViewById(R.id.penaltyCircleViewLeft);
+        mLeftPriorityIndicator = (ImageView) findViewById(R.id.priorityCircleViewLeft);
+        mRightPenaltyIndicator = (ImageView) findViewById(R.id.penaltyCircleViewRight);
+        mRightPriorityIndicator = (ImageView) findViewById(R.id.priorityCircleViewRight);
         mMainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
 
 
@@ -208,7 +206,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private void updateViews() { // call all refresh methods (except updateTimer)
         updatePeriod();
         updateScores();
-        updateCardIndicators();
+        updatePenaltyIndicators();
         updateTimer(mTimeRemaining);
         updatePriorityIndicators();
     }
@@ -340,7 +338,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             } else if (leftFencer.getScore() > rightFencer.getScore()) { // left fencer won in regulation time
                 leftFencer.makeWinner(rightFencer.getScore());
                 rightFencer.makeLoser(leftFencer.getScore());
-
             } else if (leftFencer.getScore() < rightFencer.getScore()) { // right fencer won in regulation time
                 leftFencer.makeLoser(rightFencer.getScore());
                 rightFencer.makeWinner(leftFencer.getScore());
@@ -388,18 +385,18 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         int rand = (int) (Math.random() * 100);
         if (rand % 2 == 0) {
             leftFencer.givePriority();
-            mPriorityIndicatorLeft.setVisibility(View.VISIBLE);
+            mLeftPriorityIndicator.setVisibility(View.VISIBLE);
         } else if (rand % 2 == 1) {
             rightFencer.givePriority();
-            mPriorityIndicatorRight.setVisibility(View.VISIBLE);
+            mRightPriorityIndicator.setVisibility(View.VISIBLE);
         }
     }
 
     private void updatePriorityIndicators() {
-        if (leftFencer.hasPriority()) mPriorityIndicatorLeft.setVisibility(View.VISIBLE);
-        else mPriorityIndicatorLeft.setVisibility(View.INVISIBLE);
-        if (rightFencer.hasPriority()) mPriorityIndicatorRight.setVisibility(View.VISIBLE);
-        else mPriorityIndicatorRight.setVisibility(View.INVISIBLE);
+        if (leftFencer.hasPriority()) mLeftPriorityIndicator.setVisibility(View.VISIBLE);
+        else mLeftPriorityIndicator.setVisibility(View.INVISIBLE);
+        if (rightFencer.hasPriority()) mRightPriorityIndicator.setVisibility(View.VISIBLE);
+        else mRightPriorityIndicator.setVisibility(View.INVISIBLE);
     }
 
 
@@ -425,8 +422,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mInPriority = false;
         leftFencer.resetPriority();
         rightFencer.resetPriority();
-        mPriorityIndicatorLeft.setVisibility(View.INVISIBLE);
-        mPriorityIndicatorRight.setVisibility(View.INVISIBLE);
+        mLeftPriorityIndicator.setVisibility(View.INVISIBLE);
+        mRightPriorityIndicator.setVisibility(View.INVISIBLE);
     }
 
     // METHODS FOR SCORES
@@ -546,18 +543,21 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         leftFencer.takeRedCard();
         rightFencer.takeYellowCard();
         rightFencer.takeRedCard();
-        updateCardIndicators();
+        updatePenaltyIndicators();
     }
 
-    private void updateCardIndicators() { // update penalty indicator views
-        if (leftFencer.hasYellowCard()) mYellowIndicatorLeft.setVisibility(View.VISIBLE);
-        else mYellowIndicatorLeft.setVisibility(View.INVISIBLE);
-        if (leftFencer.hasRedCard()) mRedIndicatorLeft.setVisibility(View.VISIBLE);
-        else mRedIndicatorLeft.setVisibility(View.INVISIBLE);
-        if (rightFencer.hasYellowCard()) mYellowIndicatorRight.setVisibility(View.VISIBLE);
-        else mYellowIndicatorRight.setVisibility(View.INVISIBLE);
-        if (rightFencer.hasRedCard()) mRedIndicatorRight.setVisibility(View.VISIBLE);
-        else mRedIndicatorRight.setVisibility(View.INVISIBLE);
+    private void updatePenaltyIndicators() { // update penalty indicator views
+        if (leftFencer.hasRedCard()) {
+            mLeftPenaltyIndicator.setColorFilter(Color.RED);
+            mLeftPenaltyIndicator.setVisibility(View.VISIBLE);
+        } else if (leftFencer.hasYellowCard()) mLeftPenaltyIndicator.setVisibility(View.VISIBLE);
+        else mLeftPenaltyIndicator.setVisibility(View.INVISIBLE);
+
+        if (rightFencer.hasRedCard()) {
+            mRightPenaltyIndicator.setColorFilter(Color.RED);
+            mRightPenaltyIndicator.setVisibility(View.VISIBLE);
+        } else if (rightFencer.hasYellowCard()) mRightPenaltyIndicator.setVisibility(View.VISIBLE);
+        else mRightPenaltyIndicator.setVisibility(View.INVISIBLE);
     }
 
     public void showCardDialog(View view) { // onClick for yellowCardButton & redCardButton
