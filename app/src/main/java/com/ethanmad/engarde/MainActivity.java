@@ -172,11 +172,13 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 mPreviousTimesArray[i] = mPreviousTimes.pop();
         savedInstanceState.putLongArray("mPreviousTimesArray", mPreviousTimesArray);
 
+        mPreviousPeriodNumbersArray = new int[mPreviousPeriodNumbers.size()];
         if (mPreviousPeriodNumbers.size() > 0)
             for (int i = mPreviousPeriodNumbers.size() - 1; i >= 0; i--)
                 mPreviousPeriodNumbersArray[i] = mPreviousPeriodNumbers.pop();
         savedInstanceState.putIntArray("mPreviousPeriodNumbersArray", mPreviousPeriodNumbersArray);
 
+        mPreviousSectionTypesArray = new int[mPreviousPeriodNumbers.size()];
         if (mPreviousSectionTypes.size() > 0)
             for (int i = mPreviousSectionTypes.size() - 1; i >= 0; i--)
                 mPreviousSectionTypesArray[i] = mPreviousSectionTypes.pop();
