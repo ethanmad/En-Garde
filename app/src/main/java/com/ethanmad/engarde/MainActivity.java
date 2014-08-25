@@ -135,11 +135,24 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     @Override
     protected void onResume() {
         super.onResume();
-        if (mRecentActionArray == null) {
+
+        // reload recent actions, previous times, etc.
+        if (mRecentActionArray == null)
             mRecentActions = new ArrayDeque<Integer>(0);
-        } else for (int action : mRecentActionArray) {
+        else for (int action : mRecentActionArray)
             mRecentActions.push(action);
-        }
+
+        if (mPreviousTimesArray == null) mPreviousTimes = new ArrayDeque<Long>(0);
+        else for (long time : mPreviousTimesArray)
+            mPreviousTimes.push(time);
+
+        if (mPreviousPeriodNumbers == null) mPreviousPeriodNumbers = new ArrayDeque<Integer>(0);
+        else for (int sectionType : mPreviousPeriodNumbersArray)
+            mPreviousPeriodNumbers.push(sectionType);
+
+        if (mPreviousSectionTypesArray == null) mPreviousSectionTypes = new ArrayDeque<Integer>(0);
+        else for (int sectionType : mPreviousSectionTypesArray)
+            mPreviousSectionTypes.push(sectionType);
 
         loadSettings();
     }
@@ -165,6 +178,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         savedInstanceState.putIntArray("mRecentActionArray", mRecentActionArray);
 
         mPreviousTimesArray = new long[mPreviousTimes.size()];
+        System.out.println("mPreviousTimes.peek(): " + mPreviousTimes.peek());
         if (mPreviousTimes.size() > 0)
             for (int i = mPreviousTimes.size() - 1; i >= 0; i--)
                 mPreviousTimesArray[i] = mPreviousTimes.pop();
@@ -289,6 +303,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     public void pauseTimer(View view) {
         pauseTimer();
     }
+
     private void pauseTimer() {
         mRinger.stop();
         mVibrator.cancel();
@@ -296,7 +311,12 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             mVibrator.vibrate(100);
             mCountDownTimer.cancel();
             mTimerRunning = false;
-            mTimer.startAnimation(mBlink);
+
+            //only blink if time remaining < time in section
+            if ((mTimeRemaining != 60 * 1000 && mTimeRemaining != 3 * 60 * 1000) ||
+                    (mTimeRemaining == 60 * 1000 && !(mInBreak || mInPriority)) ||
+                    (mTimeRemaining == 3 * 60 * 1000 && !mInPeriod))
+                mTimer.startAnimation(mBlink);
         }
     }
 
@@ -566,7 +586,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     public void showCardDialog(View view) { // onClick for yellowCardButton & redCardButton
         pauseTimer();
         FragmentManager man = this.getFragmentManager();
-//        CardAlertFragment dialog = new CardAlertFragment(view);
         CardAlertFragment dialog = CardAlertFragment.newInstance(view);
         dialog.show(man, "Penalty Card");
     }
@@ -580,6 +599,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void undoAction(Integer action) {
+        System.out.println("action = " + action);
         switch (action) {
             case 0:
                 subScore(leftFencer);
