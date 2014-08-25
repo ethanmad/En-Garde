@@ -33,7 +33,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private int mPeriodNumber, mNextSectionType, mMode, mMaxPeriods;
     private TextView mTimer, mScoreLeftView, mRightScoreView, mPeriodView;
     private ImageView mYellowIndicatorLeft, mRedIndicatorLeft, mPriorityIndicatorLeft, mYellowIndicatorRight, mRedIndicatorRight, mPriorityIndicatorRight;
-    private boolean mTimerRunning, mInPeriod, mInBreak, mInPriority;
+    private boolean mTimerRunning, mInPeriod, mInBreak, mInPriority, mShowDouble, mBlackBackground;
     private CountDownTimer mCountDownTimer;
     private Vibrator mVibrator;
     private Uri mAlert;
@@ -74,6 +74,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mTimerRunning = savedInstanceState.getBoolean("mTimerRunning", false);
         mPeriodNumber = savedInstanceState.getInt("mPeriodNumber", 1);
         mMode = savedInstanceState.getInt("mMode", 5);
+        mShowDouble = savedInstanceState.getBoolean("mShowDouble", true);
+        mBlackBackground = savedInstanceState.getBoolean("mBlackBackground", false);
         mInPeriod = savedInstanceState.getBoolean("mInPeriod", true);
         mInBreak = savedInstanceState.getBoolean("mInBreak", false);
         mInPriority = savedInstanceState.getBoolean("mInPriority", false);
@@ -133,6 +135,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         savedInstanceState.putInt("mPeriodNumber", mPeriodNumber);
         savedInstanceState.putLong("mBreakLength", mBreakLength);
         savedInstanceState.putInt("mMode", mMode);
+        savedInstanceState.putBoolean("mShowDouble", mShowDouble);
+        savedInstanceState.putBoolean("mBlackBackground", mBlackBackground);
         savedInstanceState.putBoolean("mInPeriod", mInPeriod);
         savedInstanceState.putBoolean("mInBreak", mInBreak);
         savedInstanceState.putBoolean("mInPriority", mInPriority);
@@ -572,7 +576,9 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
     private void loadSettings() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mMode = Integer.parseInt(mSharedPreferences.getString("pref_mode", "5"));
+
+        // make bout end based on preferences
+        mMode = Integer.parseInt(mSharedPreferences.getString("@string/pref_mode", "5"));
         switch (mMode) {
             case (5):
                 mMaxPeriods = 1;
@@ -581,6 +587,16 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 mMaxPeriods = 3;
                 break;
         }
+
+        // show or hide double touch button based on preferences
+        mShowDouble = mSharedPreferences.getBoolean("@string/pref_show_double", true);
+        if (mShowDouble) findViewById(R.id.doubleTouchButton).setVisibility(View.VISIBLE);
+        else findViewById(R.id.doubleTouchButton).setVisibility(View.INVISIBLE);
+
+        // make background color grey or black based on preferences
+        mBlackBackground = mSharedPreferences.getBoolean("@string/pref_black", true);
+        if (mBlackBackground) getWindow().getDecorView().setBackgroundColor(Color.BLACK);
+        else getWindow().getDecorView().setBackgroundColor(Color.rgb(20, 20, 20));
     }
 
     private void showToast(String verb, String noun, String recipient) {

@@ -7,18 +7,20 @@
             android:dialogTitle="@string/pref_choose_mode"
             android:entries="@array/mode_entries"
             android:entryValues="@array/mode_values"
-            android:key="pref_mode"
+            android:key="@string/pref_mode"
             android:summary="@string/pref_mode_summary"
             android:title="@string/pref_mode" />
         <CheckBoxPreference
             android:defaultValue="true"
-            android:title="@string/pref_show_double" />
+            android:title="@string/pref_show_double"
+            android:key="@string/pref_show_double"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_looks">
         <CheckBoxPreference
             android:defaultValue="false"
             android:summary="@string/pref_black_summary"
-            android:title="@string/pref_black" />
+            android:title="@string/pref_black"
+            android:key="@string/pref_black"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_about">
