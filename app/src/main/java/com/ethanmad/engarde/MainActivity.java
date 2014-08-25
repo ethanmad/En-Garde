@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private MenuItem mActionUndo;
     private Toast mToast;
     private SharedPreferences mSharedPreferences;
+    private RelativeLayout mMainLayout;
 
 
     @Override
@@ -64,6 +66,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mYellowIndicatorRight = (ImageView) findViewById(R.id.yellowCircleViewTwo);
         mRedIndicatorRight = (ImageView) findViewById(R.id.redCircleViewTwo);
         mPriorityIndicatorRight = (ImageView) findViewById(R.id.priorityCircleViewRight);
+        mMainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
+
 
         // import previous data if it exists, otherwise use default values on right
         if (savedInstanceState == null) savedInstanceState = new Bundle();
@@ -596,13 +600,13 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         // make background color grey or black based on preferences
         mBlackBackground = mSharedPreferences.getBoolean("pref_black", false);
         System.out.println("mBlackBackground = " + mBlackBackground);
-        if (mBlackBackground) getWindow().getDecorView().setBackgroundColor(Color.BLACK);
-        else getWindow().getDecorView().setBackgroundColor(Color.rgb(20, 20, 20));
+        if (mBlackBackground) { mMainLayout.setBackgroundColor(Color.BLACK); System.out.println("Trying to make BG black"); }
+        else mMainLayout.setBackgroundColor(Color.rgb(32, 32, 32));
     }
 
     private void showToast(String verb, String noun, String recipient) {
         Context context = getApplicationContext();
-        CharSequence text = verb + " " + noun + " " + recipient + ".";
+        CharSequence text = verb + " " + noun + " " + recipient;
         int duration = Toast.LENGTH_SHORT;
 
         mToast = Toast.makeText(context, text, duration);
@@ -611,7 +615,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
     private void showToast(String verb, String color, String noun, String recipient) {
         Context context = getApplicationContext();
-        CharSequence text = verb + " " + color + " " + noun + " " + recipient + ".";
+        CharSequence text = verb + " " + color + " " + noun + " " + recipient;
         int duration = Toast.LENGTH_SHORT;
 
         mToast = Toast.makeText(context, text, duration);
