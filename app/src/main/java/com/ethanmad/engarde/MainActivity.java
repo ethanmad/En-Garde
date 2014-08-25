@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     int[] mRecentActionArray;
     private Fencer leftFencer, rightFencer;
     private long mTimeRemaining, mPeriodLength, mBreakLength, mPriorityLength;
-    private long[] mStartVibrationPattern, mEndVibrationPattern;
+    private long[] mStartVibrationPattern, mEndVibrationPattern, mTimesRemainingWhenPeriodSkippedArray;
     private int mPeriodNumber, mNextSectionType, mMode, mMaxPeriods;
     private TextView mTimer, mScoreLeftView, mRightScoreView, mPeriodView;
     private ImageView mYellowIndicatorLeft, mRedIndicatorLeft, mPriorityIndicatorLeft, mYellowIndicatorRight, mRedIndicatorRight, mPriorityIndicatorRight;
@@ -41,6 +41,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private Ringtone mRinger;
     private Animation mBlink;
     private ArrayDeque<Integer> mRecentActions;
+    private ArrayDeque<Long> mTimesRemainingWhenPeriodSkipped;
     private MenuItem mActionUndo;
     private Toast mToast;
     private SharedPreferences mSharedPreferences;
@@ -75,6 +76,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mBreakLength = savedInstanceState.getLong("mBreakLength", 1 * 60 * 1000);
         mPriorityLength = savedInstanceState.getLong("mPriorityLength", 1 * 60 * 1000);
         mTimeRemaining = savedInstanceState.getLong("mTimeRemaining", mPeriodLength);
+        mTimesRemainingWhenPeriodSkippedArray = savedInstanceState.getLongArray("mTimesRemainingWhenPeriodSkipped");
         mTimerRunning = savedInstanceState.getBoolean("mTimerRunning", false);
         mPeriodNumber = savedInstanceState.getInt("mPeriodNumber", 1);
         mMode = savedInstanceState.getInt("mMode", 5);
@@ -91,6 +93,10 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         if (mRecentActionArray == null) mRecentActions = new ArrayDeque<Integer>(0);
         else for (int action : mRecentActionArray)
             mRecentActions.push(action);
+
+        if(mTimesRemainingWhenPeriodSkippedArray == null) mTimesRemainingWhenPeriodSkipped = new ArrayDeque<Long>(0);
+        else for (long time : mTimesRemainingWhenPeriodSkippedArray)
+                mTimesRemainingWhenPeriodSkipped.push(time);
 
         // set-up blinking animation used when mTimer is paused TODO: make animation better (no fade)
         mBlink = new AlphaAnimation(0.0f, 1.0f);
@@ -147,6 +153,9 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mRecentActionArray = new int[mRecentActions.size()];
         for (int i = mRecentActions.size() - 1; i >= 0; i--)
             mRecentActionArray[i] = mRecentActions.pop();
+        mTimesRemainingWhenPeriodSkippedArray = new long[mTimesRemainingWhenPeriodSkipped.size()];
+        for (int i = mTimesRemainingWhenPeriodSkipped.size() -1; i >= 0; i--)
+            mTimesRemainingWhenPeriodSkippedArray[i] = mTimesRemainingWhenPeriodSkipped.pop();
         savedInstanceState.putIntArray("mRecentActionArray", mRecentActionArray);
     }
 
@@ -316,6 +325,14 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         }
     }
 
+    public void nextPeriod(MenuItem menuItem) {
+        pauseTimer();
+        if (mPeriodNumber < mMaxPeriods) {
+            nextPeriod();
+            showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.period), "");
+        }
+    }
+
     private void nextPeriod() {
         mPeriodNumber++;
         updatePeriod();
@@ -386,21 +403,21 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             case R.id.scoreOne:
                 leftFencer.addScore();
                 mRecentActions.push(0);
-                showToast(getResources().getString(R.string.gave), getResources().getString(R.string.touch),
-                        getResources().getString(R.string.left));
+                showToast(getResources().getString(R.string.toast_gave), "", getResources().getString(R.string.toast_touch),
+                        getResources().getString(R.string.toast_left));
                 break;
             case R.id.scoreTwo:
                 rightFencer.addScore();
                 mRecentActions.push(1);
-                showToast(getResources().getString(R.string.gave), getResources().getString(R.string.touch),
-                        getResources().getString(R.string.right));
+                showToast(getResources().getString(R.string.toast_gave), "",  getResources().getString(R.string.toast_touch),
+                        getResources().getString(R.string.toast_right));
                 break;
             case R.id.doubleTouchButton:
                 leftFencer.addScore();
                 rightFencer.addScore();
                 mRecentActions.push(2);
-                showToast(getResources().getString(R.string.gave), getResources().getString(R.string.double_toast),
-                        getResources().getString(R.string.touch));
+                showToast(getResources().getString(R.string.toast_gave), "", getResources().getString(R.string.toast_double),
+                        getResources().getString(R.string.toast_touch));
                 break;
         }
         pauseTimer();
@@ -443,16 +460,16 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         leftFencer.giveYellowCard();
                         if (!alreadyHadYellow) {
                             mRecentActions.push(3);
-                            showToast(getResources().getString(R.string.gave), getResources().getString(R.string.yellow),
-                                    getResources().getString(R.string.card), getResources().getString(R.string.left));
+                            showToast(getResources().getString(R.string.toast_gave), getResources().getString(R.string.toast_yellow),
+                                    getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_left));
                             break;
                         }
                     case (1):
                         rightFencer.addScore();
                         leftFencer.giveRedCard();
                         mRecentActions.push(4);
-                        showToast(getResources().getString(R.string.gave), getResources().getString(R.string.red),
-                                getResources().getString(R.string.card), getResources().getString(R.string.left));
+                        showToast(getResources().getString(R.string.toast_gave), getResources().getString(R.string.toast_red),
+                                getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_left));
                         break;
                 }
                 if (leftFencer.hasRedCard()) cardIntent.putExtra("red", true);
@@ -468,16 +485,16 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         rightFencer.giveYellowCard();
                         if (!alreadyHadYellow) {
                             mRecentActions.push(5);
-                            showToast(getResources().getString(R.string.gave), getResources().getString(R.string.yellow),
-                                    getResources().getString(R.string.card), getResources().getString(R.string.right));
+                            showToast(getResources().getString(R.string.toast_gave), getResources().getString(R.string.toast_yellow),
+                                    getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_right));
                             break;
                         }
                     case (1):
                         leftFencer.addScore();
                         rightFencer.giveRedCard();
                         mRecentActions.push(6);
-                        showToast(getResources().getString(R.string.gave), getResources().getString(R.string.red),
-                                getResources().getString(R.string.card), getResources().getString(R.string.right));
+                        showToast(getResources().getString(R.string.toast_gave), getResources().getString(R.string.toast_red),
+                                getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_right));
                         break;
                 }
                 if (rightFencer.hasRedCard()) cardIntent.putExtra("red", true);
@@ -517,6 +534,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     // METHODS FOR RECENT ACTIONS & UNDO
     // 0 = touch left, 1 = touch right, 2 = double touch,
     // 3 = yellow to left, 4 = red to left, 5 = yellow to right, 6 = red to right
+    // 7 = skip period
     private void resetRecentActions() {
         mRecentActions = new ArrayDeque<Integer>(0);
     }
@@ -525,41 +543,43 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         switch (action) {
             case 0:
                 subScore(leftFencer);
-                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.touch),
-                        getResources().getString(R.string.left));
+                showToast(getResources().getString(R.string.toast_undid), "",  getResources().getString(R.string.toast_touch),
+                        getResources().getString(R.string.toast_left));
                 break;
             case 1:
                 subScore(rightFencer);
-                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.touch),
-                        getResources().getString(R.string.right));
+                showToast(getResources().getString(R.string.toast_undid), "", getResources().getString(R.string.toast_touch),
+                        getResources().getString(R.string.toast_right));
                 break;
             case 2:
                 subScore("both");
-                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.double_toast),
-                        getResources().getString(R.string.touch));
+                showToast(getResources().getString(R.string.toast_undid), "",  getResources().getString(R.string.toast_double),
+                        getResources().getString(R.string.toast_touch));
                 break;
             case 3:
                 leftFencer.takeYellowCard();
-                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.yellow),
-                        getResources().getString(R.string.card), getResources().getString(R.string.left));
+                showToast(getResources().getString(R.string.toast_undid), getResources().getString(R.string.toast_yellow),
+                        getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_left));
                 break;
             case 4:
                 leftFencer.takeRedCard();
                 subScore(rightFencer);
-                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.red),
-                        getResources().getString(R.string.card), getResources().getString(R.string.left));
+                showToast(getResources().getString(R.string.toast_undid), getResources().getString(R.string.toast_red),
+                        getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_left));
                 break;
             case 5:
                 rightFencer.takeYellowCard();
-                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.yellow),
-                        getResources().getString(R.string.card), getResources().getString(R.string.right));
+                showToast(getResources().getString(R.string.toast_undid), getResources().getString(R.string.toast_yellow),
+                        getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_right));
                 break;
             case 6:
                 rightFencer.takeRedCard();
                 subScore(leftFencer);
-                showToast(getResources().getString(R.string.undid), getResources().getString(R.string.red),
-                        getResources().getString(R.string.card), getResources().getString(R.string.right));
+                showToast(getResources().getString(R.string.toast_undid), getResources().getString(R.string.toast_red),
+                        getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_right));
                 break;
+            case 7:
+
         }
         mRecentActions.pop();
         updateAll();
@@ -605,18 +625,15 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         else mMainLayout.setBackgroundColor(Color.rgb(32, 32, 32));
     }
 
-    private void showToast(String verb, String noun, String recipient) {
-        Context context = getApplicationContext();
-        CharSequence text = verb + " " + noun + " " + recipient;
-        int duration = Toast.LENGTH_SHORT;
-
-        mToast = Toast.makeText(context, text, duration);
-        mToast.show();
-    }
-
     private void showToast(String verb, String color, String noun, String recipient) {
         Context context = getApplicationContext();
-        CharSequence text = verb + " " + color + " " + noun + " " + recipient;
+
+        CharSequence text;
+        if ((recipient == null || recipient.equals("")) && (color == null || color.equals("")))    text = verb + " " + noun;
+        else if (noun == null || noun.equals(""))   text = verb + " " + recipient;
+        else if (color == null || color.equals(""))   text = verb + " " + noun + " " + recipient;
+        else text = verb + " " + color + " " + noun + " " + recipient;
+
         int duration = Toast.LENGTH_SHORT;
 
         mToast = Toast.makeText(context, text, duration);
