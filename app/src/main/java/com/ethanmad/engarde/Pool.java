@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by ethan on 8/14/14.
  */
+/*
 public class Pool extends Object {
     private int numFencers;
     private ArrayList<Fencer> pool = new ArrayList<Fencer>(numFencers);
@@ -29,3 +30,4 @@ public class Pool extends Object {
         pool.add()
     }
 }
+*/

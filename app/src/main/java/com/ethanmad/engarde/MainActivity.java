@@ -403,7 +403,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         fencer.subtractScore();
     }
 
-    private void subScore(int both) {
+    private void subScore(String both) {
         leftFencer.subtractScore();
         rightFencer.subtractScore();
     }
@@ -525,7 +525,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         getResources().getString(R.string.right));
                 break;
             case 2:
-                subScore(2);
+                subScore("both");
                 showToast(getResources().getString(R.string.undid), getResources().getString(R.string.double_toast),
                         getResources().getString(R.string.touch));
                 break;
@@ -536,7 +536,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 break;
             case 4:
                 leftFencer.takeRedCard();
-                subScore(1);
+                subScore(rightFencer);
                 showToast(getResources().getString(R.string.undid), getResources().getString(R.string.red),
                         getResources().getString(R.string.card), getResources().getString(R.string.left));
                 break;
@@ -547,7 +547,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 break;
             case 6:
                 rightFencer.takeRedCard();
-                subScore(0);
+                subScore(leftFencer);
                 showToast(getResources().getString(R.string.undid), getResources().getString(R.string.red),
                         getResources().getString(R.string.card), getResources().getString(R.string.right));
                 break;
