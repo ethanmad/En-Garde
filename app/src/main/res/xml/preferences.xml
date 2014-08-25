@@ -7,9 +7,9 @@
             android:dialogTitle="@string/pref_choose_mode"
             android:entries="@array/mode_entries"
             android:entryValues="@array/mode_values"
-            android:key="@string/pref_mode"
+            android:key="pref_mode"
             android:summary="@string/pref_mode_summary"
-            android:title="pref_mode" />
+            android:title="@string/pref_mode" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:title="@string/pref_show_double"

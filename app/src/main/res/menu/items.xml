@@ -21,9 +21,9 @@
         android:showAsAction="ifRoom"
         android:title="@string/action_undo" />
     <item
-        android:id="@+id/action_next_period"
+        android:id="@+id/action_skip_section"
         android:orderInCategory="1"
         android:showAsAction="never"
-        android:title="@string/action_next_period"
-        android:onClick="nextPeriod" />
+        android:title="@string/action_skip_section"
+        android:onClick="skipSection" />
 </menu>

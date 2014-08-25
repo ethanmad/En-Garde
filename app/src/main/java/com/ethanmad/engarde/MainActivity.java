@@ -212,14 +212,14 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             mRinger.stop();
             mTimer.setTextColor(Color.WHITE);
             mTimer.clearAnimation();
-            if (mNextSectionType == 0) {
+            if (mNextSectionType == 0) { // period
                 mTimeRemaining = mPeriodLength;
                 nextPeriod();
                 mInPeriod = true;
-            } else if (mNextSectionType == 1) {
+            } else if (mNextSectionType == 1) { // break
                 mTimeRemaining = mBreakLength;
                 mInBreak = true;
-            } else if (mNextSectionType == 2) {
+            } else if (mNextSectionType == 2) { // priority
                 mTimeRemaining = mPriorityLength;
                 mInPriority = true;
                 determinePriority();
@@ -248,7 +248,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mTimer.clearAnimation();
         mTimer.setTextColor(Color.WHITE);
         mVibrator.vibrate(mStartVibrationPattern, -1);
-        if (mInPriority) time = mPriorityLength; // do 1 minute priority rather than normal period
         mCountDownTimer = new CountDownTimer(time, 10) {
             public void onTick(long millisUntilFinished) {
                 updateTimer(millisUntilFinished);
@@ -325,11 +324,17 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         }
     }
 
-    public void nextPeriod(MenuItem menuItem) {
+    public void skipSection(MenuItem menuItem) {
         pauseTimer();
-        if (mPeriodNumber < mMaxPeriods) {
-            nextPeriod();
-            showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.period), "");
+        if(mInPriority)
+            showToast(getResources().getString(R.string.toast_unable), "", getResources().getString(R.string.toast_skip), getResources().getString(R.string.toast_priority));
+        else {
+            mTimesRemainingWhenPeriodSkipped.push(mTimeRemaining);
+            System.out.println("mTimeRemaining = " + mTimeRemaining);
+            endSection();
+            mRecentActions.push(7);
+            if(!mInPeriod) showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_period), "");
+            else showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_break), "");
         }
     }
 
@@ -579,7 +584,10 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_right));
                 break;
             case 7:
-
+                pauseTimer();
+                mInPriority = false;
+                startTimer(mTimesRemainingWhenPeriodSkipped.pop());
+                pauseTimer();
         }
         mRecentActions.pop();
         updateAll();
