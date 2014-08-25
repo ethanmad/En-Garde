@@ -27,11 +27,11 @@ import android.widget.Toast;
 import java.util.ArrayDeque;
 
 public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener {
-    int[] mRecentActionArray;
     private Fencer leftFencer, rightFencer;
     private long mTimeRemaining, mPeriodLength, mBreakLength, mPriorityLength;
-    private long[] mStartVibrationPattern, mEndVibrationPattern, mTimesRemainingWhenPeriodSkippedArray;
+    private long[] mStartVibrationPattern, mEndVibrationPattern, mPreviousTimesArray;
     private int mPeriodNumber, mNextSectionType, mMode, mMaxPeriods;
+    private int[] mRecentActionArray, mPreviousPeriodNumbersArray, mPreviousSectionTypesArray;
     private TextView mTimer, mScoreLeftView, mRightScoreView, mPeriodView;
     private ImageView mYellowIndicatorLeft, mRedIndicatorLeft, mPriorityIndicatorLeft, mYellowIndicatorRight, mRedIndicatorRight, mPriorityIndicatorRight;
     private boolean mTimerRunning, mInPeriod, mInBreak, mInPriority, mShowDouble, mBlackBackground;
@@ -40,8 +40,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private Uri mAlert;
     private Ringtone mRinger;
     private Animation mBlink;
-    private ArrayDeque<Integer> mRecentActions;
-    private ArrayDeque<Long> mTimesRemainingWhenPeriodSkipped;
+    private ArrayDeque<Integer> mRecentActions, mPreviousPeriodNumbers, mPreviousSectionTypes;
+    private ArrayDeque<Long> mPreviousTimes;
     private MenuItem mActionUndo;
     private Toast mToast;
     private SharedPreferences mSharedPreferences;
@@ -76,7 +76,9 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mBreakLength = savedInstanceState.getLong("mBreakLength", 1 * 60 * 1000);
         mPriorityLength = savedInstanceState.getLong("mPriorityLength", 1 * 60 * 1000);
         mTimeRemaining = savedInstanceState.getLong("mTimeRemaining", mPeriodLength);
-        mTimesRemainingWhenPeriodSkippedArray = savedInstanceState.getLongArray("mTimesRemainingWhenPeriodSkipped");
+        mPreviousTimesArray = savedInstanceState.getLongArray("mPreviousTimesArray");
+        mPreviousPeriodNumbersArray = savedInstanceState.getIntArray("mPreviousPeriodNumbersArray");
+        mPreviousSectionTypesArray = savedInstanceState.getIntArray("mPreviousSectionTypesArray");
         mTimerRunning = savedInstanceState.getBoolean("mTimerRunning", false);
         mPeriodNumber = savedInstanceState.getInt("mPeriodNumber", 1);
         mMode = savedInstanceState.getInt("mMode", 5);
@@ -94,9 +96,17 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         else for (int action : mRecentActionArray)
             mRecentActions.push(action);
 
-        if(mTimesRemainingWhenPeriodSkippedArray == null) mTimesRemainingWhenPeriodSkipped = new ArrayDeque<Long>(0);
-        else for (long time : mTimesRemainingWhenPeriodSkippedArray)
-                mTimesRemainingWhenPeriodSkipped.push(time);
+        if (mPreviousTimesArray == null) mPreviousTimes = new ArrayDeque<Long>(0);
+        else for (long time : mPreviousTimesArray)
+                mPreviousTimes.push(time);
+
+        if (mPreviousPeriodNumbers == null) mPreviousPeriodNumbers = new ArrayDeque<Integer>(0);
+        else for (int sectionType : mPreviousPeriodNumbersArray)
+                mPreviousPeriodNumbers.push(sectionType);
+
+        if (mPreviousSectionTypesArray == null) mPreviousSectionTypes = new ArrayDeque<Integer>(0);
+        else for (int sectionType : mPreviousSectionTypesArray)
+            mPreviousSectionTypes.push(sectionType);
 
         // set-up blinking animation used when mTimer is paused TODO: make animation better (no fade)
         mBlink = new AlphaAnimation(0.0f, 1.0f);
@@ -153,10 +163,18 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mRecentActionArray = new int[mRecentActions.size()];
         for (int i = mRecentActions.size() - 1; i >= 0; i--)
             mRecentActionArray[i] = mRecentActions.pop();
-        mTimesRemainingWhenPeriodSkippedArray = new long[mTimesRemainingWhenPeriodSkipped.size()];
-        for (int i = mTimesRemainingWhenPeriodSkipped.size() -1; i >= 0; i--)
-            mTimesRemainingWhenPeriodSkippedArray[i] = mTimesRemainingWhenPeriodSkipped.pop();
         savedInstanceState.putIntArray("mRecentActionArray", mRecentActionArray);
+        mPreviousTimesArray = new long[mPreviousTimes.size()];
+        for (int i = mPreviousTimes.size() -1; i >= 0; i--)
+            mPreviousTimesArray[i] = mPreviousTimes.pop();
+        savedInstanceState.putLongArray("mPreviousTimesArray", mPreviousTimesArray);
+        for (int i = mPreviousPeriodNumbers.size() -1; i >= 0; i--)
+            mPreviousPeriodNumbersArray[i] = mPreviousPeriodNumbers.pop();
+        savedInstanceState.putIntArray("mPreviousPeriodNumbersArray", mPreviousPeriodNumbersArray);
+        for (int i = mPreviousSectionTypes.size() -1; i >= 0; i--)
+            mPreviousSectionTypesArray[i] = mPreviousSectionTypes.pop();
+        savedInstanceState.putIntArray("mPreviousSectionTypesArray", mPreviousSectionTypesArray);
+
     }
 
     @Override
@@ -204,7 +222,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
 
     // METHODS FOR TIME & PERIODS
-    public void onClickTimer(View v) { // onClick method for mTimer
+    public void onClickTimer(View view) { // onClick method for mTimer
         if (mInPeriod || mInBreak || mInPriority) // if in a time section, start/stop
             countDown();
         else { // if in between sections, get ready for next one
@@ -329,7 +347,11 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         if(mInPriority)
             showToast(getResources().getString(R.string.toast_unable), "", getResources().getString(R.string.toast_skip), getResources().getString(R.string.toast_priority));
         else {
-            mTimesRemainingWhenPeriodSkipped.push(mTimeRemaining);
+            mPreviousTimes.push(mTimeRemaining);
+            if (mInPriority) mPreviousSectionTypes.push(2);
+            else if (mInBreak) mPreviousSectionTypes.push(1);
+            else if(mInPeriod) mPreviousSectionTypes.push(0);
+            mPreviousPeriodNumbers.push(mPeriodNumber);
             System.out.println("mTimeRemaining = " + mTimeRemaining);
             endSection();
             mRecentActions.push(7);
@@ -586,8 +608,16 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             case 7:
                 pauseTimer();
                 mInPriority = false;
-                startTimer(mTimesRemainingWhenPeriodSkipped.pop());
+                long previousTime = mPreviousTimes.pop();
+                startTimer(previousTime);
+                mNextSectionType = mPreviousSectionTypes.pop();
+                mPeriodNumber = mPreviousPeriodNumbers.pop() - 1;
+                onClickTimer(mTimer);
+                mTimeRemaining = previousTime;
+                updateTimer(mTimeRemaining);
                 pauseTimer();
+                resetPriority();
+                showToast(getResources().getString(R.string.toast_undid), "", getResources().getString(R.string.toast_skip), "");
         }
         mRecentActions.pop();
         updateAll();
