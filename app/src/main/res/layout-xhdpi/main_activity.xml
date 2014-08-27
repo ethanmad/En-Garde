@@ -17,7 +17,6 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="false"
         android:longClickable="true">
 
         <!--Yellow Card Button-->
@@ -29,12 +28,14 @@
             android:layout_alignParentStart="false"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="120dp"
+            android:layout_marginRight="120dp"
             android:clickable="true"
             android:focusableInTouchMode="false"
             android:onClick="showCardDialog"
             flatui:blockButtonEffectHeight="3dp"
             flatui:theme="@array/flat_yellow"
-            android:paddingRight="20dp" />
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp" />
 
         <!--Red Card Button-->
         <com.cengalabs.flatui.views.FlatButton
@@ -45,10 +46,12 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="120dp"
+            android:layout_marginEnd="120dp"
             android:onClick="showCardDialog"
             flatui:blockButtonEffectHeight="3dp"
             flatui:theme="@array/flat_red"
-            android:paddingLeft="20dp" />
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -68,6 +71,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="14dp"
+            android:layout_marginEnd="14dp"
             android:layout_toLeftOf="@+id/doubleTouchButton"
             android:layout_toStartOf="@+id/doubleTouchButton"
             android:clickable="true"
@@ -89,6 +93,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
             android:layout_toEndOf="@+id/doubleTouchButton"
             android:layout_toRightOf="@+id/doubleTouchButton"
             android:clickable="true"
@@ -150,7 +155,6 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/timer"
             android:layout_centerHorizontal="true"
-            android:autoText="false"
             android:text="@string/period"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#FFFFFF" />
@@ -162,9 +166,10 @@
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/scoreLayout"
-        android:layout_alignParentLeft="false"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="35dp">
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp" >
 
         <ImageView
             android:id="@+id/penaltyCircleViewLeft"
@@ -179,6 +184,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:src="@drawable/priority_circle" />
 
     </RelativeLayout>
@@ -189,26 +195,25 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/penaltyLayoutLeft"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="false"
-        android:layout_marginRight="35dp">
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="35dp"
+        android:layout_marginEnd="35dp">
 
         <ImageView
             android:id="@+id/penaltyCircleViewRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentStart="false"
             android:src="@drawable/yellow_circle"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"/>
 
         <ImageView
             android:id="@+id/priorityCircleViewRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
             android:src="@drawable/priority_circle"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true" />
     </RelativeLayout>
 
 </RelativeLayout>

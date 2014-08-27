@@ -46,7 +46,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private ArrayDeque<Long> mPreviousTimes;
     private MenuItem mActionUndo;
     private Toast mToast;
-    private SharedPreferences mSharedPreferences;
     private RelativeLayout mMainLayout;
 
 
@@ -486,7 +485,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         fencer.subtractScore();
     }
 
-    private void subScore(String both) {
+    private void subBothScores() {
         leftFencer.subtractScore();
         rightFencer.subtractScore();
     }
@@ -618,7 +617,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         getResources().getString(R.string.toast_right));
                 break;
             case 2:
-                subScore("both");
+                subBothScores();
                 showToast(getResources().getString(R.string.toast_undid), "", getResources().getString(R.string.toast_double),
                         getResources().getString(R.string.toast_touch));
                 break;
@@ -690,7 +689,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void loadSettings() {
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         // make bout end based on preferences
         mMode = Integer.parseInt(mSharedPreferences.getString("pref_mode", "5"));
