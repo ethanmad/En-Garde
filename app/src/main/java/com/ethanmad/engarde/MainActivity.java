@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.ethanmad.engarde.R;
 
 import java.util.ArrayDeque;
@@ -53,6 +54,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.start(this);
         setContentView(R.layout.main_activity);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
