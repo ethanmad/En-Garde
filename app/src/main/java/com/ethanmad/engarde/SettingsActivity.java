@@ -6,7 +6,7 @@ import android.os.Bundle;
 /**
  * Created by ethan on 7/31/14.
  */
-public class Settings extends Activity {
+public class SettingsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

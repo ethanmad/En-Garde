@@ -37,6 +37,7 @@
             flatui:blockButtonEffectHeight="3dp"
             flatui:theme="@array/flat_yellow"
             android:paddingRight="20dp"
+            android:paddingLeft="20dp"
             android:layout_marginLeft="100dp" />
 
         <!--Red Card Button-->
@@ -51,6 +52,7 @@
             flatui:blockButtonEffectHeight="3dp"
             flatui:theme="@array/flat_red"
             android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_marginRight="100dp" />
     </RelativeLayout>
 
@@ -181,6 +183,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:src="@drawable/priority_circle" />
 
     </RelativeLayout>
@@ -191,9 +194,11 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/penaltyLayoutLeft"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginRight="35dp">
+        android:layout_marginRight="35dp"
+        android:layout_marginEnd="35dp">
 
         <ImageView
             android:id="@+id/penaltyCircleViewRight"
@@ -202,15 +207,16 @@
             android:layout_alignParentLeft="false"
             android:layout_alignParentStart="false"
             android:src="@drawable/yellow_circle"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"/>
 
         <ImageView
             android:id="@+id/priorityCircleViewRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
             android:src="@drawable/priority_circle"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"/>
     </RelativeLayout>
 
 </RelativeLayout>

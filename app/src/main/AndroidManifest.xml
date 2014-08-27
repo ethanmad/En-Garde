@@ -31,7 +31,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".Settings"
+            android:name=".SettingsActivity"
             android:label="@string/activity_settings"
             android:parentActivityName=".MainActivity">
             <meta-data

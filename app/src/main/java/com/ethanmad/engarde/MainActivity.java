@@ -25,7 +25,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.ethanmad.engarde.R;
 
 import java.util.ArrayDeque;
 
@@ -681,7 +680,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     public void openSettings(MenuItem item) {
-        Intent settingsIntent = new Intent(this, Settings.class);
+        Intent settingsIntent = new Intent(this, SettingsActivity.class);
         startActivity(settingsIntent);
     }
 
