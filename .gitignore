@@ -24,5 +24,10 @@ Thumbs.db
 # Android Studio
 .idea
 #.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+
+# Crashlytics
+com_crashlytics_export_strings.xml
+crashlytics.properties
+
 .gradle
 build/
