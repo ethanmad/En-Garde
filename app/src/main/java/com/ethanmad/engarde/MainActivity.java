@@ -207,7 +207,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         getMenuInflater().inflate(R.menu.items, menu);
         mActionUndo = menu.findItem(R.id.action_undo);
         updateUndoButton();
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
