@@ -154,7 +154,6 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/timer"
             android:layout_centerHorizontal="true"
-            android:autoText="false"
             android:text="@string/period"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#FFFFFF" />
@@ -168,7 +167,8 @@
         android:layout_alignBottom="@+id/scoreLayout"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="35dp">
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp">
 
         <ImageView
             android:id="@+id/penaltyCircleViewLeft"
@@ -176,7 +176,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:src="@drawable/yellow_circle" />
+            android:src="@drawable/yellow_circle"/>
 
         <ImageView
             android:id="@+id/priorityCircleViewLeft"
@@ -184,7 +184,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/priority_circle" />
+            android:src="@drawable/priority_circle"
+            android:contentDescription="@string/priority_left" />
 
     </RelativeLayout>
 

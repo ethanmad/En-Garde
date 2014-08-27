@@ -140,8 +140,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         super.onResume();
 
         // reload recent actions, previous times, etc.
-        if (mRecentActionArray == null)
-            mRecentActions = new ArrayDeque<Integer>(0);
+        if (mRecentActionArray == null) mRecentActions = new ArrayDeque<Integer>(0);
         else for (int action : mRecentActionArray)
             mRecentActions.push(action);
 
@@ -149,7 +148,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         else for (long time : mPreviousTimesArray)
             mPreviousTimes.push(time);
 
-        if (mPreviousPeriodNumbers == null) mPreviousPeriodNumbers = new ArrayDeque<Integer>(0);
+        if (mPreviousPeriodNumbersArray == null) mPreviousPeriodNumbers = new ArrayDeque<Integer>(0);
         else for (int sectionType : mPreviousPeriodNumbersArray)
             mPreviousPeriodNumbers.push(sectionType);
 
@@ -575,13 +574,19 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         if (leftFencer.hasRedCard()) {
             mLeftPenaltyIndicator.setColorFilter(Color.RED);
             mLeftPenaltyIndicator.setVisibility(View.VISIBLE);
-        } else if (leftFencer.hasYellowCard()) mLeftPenaltyIndicator.setVisibility(View.VISIBLE);
+        } else if (leftFencer.hasYellowCard()) {
+            mLeftPenaltyIndicator.setColorFilter(Color.YELLOW);
+            mLeftPenaltyIndicator.setVisibility(View.VISIBLE);
+        }
         else mLeftPenaltyIndicator.setVisibility(View.INVISIBLE);
 
         if (rightFencer.hasRedCard()) {
             mRightPenaltyIndicator.setColorFilter(Color.RED);
             mRightPenaltyIndicator.setVisibility(View.VISIBLE);
-        } else if (rightFencer.hasYellowCard()) mRightPenaltyIndicator.setVisibility(View.VISIBLE);
+        } else if (rightFencer.hasYellowCard()) {
+            mRightPenaltyIndicator.setColorFilter(Color.YELLOW);
+            mRightPenaltyIndicator.setVisibility(View.VISIBLE);
+        }
         else mRightPenaltyIndicator.setVisibility(View.INVISIBLE);
     }
 
