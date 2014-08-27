@@ -119,6 +119,65 @@
             flatui:theme="@array/dark"
             android:singleLine="false" />
 
+        <RelativeLayout
+            android:id="@+id/penaltyLayoutLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:id="@+id/penaltyCircleViewLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/yellow_circle"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true" />
+
+            <ImageView
+                android:id="@+id/priorityCircleViewLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentRight="false"
+                android:src="@drawable/priority_circle"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentTop="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/penaltyLayoutRight"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <ImageView
+                android:id="@+id/penaltyCircleViewRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/yellow_circle"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true" />
+
+            <ImageView
+                android:id="@+id/priorityCircleViewRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentRight="false"
+                android:src="@drawable/priority_circle"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -161,59 +220,5 @@
     </RelativeLayout>
 
     <!--Penalty Indicators-->
-    <RelativeLayout
-        android:id="@+id/penaltyLayoutLeft"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/scoreLayout"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp" >
-
-        <ImageView
-            android:id="@+id/penaltyCircleViewLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/yellow_circle" />
-
-        <ImageView
-            android:id="@+id/priorityCircleViewLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/priority_circle" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/penaltyLayoutRight"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/penaltyLayoutLeft"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="35dp"
-        android:layout_marginEnd="35dp">
-
-        <ImageView
-            android:id="@+id/penaltyCircleViewRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/yellow_circle"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"/>
-
-        <ImageView
-            android:id="@+id/priorityCircleViewRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/priority_circle"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true" />
-    </RelativeLayout>
 
 </RelativeLayout>

@@ -605,6 +605,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void undoAction(Integer action) {
+        pauseTimer();
         switch (action) {
             case 0:
                 subScore(leftFencer);
