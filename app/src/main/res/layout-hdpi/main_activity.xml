@@ -29,6 +29,7 @@
             android:layout_width="35dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:clickable="true"
             android:onClick="showCardDialog"
@@ -115,7 +116,6 @@
             android:onClick="addScore"
             android:text="@string/double_touch"
             flatui:theme="@array/dark"
-            android:singleLine="false"
             android:textSize="15sp" />
 
         <RelativeLayout
@@ -130,8 +130,6 @@
                 android:id="@+id/penaltyCircleViewLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="false"
-                android:layout_alignParentStart="false"
                 android:src="@drawable/yellow_circle"
                 android:contentDescription="@string/penalty_left"
                 android:layout_alignParentBottom="true" />
@@ -140,8 +138,6 @@
                 android:id="@+id/priorityCircleViewLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentRight="false"
                 android:src="@drawable/priority_circle"
                 android:contentDescription="@string/priority_left"
                 android:layout_alignParentTop="true" />
@@ -160,8 +156,6 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="false"
-                android:layout_alignParentStart="false"
                 android:src="@drawable/yellow_circle"
                 android:contentDescription="@string/penalty_left"
                 android:layout_alignParentBottom="true" />
@@ -170,8 +164,7 @@
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentRight="false"
+
                 android:src="@drawable/priority_circle"
                 android:contentDescription="@string/priority_left"
                 android:layout_alignParentTop="true" />

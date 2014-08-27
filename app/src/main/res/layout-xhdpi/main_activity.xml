@@ -24,13 +24,10 @@
             android:id="@+id/yellowCardButton"
             android:layout_width="35dp"
             android:layout_height="50dp"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentStart="false"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="120dp"
             android:layout_marginRight="120dp"
             android:clickable="true"
-            android:focusableInTouchMode="false"
             android:onClick="showCardDialog"
             flatui:blockButtonEffectHeight="3dp"
             flatui:theme="@array/flat_yellow"
@@ -132,8 +129,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/yellow_circle"
-                android:layout_alignParentTop="false"
-                android:layout_alignParentLeft="false"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true" />
 
@@ -141,10 +136,7 @@
                 android:id="@+id/priorityCircleViewLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentRight="false"
                 android:src="@drawable/priority_circle"
-                android:layout_alignParentBottom="false"
                 android:layout_alignParentTop="true" />
 
         </RelativeLayout>
@@ -162,8 +154,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/yellow_circle"
-                android:layout_alignParentTop="false"
-                android:layout_alignParentLeft="false"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true" />
 
@@ -171,10 +161,7 @@
                 android:id="@+id/priorityCircleViewRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentRight="false"
                 android:src="@drawable/priority_circle"
-                android:layout_alignParentBottom="false"
                 android:layout_alignParentTop="true" />
         </RelativeLayout>
 
