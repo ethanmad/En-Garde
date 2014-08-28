@@ -100,7 +100,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         else for (long time : mPreviousTimesArray)
             mPreviousTimes.push(time);
 
-        if (mPreviousPeriodNumbers == null) mPreviousPeriodNumbers = new ArrayDeque<Integer>(0);
+        if (mPreviousPeriodNumbersArray == null) mPreviousPeriodNumbers = new ArrayDeque<Integer>(0);
         else for (int sectionType : mPreviousPeriodNumbersArray)
             mPreviousPeriodNumbers.push(sectionType);
 

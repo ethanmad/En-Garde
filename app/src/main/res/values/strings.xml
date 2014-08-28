@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">En Garde</string>
-    <string name="current_version">0.2.1</string>
+    <string name="current_version">0.2.2</string>
 
     <string name="activity_settings">Settings</string>
     <string name="action_settings">Settings</string>
