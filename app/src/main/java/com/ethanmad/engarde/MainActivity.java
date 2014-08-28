@@ -382,6 +382,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             else if (mInPeriod) mPreviousSectionTypes.push(0);
             mPreviousPeriodNumbers.push(mPeriodNumber);
             endSection();
+            mRinger.stop();
+            mVibrator.cancel();
             mRecentActions.push(7);
             if (!mInPeriod)
                 showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_period), "");
