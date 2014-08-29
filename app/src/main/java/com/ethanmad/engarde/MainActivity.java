@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
+import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -17,6 +19,7 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -47,6 +50,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private MenuItem mActionUndo;
     private Toast mToast;
     private RelativeLayout mMainLayout;
+    private final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 200);
 
 
     @Override
@@ -285,8 +289,10 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
     private void startTimer(long time) {
         mTimer.clearAnimation();
+        tg.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF);
         mTimer.setTextColor(Color.WHITE);
         mVibrator.vibrate(mStartVibrationPattern, -1);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // keep screen awake when timer is running
         mCountDownTimer = new CountDownTimer(time, 10) {
             public void onTick(long millisUntilFinished) {
                 updateTimer(millisUntilFinished);
@@ -295,6 +301,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
             public void onFinish() {
                 endSection();
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // turn screen-awake off when timer is expired
             }
         }.start();
         mTimerRunning = true;
@@ -305,6 +312,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void pauseTimer() {
+        tg.stopTone();
         mRinger.stop();
         mVibrator.cancel();
         if (mTimerRunning) {
@@ -317,6 +325,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                     (mTimeRemaining == 60 * 1000 && !(mInBreak || mInPriority)) ||
                     (mTimeRemaining == 3 * 60 * 1000 && !mInPeriod))
                 mTimer.startAnimation(mBlink);
+
+            if (!mTimerRunning) getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
 
