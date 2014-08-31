@@ -527,8 +527,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                             getResources().getString(R.string.toast_right));
                     if (rightFencer.getScore() >= mMode) {
                         rightFencer.makeWinner(leftFencer.getScore());
-                        mIsOver = false;
-                    }
+                        mIsOver = true;
+                    } else mIsOver = false;
                     break;
                 case R.id.doubleTouchButton:
                     if (leftFencer.getScore() == rightFencer.getScore() && leftFencer.getScore() == mMode - 1) {
@@ -545,7 +545,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         } else if (rightFencer.getScore() >= mMode) {
                             rightFencer.makeWinner(leftFencer.getScore());
                             mIsOver = true;
-                        }
+                        } else mIsOver = false;
                         break;
                     }
             }
@@ -623,7 +623,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                             break;
                         }
                     case (1):
-                        rightFencer.addScore();
+                        if (rightFencer.getScore() < mMode) rightFencer.addScore();
                         leftFencer.giveRedCard();
                         mRecentActions.push(4);
                         showToast(getResources().getString(R.string.toast_gave), getResources().getString(R.string.toast_red),
@@ -648,7 +648,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                             break;
                         }
                     case (1):
-                        leftFencer.addScore();
+                        if (leftFencer.getScore() < mMode) leftFencer.addScore();
                         rightFencer.giveRedCard();
                         mRecentActions.push(6);
                         showToast(getResources().getString(R.string.toast_gave), getResources().getString(R.string.toast_red),
@@ -756,8 +756,10 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 mNextSectionType = mPreviousSectionTypes.pop();
                 mPeriodNumber = mPreviousPeriodNumbers.pop();
 
-                if (mMaxPeriods == 1) mPeriodNumber = 0;
-                else {
+                if (mMaxPeriods == 1) {
+                    mInPeriod = true;
+                    mPeriodNumber = 1;
+                } else {
                     if (mNextSectionType == 0) {
                         mInPeriod = true;
                         mInBreak = false;
