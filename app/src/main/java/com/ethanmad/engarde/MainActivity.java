@@ -32,6 +32,7 @@ import com.crashlytics.android.Crashlytics;
 import java.util.ArrayDeque;
 
 public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener {
+    private final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 200);
     private Fencer leftFencer, rightFencer;
     private long mTimeRemaining, mPeriodLength, mBreakLength, mPriorityLength;
     private long[] mStartVibrationPattern, mEndVibrationPattern, mPreviousTimesArray;
@@ -50,8 +51,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private MenuItem mActionUndo;
     private Toast mToast;
     private RelativeLayout mMainLayout;
-    private final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 200);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -297,23 +296,25 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void startTimer(long time) {
-        mTimer.clearAnimation();
-        tg.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF);
-        mTimer.setTextColor(Color.WHITE);
-        mVibrator.vibrate(mStartVibrationPattern, -1);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // keep screen awake when timer is running
-        mCountDownTimer = new CountDownTimer(time, 10) {
-            public void onTick(long millisUntilFinished) {
-                updateTimer(millisUntilFinished);
-                mTimeRemaining = millisUntilFinished;
-            }
+        if (!mIsOver) {
+            mTimer.clearAnimation();
+            tg.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF);
+            mTimer.setTextColor(Color.WHITE);
+            mVibrator.vibrate(mStartVibrationPattern, -1);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // keep screen awake when timer is running
+            mCountDownTimer = new CountDownTimer(time, 10) {
+                public void onTick(long millisUntilFinished) {
+                    updateTimer(millisUntilFinished);
+                    mTimeRemaining = millisUntilFinished;
+                }
 
-            public void onFinish() {
-                endSection();
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // turn screen-awake off when timer is expired
-            }
-        }.start();
-        mTimerRunning = true;
+                public void onFinish() {
+                    endSection();
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // turn screen-awake off when timer is expired
+                }
+            }.start();
+            mTimerRunning = true;
+        }
     }
 
     public void pauseTimer(View view) {
@@ -401,25 +402,27 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     public void skipSection(MenuItem menuItem) {
-        pauseTimer();
-        if (mInPriority)
-            showToast(getResources().getString(R.string.toast_unable), "", getResources().getString(R.string.toast_skip), getResources().getString(R.string.toast_priority));
-        else {
-            mPreviousTimes.push(mTimeRemaining);
-            if (mInPriority) mPreviousSectionTypes.push(2);
-            else if (mInBreak) mPreviousSectionTypes.push(1);
-            else if (mInPeriod) mPreviousSectionTypes.push(0);
-            mPreviousPeriodNumbers.push(mPeriodNumber);
-            endSection();
-            mRinger.stop();
-            mVibrator.cancel();
-            mRecentActions.push(7);
-            if (!mInPeriod)
-                showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_period), "");
-            else
-                showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_break), "");
+        if (!mIsOver) {
+            pauseTimer();
+            if (mInPriority)
+                showToast(getResources().getString(R.string.toast_unable), "", getResources().getString(R.string.toast_skip), getResources().getString(R.string.toast_priority));
+            else {
+                mPreviousTimes.push(mTimeRemaining);
+                if (mInPriority) mPreviousSectionTypes.push(2);
+                else if (mInBreak) mPreviousSectionTypes.push(1);
+                else if (mInPeriod) mPreviousSectionTypes.push(0);
+                mPreviousPeriodNumbers.push(mPeriodNumber);
+                endSection();
+                mRinger.stop();
+                mVibrator.cancel();
+                mRecentActions.push(7);
+                if (!mInPeriod)
+                    showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_period), "");
+                else
+                    showToast(getResources().getString(R.string.toast_skipped), "", getResources().getString(R.string.toast_break), "");
+            }
+            updateAll();
         }
-        updateAll();
     }
 
     private void nextPeriod() {
