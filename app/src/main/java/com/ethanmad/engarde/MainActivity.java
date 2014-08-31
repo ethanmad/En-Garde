@@ -515,7 +515,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                     mRecentActions.push(0);
                     showToast(getResources().getString(R.string.toast_gave), "", getResources().getString(R.string.toast_touch),
                             getResources().getString(R.string.toast_left));
-                    if (leftFencer.getScore() >= mMode) {
+                    if (leftFencer.getScore() >= mMode || mInPriority) {
                         leftFencer.makeWinner(rightFencer.getScore());
                         mIsOver = true;
                     } else mIsOver = false;
@@ -525,7 +525,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                     mRecentActions.push(1);
                     showToast(getResources().getString(R.string.toast_gave), "", getResources().getString(R.string.toast_touch),
                             getResources().getString(R.string.toast_right));
-                    if (rightFencer.getScore() >= mMode) {
+                    if (rightFencer.getScore() >= mMode || mInPriority) {
                         rightFencer.makeWinner(leftFencer.getScore());
                         mIsOver = true;
                     } else mIsOver = false;
@@ -611,10 +611,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             case (0):
                 switch (cardType) {
                     case (0):
-                        if (leftFencer.hasYellowCard()) {
+                        if (leftFencer.hasYellowCard() || leftFencer.hasRedCard())
                             alreadyHadYellow = true;
-                            mRecentActions.push(4);
-                        }
                         leftFencer.giveYellowCard();
                         if (!alreadyHadYellow) {
                             mRecentActions.push(3);
@@ -628,6 +626,10 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         mRecentActions.push(4);
                         showToast(getResources().getString(R.string.toast_gave), getResources().getString(R.string.toast_red),
                                 getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_left));
+                        if (rightFencer.getScore() >= mMode) {
+                            rightFencer.makeWinner(leftFencer.getScore());
+                            mIsOver = true;
+                        }
                         break;
                 }
                 if (leftFencer.hasRedCard()) cardIntent.putExtra("red", true);
@@ -636,10 +638,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             case (1):
                 switch (cardType) {
                     case (0):
-                        if (rightFencer.hasYellowCard()) {
+                        if (rightFencer.hasYellowCard() || rightFencer.hasRedCard())
                             alreadyHadYellow = true;
-                            mRecentActions.push(6);
-                        }
                         rightFencer.giveYellowCard();
                         if (!alreadyHadYellow) {
                             mRecentActions.push(5);
@@ -653,6 +653,10 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         mRecentActions.push(6);
                         showToast(getResources().getString(R.string.toast_gave), getResources().getString(R.string.toast_red),
                                 getResources().getString(R.string.toast_card), getResources().getString(R.string.toast_right));
+                        if (leftFencer.getScore() >= mMode) {
+                            leftFencer.makeWinner(rightFencer.getScore());
+                            mIsOver = true;
+                        }
                         break;
                 }
                 if (rightFencer.hasRedCard()) cardIntent.putExtra("red", true);
