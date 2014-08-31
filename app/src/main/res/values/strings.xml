@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">En Garde</string>
-    <string name="current_version">0.2.2</string>
+    <string name="current_version">0.3.0</string>
 
     <string name="activity_settings">Settings</string>
     <string name="action_settings">Settings</string>
@@ -31,6 +31,7 @@
     <string name="toast_skipped">Skipped</string>
     <string name="toast_undid">Undid</string>
     <string name="toast_unable">Can\'t</string>
+    <string name="toast_give">give</string>
     <string name="toast_skip">skip</string>
     <string name="toast_touch">touch</string>
     <string name="toast_card">card</string>
@@ -42,6 +43,7 @@
     <string name="toast_right">to right fencer</string>
     <string name="toast_double">double</string>
     <string name="toast_priority">priority</string>
+    <string name="toast_winner_determined">--a winner has already been determined.</string>
 
     <string name="pref_behavior">Behavior</string>
     <string name="pref_mode">Bout mode</string>

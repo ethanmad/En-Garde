@@ -6,7 +6,7 @@ package com.ethanmad.engarde;
 public class Fencer extends Object {
     private String mName = "", mTeam = "";
     private int mNumber = -1, mScore = 0, mIndicator = 0, mNumWins = 0, mNumLosses = 0;
-    private boolean mHasYellowCard = false, mHasRedCard = false, mHasPriority = false, winner = false;
+    private boolean mHasYellowCard = false, mHasRedCard = false, mHasPriority = false, mWinner = false;
 
     // POOL METHODS
     public void setName(String name) {
@@ -95,11 +95,23 @@ public class Fencer extends Object {
     }
 
     public void makeWinner(int touchesReceived) {
+        mWinner = true;
         mNumWins++;
         updateIndicator(touchesReceived);
     }
 
+    public void takeWinner (int touchesReceived) {
+        mWinner = false;
+        mNumWins--;
+        updateIndicator(touchesReceived - this.getScore());
+    }
+
+    public boolean isWinner() {
+        return mWinner;
+    }
+
     public void makeLoser(int touchesReceived) {
+        mWinner = false;
         mNumLosses++;
         updateIndicator(touchesReceived);
     }
