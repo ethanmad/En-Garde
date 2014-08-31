@@ -287,6 +287,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void updateTimer(long millisUntilFinished) {
+        if (mTimeRemaining != 0) mTimer.setTextColor(Color.WHITE);
         long minutes = millisUntilFinished / 60000;
         long seconds = millisUntilFinished / 1000 - minutes * 60;
         long milliseconds = millisUntilFinished % 1000 / 10;
@@ -507,22 +508,27 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         if (mIsOver) {
             showToast(getResources().getString(R.string.toast_unable), getResources().getString(R.string.toast_give), getResources().getString(R.string.toast_touch), getResources().getString(R.string.toast_winner_determined));
         } else {
+            pauseTimer();
             switch (view.getId()) {
                 case R.id.scoreOne:
                     leftFencer.addScore();
                     mRecentActions.push(0);
                     showToast(getResources().getString(R.string.toast_gave), "", getResources().getString(R.string.toast_touch),
                             getResources().getString(R.string.toast_left));
-                    if (leftFencer.getScore() >= mMode)
+                    if (leftFencer.getScore() >= mMode) {
                         leftFencer.makeWinner(rightFencer.getScore());
+                        mIsOver = true;
+                    } else mIsOver = false;
                     break;
                 case R.id.scoreTwo:
                     rightFencer.addScore();
                     mRecentActions.push(1);
                     showToast(getResources().getString(R.string.toast_gave), "", getResources().getString(R.string.toast_touch),
                             getResources().getString(R.string.toast_right));
-                    if (rightFencer.getScore() >= mMode)
+                    if (rightFencer.getScore() >= mMode) {
                         rightFencer.makeWinner(leftFencer.getScore());
+                        mIsOver = false;
+                    }
                     break;
                 case R.id.doubleTouchButton:
                     if (leftFencer.getScore() == rightFencer.getScore() && leftFencer.getScore() == mMode - 1) {
@@ -533,14 +539,16 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                         mRecentActions.push(2);
                         showToast(getResources().getString(R.string.toast_gave), "", getResources().getString(R.string.toast_double),
                                 getResources().getString(R.string.toast_touch));
-                        if (leftFencer.getScore() >= mMode)
+                        if (leftFencer.getScore() >= mMode) {
                             leftFencer.makeWinner(rightFencer.getScore());
-                        else if (rightFencer.getScore() >= mMode)
+                            mIsOver = true;
+                        } else if (rightFencer.getScore() >= mMode) {
                             rightFencer.makeWinner(leftFencer.getScore());
+                            mIsOver = true;
+                        }
                         break;
                     }
             }
-            pauseTimer();
             updateAll();
         }
     }
@@ -563,14 +571,20 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     private void updateWinner() { // make a TextView with "Winner" appear above winner's score
-        if (leftFencer.isWinner() && !rightFencer.isWinner()) {
-            mLeftWinnerView.setVisibility(View.VISIBLE);
-            mRightWinnerView.setVisibility(View.INVISIBLE);
-            mIsOver = true;
-        } else if (rightFencer.isWinner() && !leftFencer.isWinner()) {
-            mRightWinnerView.setVisibility(View.VISIBLE);
-            mLeftWinnerView.setVisibility(View.INVISIBLE);
-            mIsOver = true;
+        if (mIsOver) {
+            if (leftFencer.isWinner() && !rightFencer.isWinner()) {
+                mLeftWinnerView.setVisibility(View.VISIBLE);
+                mRightWinnerView.setVisibility(View.INVISIBLE);
+                mIsOver = true;
+            } else if (rightFencer.isWinner() && !leftFencer.isWinner()) {
+                mRightWinnerView.setVisibility(View.VISIBLE);
+                mLeftWinnerView.setVisibility(View.INVISIBLE);
+                mIsOver = true;
+            } else {
+                mLeftWinnerView.setVisibility(View.INVISIBLE);
+                mRightWinnerView.setVisibility(View.INVISIBLE);
+                mIsOver = false;
+            }
         } else {
             mLeftWinnerView.setVisibility(View.INVISIBLE);
             mRightWinnerView.setVisibility(View.INVISIBLE);
@@ -696,16 +710,20 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 subScore(leftFencer);
                 showToast(getResources().getString(R.string.toast_undid), "", getResources().getString(R.string.toast_touch),
                         getResources().getString(R.string.toast_left));
+                if (leftFencer.isWinner()) leftFencer.takeWinner(rightFencer.getScore());
                 break;
             case 1:
                 subScore(rightFencer);
                 showToast(getResources().getString(R.string.toast_undid), "", getResources().getString(R.string.toast_touch),
                         getResources().getString(R.string.toast_right));
+                if (rightFencer.isWinner()) rightFencer.takeWinner(leftFencer.getScore());
                 break;
             case 2:
                 subBothScores();
                 showToast(getResources().getString(R.string.toast_undid), "", getResources().getString(R.string.toast_double),
                         getResources().getString(R.string.toast_touch));
+                if (leftFencer.isWinner()) leftFencer.takeWinner(rightFencer.getScore());
+                else if (rightFencer.isWinner()) rightFencer.takeWinner(leftFencer.getScore());
                 break;
             case 3:
                 leftFencer.takeYellowCard();
@@ -734,15 +752,15 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 mInPriority = false;
                 long previousTime = mPreviousTimes.pop();
                 startTimer(previousTime);
+
                 mNextSectionType = mPreviousSectionTypes.pop();
                 mPeriodNumber = mPreviousPeriodNumbers.pop();
 
-                if (mMaxPeriods == 1) {
-                    mPeriodNumber--;
-                } else {
+                if (mMaxPeriods == 1) mPeriodNumber = 0;
+                else {
                     if (mNextSectionType == 0) {
                         mInPeriod = true;
-                        mInBreak = true;
+                        mInBreak = false;
                     } else if (mNextSectionType == 1) {
                         mInPeriod = false;
                         mInBreak = true;
@@ -755,6 +773,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 pauseTimer();
                 resetPriority();
                 showToast(getResources().getString(R.string.toast_undid), "", getResources().getString(R.string.toast_skip), "");
+                resetOver();
         }
         mRecentActions.pop();
         updateAll();
