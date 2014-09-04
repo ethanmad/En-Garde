@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">En Garde</string>
-    <string name="current_version">0.3.0.1</string>
+    <string name="current_version">0.3.0.2</string>
 
     <string name="activity_settings">Settings</string>
     <string name="action_settings">Settings</string>
@@ -16,6 +16,7 @@
     <string name="fencer_two_score">0</string>
     <string name="double_touch">Double</string>
 
+    <string name="winner">Winner</string>
     <string name="period">Period</string>
     <string name="rest">Break</string>
     <string name="priority">Priority</string>

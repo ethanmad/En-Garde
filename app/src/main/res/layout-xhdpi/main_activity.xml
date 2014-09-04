@@ -130,6 +130,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/yellow_circle"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true" />
 
             <ImageView
@@ -155,6 +156,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/yellow_circle"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true" />
 
             <ImageView
@@ -165,18 +167,21 @@
                 android:layout_alignParentTop="true" />
         </RelativeLayout>
 
+        <!--WINNER VIEWS-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Winner"
+            android:text="@string/winner"
             android:id="@+id/winnerViewLeft"
             android:layout_toEndOf="@+id/penaltyLayoutLeft"
+            android:layout_toRightOf="@+id/penaltyLayoutLeft"
             android:textColor="#ffffffff"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_toStartOf="@+id/doubleTouchButton"
+            android:layout_toLeftOf="@+id/doubleTouchButton"
             android:gravity="center"
             android:layout_alignRight="@+id/scoreOne"
             android:layout_alignEnd="@+id/scoreOne" />
@@ -185,11 +190,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Winner"
+            android:text="@string/winner"
             android:id="@+id/winnerViewRight"
             android:layout_toEndOf="@+id/penaltyLayoutLeft"
+            android:layout_toRightOf="@+id/penaltyLayoutLeft"
             android:textColor="#ffffffff"
             android:layout_toStartOf="@+id/doubleTouchButton"
+            android:layout_toLeftOf="@+id/doubleTouchButton"
             android:gravity="center"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
