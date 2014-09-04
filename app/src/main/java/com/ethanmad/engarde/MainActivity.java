@@ -66,7 +66,9 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mLeftScoreView = (TextView) findViewById(R.id.scoreOne);
         mRightScoreView = (TextView) findViewById(R.id.scoreTwo);
         mLeftWinnerView = (TextView) findViewById(R.id.winnerViewLeft);
+        mLeftWinnerView.setVisibility(View.INVISIBLE);
         mRightWinnerView = (TextView) findViewById(R.id.winnerViewRight);
+        mRightWinnerView.setVisibility(View.INVISIBLE);
         mPeriodView = (TextView) findViewById(R.id.periodView);
         mLeftPenaltyIndicator = (ImageView) findViewById(R.id.penaltyCircleViewLeft);
         mLeftPriorityIndicator = (ImageView) findViewById(R.id.priorityCircleViewLeft);
@@ -231,13 +233,13 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         updatePenaltyIndicators();
         updateTimer(mTimeRemaining);
         updatePriorityIndicators();
-        updateWinner();
     }
 
     public void updateAll() {
         updateViews();
         updateUndoButton();
         updateOver();
+        updateWinner();
     }
 
     public void resetAll(MenuItem menuItem) { // onClick for action_reset
