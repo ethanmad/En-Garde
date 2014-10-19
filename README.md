@@ -9,7 +9,7 @@ Stay focused on the bout
 ------------------------
 When you're directing an intense bout, you don't want to have to think about anything besides the bout. You already need to keep your attention on so many different things--why add another? En Garde lets you devote full attention to the bout thanks to haptic feedback, audio cues, and a large UI. It displays a toast message every time you perform an action, so you know exactly what you just did. You can even undo your previous actions to correct for any mistakes!
 
-Current features:
+Current features
 -----------------
   *  Large timer and score indicators.
   *  Clean UI showing only the most important information.
@@ -26,21 +26,32 @@ Current features:
   *  AMOLED black mode: conserve battery on devices with AMOLED screens by changing the background color to true black.
 
 
-Project goals:
+Project goals
 -------------
   *  Manage entire pools from within the app: completely eliminate the need for pencil and paper in fencing.
   *  Integrate with tournament management software (either Fencing Time or FOSS alternative): wirelessly send scores, pools, etc.  to tournament administration
   *  Create "scoreboard": use a large-screen device as a scoreboard (tablet, PC, etc.) that is controlled by the handheld device to allow fencers and spectators to see important information.
 
-Ultimate goal:
+Ultimate goal
 --------------
   *  Eliminate the need for expensive scoreboards and other hardware with cheaper devices, make directing less frustrating, help fencing grow as a sport.
   
 Download
 ---------
-En Garde is currently available as a beta on Google Play. Here are instructions to install from Google Play:
-  -  Join the Google+ community.
-  -  Visit the tester page and become a beta tester.
-  -  Get it on Google Play.
+En Garde is now available in both stable and beta forms from Google Play. Get the stable branch if you know you're going to be using the app at tournaments.
 
-If you really don't want anything to do with Google+, you can [download the APK directly](https://github.com/ethanmad/En-Garde/blob/master/app/app-release.apk?raw=true). Make sure to enable "Unknown sources" in Settings -> Security on your phone!
+  *  [Stable](https://play.google.com/store/apps/details?id=com.ethanmad.fencingscorekeeper)
+  *  Beta
+    *  Join the [Google+ community](https://plus.google.com/communities/109556986643471371331).
+    *  Visit the [tester page](https://play.google.com/apps/testing/com.ethanmad.fencingscorekeeper) and become a beta tester.
+    *  Get it on [Google Play](https://play.google.com/store/apps/details?id=com.ethanmad.fencingscorekeeper).
+
+If you really don't want anything to do with Google+ and/or Google Play, you can [download the most recent APK directly](https://github.com/ethanmad/En-Garde/blob/master/app/app-release.apk?raw=true). No promises of stability! Make sure to enable "Unknown sources" in Settings -> Security on your phone.
+
+Contribute
+----------
+  *  Submit any issues you encounter to the [issue tracker](https://github.com/ethanmad/En-Garde/issues).
+  *  Tackle and solve an issue listed on the [issue tracker](https://github.com/ethanmad/En-Garde/issues).
+  *  Translate En Garde to your language (both the [in-app strings](https://github.com/ethanmad/En-Garde/blob/master/app/src/main/res/values/strings.xml) and the Google Play description).
+  *  Design a new icon!
+  *  Come up with your own features!
