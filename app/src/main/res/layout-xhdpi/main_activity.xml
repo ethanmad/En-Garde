@@ -9,15 +9,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MyActivity"
-    android:onClick="pauseTimer">
+    tools:context=".MainActivity"
+    android:onClick="onClickTimer">
 
     <RelativeLayout
         android:id="@+id/cardLayout"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:longClickable="true">
+        android:layout_marginBottom="55dp"
+        android:onClick="onClickTimer">
 
         <!--Yellow Card Button-->
         <com.cengalabs.flatui.views.FlatButton
@@ -25,8 +26,8 @@
             android:layout_width="35dp"
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="120dp"
-            android:layout_marginRight="120dp"
+            android:layout_marginLeft="110dp"
+            android:layout_marginRight="110dp"
             android:clickable="true"
             android:onClick="showCardDialog"
             flatui:blockButtonEffectHeight="3dp"
@@ -42,8 +43,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="120dp"
-            android:layout_marginEnd="120dp"
+            android:layout_marginRight="110dp"
+            android:layout_marginEnd="110dp"
             android:onClick="showCardDialog"
             flatui:blockButtonEffectHeight="3dp"
             flatui:theme="@array/flat_red"
@@ -57,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="170dp">
+        android:layout_marginTop="180dp">
 
         <!--Fencer One Score-->
         <TextView
@@ -108,8 +109,7 @@
             android:id="@+id/doubleTouchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:clickable="true"
             android:onClick="addScore"
             android:text="@string/double_touch"
