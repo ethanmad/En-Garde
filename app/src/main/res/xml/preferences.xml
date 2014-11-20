@@ -14,6 +14,11 @@
             android:defaultValue="true"
             android:title="@string/pref_show_double"
             android:key="pref_show_double"/>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:title="@string/pref_anywhere_to_start"
+            android:summary="@string/pref_anywhere_description"
+            android:key="pref_anywhere_to_start" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_looks">
         <CheckBoxPreference
