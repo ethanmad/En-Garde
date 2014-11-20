@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -28,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.crashlytics.android.Crashlytics;
 import com.github.mrengineer13.snackbar.SnackBar;
@@ -36,18 +34,22 @@ import com.github.mrengineer13.snackbar.SnackBar;
 import java.util.ArrayDeque;
 
 public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener, SnackBar.OnMessageClickListener {
-    private final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 200);
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+
+    private final ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 200);
     private Fencer leftFencer, rightFencer;
     private long mTimeRemaining, mPeriodLength, mBreakLength, mPriorityLength;
     private long[] mStartVibrationPattern, mEndVibrationPattern, mPreviousTimesArray;
     private int mPeriodNumber, mNextSectionType, mMode, mMaxPeriods;
     private int[] mRecentActionArray, mPreviousPeriodNumbersArray, mPreviousSectionTypesArray;
-    private TextView mTimer, mLeftScoreView, mRightScoreView, mPeriodView, mLeftWinnerView, mRightWinnerView;
-    private ImageView mLeftPenaltyIndicator, mLeftPriorityIndicator, mRightPenaltyIndicator, mRightPriorityIndicator;
-    private boolean mTimerRunning, mInPeriod, mInBreak, mInPriority, mShowDouble, mBlackBackground, mIsOver;
+    private TextView mTimer, mLeftScoreView, mRightScoreView, mPeriodView, mLeftWinnerView,
+            mRightWinnerView;
+    private ImageView mLeftPenaltyIndicator, mLeftPriorityIndicator, mRightPenaltyIndicator,
+            mRightPriorityIndicator;
+    private boolean mTimerRunning, mInPeriod, mInBreak, mInPriority, mShowDouble, mBlackBackground,
+            mIsOver;
     private CountDownTimer mCountDownTimer;
     private Vibrator mVibrator;
-    private Uri mAlert;
     private Ringtone mRinger;
     private Animation mBlink;
     private ArrayDeque<Integer> mRecentActions, mPreviousPeriodNumbers, mPreviousSectionTypes;
@@ -55,7 +57,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private MenuItem mActionUndo;
     private RelativeLayout mMainLayout;
     private SnackBar mSnackBar;
-    private boolean mAnywhereToStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +143,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
                 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50,
                 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50};
         // TODO change to buzzer rather than ringtone
-        mAlert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Uri mAlert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         if (mAlert == null) { // mAlert is null, using backup
             mAlert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             // just in case
@@ -318,7 +319,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private void startTimer(long time) {
         if (!mIsOver) {
             mTimer.clearAnimation();
-            tg.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF);
+            toneGenerator.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF);
             mTimer.setTextColor(Color.WHITE);
             mVibrator.vibrate(mStartVibrationPattern, -1);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // keep screen awake when timer is running
@@ -337,12 +338,8 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         }
     }
 
-    public void pauseTimer(View view) {
-        pauseTimer();
-    }
-
     private void pauseTimer() {
-        tg.stopTone();
+        toneGenerator.stopTone();
         mRinger.stop();
         mVibrator.cancel();
         if (mTimerRunning) {
@@ -506,13 +503,11 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         mRightPriorityIndicator.setVisibility(View.INVISIBLE);
     }
 
-    private void updateOver() {
-        if (leftFencer.getScore() >= mMode || rightFencer.getScore() >= mMode ||
+    private void updateOver() { // determine if bout is over and set mIsOver
+        mIsOver = leftFencer.getScore() >= mMode || rightFencer.getScore() >= mMode ||
                 (mTimeRemaining == 0 && (mInPriority ||
                         leftFencer.getScore() > rightFencer.getScore() ||
-                        rightFencer.getScore() < leftFencer.getScore())))
-            mIsOver = true;
-        else mIsOver = false;
+                        rightFencer.getScore() < leftFencer.getScore()));
     }
 
     private void resetOver() {
@@ -830,7 +825,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         else findViewById(R.id.doubleTouchButton).setVisibility(View.INVISIBLE);
 
         // control click-anywhere-to-start feature
-        mAnywhereToStart = mSharedPreferences.getBoolean("pref_anywhere_to_start", true);
+        boolean mAnywhereToStart = mSharedPreferences.getBoolean("pref_anywhere_to_start", true);
         View cardLayout = findViewById(R.id.cardLayout);
         if (mAnywhereToStart) {
             mMainLayout.setOnClickListener(new View.OnClickListener() {
