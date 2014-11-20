@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="primary">#607D8B</color>
+    <!--<color name=""-->
+
+    <color name="background">#202020</color>
+    <color name="red_score">#FF0000</color>
+    <color name="green_score">#00FF00</color>
+
+    <color name="red_timer">#B4FF1414</color>
+
     <!--YELLOW CARD COLOR-->
     <color name="yellow_darker">#ffbdbd00</color>
     <color name="yellow_dark">#ffffd402</color>
