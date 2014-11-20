@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.crashlytics.android.Crashlytics;
 import com.github.mrengineer13.snackbar.SnackBar;
@@ -130,11 +131,19 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
         // used to signal to user that mTimeRemaining has expired
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        mStartVibrationPattern = new long[]{0, 50, 100, 50};
-        mEndVibrationPattern = new long[]{0, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50/**/};
+        mStartVibrationPattern = new long[] {0, 50, 100, 50};
+        mEndVibrationPattern = new long[] {0, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50,
+                500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50,
+                100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50,
+                500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50,
+                100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50,
+                500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50,
+                100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50,
+                500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50,
+                100, 50, 500, 50, 100, 50, 500, 50, 100, 50, 500, 50, 100, 50};
+        // TODO change to buzzer rather than ringtone
         mAlert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        if (mAlert == null) {
-            // mAlert is null, using backup
+        if (mAlert == null) { // mAlert is null, using backup
             mAlert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             // just in case
             if (mAlert == null) {
@@ -355,7 +364,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     private void endSection() { // called when time section is over
         mTimer.setText("0:00.00");
         mTimeRemaining = 0;
-        mTimer.setTextColor(Color.argb(180, 255, 20, 20)); // change timer to red
+        mTimer.setTextColor(getResources().getColor(R.color.red_timer)); // change timer to red
         mTimer.setAnimation(mBlink);
         mVibrator.vibrate(mEndVibrationPattern, -1);
         mRinger.play();
@@ -451,22 +460,23 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
             mPeriodView.setText(getResources().getString(R.string.priority));
     }
 
+    // use Math.random() to determine priority
     public void determinePriority() {
-        int rand = (int) (Math.random() * 100);
-        if (rand % 2 == 0) {
+        double rand = Math.random();
+        if (rand >= .5 ) {
             leftFencer.givePriority();
             mLeftPriorityIndicator.setVisibility(View.VISIBLE);
-        } else if (rand % 2 == 1) {
+        } else {
             rightFencer.givePriority();
             mRightPriorityIndicator.setVisibility(View.VISIBLE);
         }
     }
 
     private void updatePriorityIndicators() {
-        if (leftFencer.hasPriority()) mLeftPriorityIndicator.setVisibility(View.VISIBLE);
-        else mLeftPriorityIndicator.setVisibility(View.INVISIBLE);
-        if (rightFencer.hasPriority()) mRightPriorityIndicator.setVisibility(View.VISIBLE);
-        else mRightPriorityIndicator.setVisibility(View.INVISIBLE);
+        mLeftPriorityIndicator.setVisibility(leftFencer.hasPriority() ? View.VISIBLE :
+                View.INVISIBLE );
+        mRightPriorityIndicator.setVisibility(rightFencer.hasPriority() ? View.VISIBLE :
+                View.INVISIBLE);
     }
 
 
@@ -854,14 +864,13 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
         // make background color grey or black based on preferences
         mBlackBackground = mSharedPreferences.getBoolean("pref_black", false);
-        if (mBlackBackground) {
-            mMainLayout.setBackgroundColor(Color.BLACK);
-        } else mMainLayout.setBackgroundColor(Color.rgb(32, 32, 32));
+        if (mBlackBackground) mMainLayout.setBackgroundColor(Color.BLACK);
+        else mMainLayout.setBackgroundColor(getResources().getColor(R.color.background));
     }
 
     // SNACKBAR METHODS
-    private void showSnackbar(String verb, String color, String noun, String recipient) { // display a toast notification
-
+    private void showSnackbar(String verb, String color, String noun, String recipient) {
+        //display snackbar
         String text;
         if ((recipient == null || recipient.equals("")) && (color == null || color.equals("")))
             text = verb + " " + noun;
@@ -871,7 +880,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
         short duration = Toast.LENGTH_SHORT;
 
-        mSnackBar.show(text, "undo", duration);
+        mSnackBar.show(text, "undo", SnackBar.Style.ALERT, duration);
     }
 
     public void onMessageClick(Parcelable token) {
