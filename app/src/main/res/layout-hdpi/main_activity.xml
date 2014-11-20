@@ -4,7 +4,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#202020"
+    android:background="@color/background"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -81,7 +81,7 @@
             android:onClick="addScore"
             android:padding="20dp"
             android:text="@string/fencer_one_score"
-            android:textColor="#FF0000"
+            android:textColor="@color/red_score"
             android:textSize="50sp"
             android:layout_toLeftOf="@+id/doubleTouchButton" />
 
@@ -101,7 +101,7 @@
             android:onClick="addScore"
             android:padding="20dp"
             android:text="@string/fencer_two_score"
-            android:textColor="#00FF00"
+            android:textColor="@color/green_score"
             android:textSize="50sp"
             android:layout_toRightOf="@+id/doubleTouchButton" />
 
@@ -153,7 +153,7 @@
             android:id="@+id/winnerViewLeft"
             android:layout_toEndOf="@+id/penaltyLayoutLeft"
             android:layout_toRightOf="@+id/penaltyLayoutLeft"
-            android:textColor="#ffffffff"
+            android:textColor="@color/white"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -171,7 +171,7 @@
             android:id="@+id/winnerViewRight"
             android:layout_toEndOf="@+id/penaltyLayoutLeft"
             android:layout_toRightOf="@+id/penaltyLayoutLeft"
-            android:textColor="#ffffffff"
+            android:textColor="@color/white"
             android:layout_toStartOf="@+id/doubleTouchButton"
             android:layout_toLeftOf="@+id/doubleTouchButton"
             android:gravity="center"
@@ -232,7 +232,7 @@
             android:padding="20dp"
             android:text="@string/timer_default"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="70sp"
             android:typeface="sans" />
 
@@ -245,7 +245,7 @@
             android:layout_centerHorizontal="true"
             android:text="@string/period"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/white" />
     </RelativeLayout>
 
     <!--Penalty Indicators-->
