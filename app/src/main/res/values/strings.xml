@@ -16,7 +16,7 @@
     <string name="fencer_two_score">0</string>
     <string name="double_touch">Double</string>
 
-    <string name="winner">Winner</string>
+    <string name="winner">WINNER</string>
     <string name="period">Period</string>
     <string name="rest">Break</string>
     <string name="priority">Priority</string>
@@ -49,9 +49,11 @@
     <string name="pref_behavior">Behavior</string>
     <string name="pref_mode">Bout mode</string>
     <string name="pref_choose_mode">Choose a mode</string>
-    <string name="pref_mode_summary">Choose the number of touches/periods</string>
+    <string name="pref_mode_summary">Choose the bout length</string>
     <string name="pref_mode_5touch">Five touches (one period)</string>
-    <string name="pref_mode_15touch">Fifteen touches (three periods)</string>
+    <string name="pref_mode_15touch">Fifteen touches  (three periods)</string>
+    <string name="pref_anywhere_to_start">Anywhere to start</string>
+    <string name="pref_anywhere_description">Touch on empty space to start the timer</string>
 
     <string name="pref_show_double">Show double touch button</string>
 
