@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="primary">#607D8B</color>
-    <!--<color name=""-->
+    <color name="primary">#ff1c1c1c</color>
+    <color name="primary_dark">#ff141414</color>
+    <color name="accent">#B0BEC5</color>
 
     <color name="background">#202020</color>
     <color name="red_score">#FF0000</color>
