@@ -1,0 +1,9 @@
+language: android
+android:
+  components:
+    # use the latest revision of Android SDK Tools
+    - platform-tools
+    - tools
+    
+    # SDK version
+    - android-21
