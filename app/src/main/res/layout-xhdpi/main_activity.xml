@@ -30,8 +30,8 @@
             android:layout_marginRight="110dp"
             android:clickable="true"
             android:onClick="showCardDialog"
-            flatui:blockButtonEffectHeight="3dp"
-            flatui:theme="@array/flat_yellow"
+            flatui:fl_blockButtonEffectHeight="3dp"
+            flatui:fl_theme="@array/flat_yellow"
             android:paddingRight="20dp"
             android:paddingLeft="20dp" />
 
@@ -46,8 +46,8 @@
             android:layout_marginRight="110dp"
             android:layout_marginEnd="110dp"
             android:onClick="showCardDialog"
-            flatui:blockButtonEffectHeight="3dp"
-            flatui:theme="@array/flat_red"
+            flatui:fl_blockButtonEffectHeight="3dp"
+            flatui:fl_theme="@array/flat_red"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"/>
     </RelativeLayout>

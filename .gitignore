@@ -1,3 +1,13 @@
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+
+#built application files
+*.apk
+*.ap_
+
 # files for the dex VM
 *.dex
 
@@ -17,17 +27,8 @@ Thumbs.db
 # OSX files
 .DS_Store
 
-# Eclipse project files
-.classpath
-.project
-
 # Android Studio
 .idea
-#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
-
-# Crashlytics
-com_crashlytics_export_strings.xml
-crashlytics.properties
-
 .gradle
 build/
+*.iml

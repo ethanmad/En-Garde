@@ -1,6 +1,5 @@
 package com.ethanmad.engarde;
 
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -17,6 +16,8 @@ import android.os.CountDownTimer;
 import android.os.Parcelable;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,12 +29,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.github.mrengineer13.snackbar.SnackBar;
 
 import java.util.ArrayDeque;
 
-public class MainActivity extends Activity implements CardAlertFragment.CardAlertListener, SnackBar.OnMessageClickListener {
+public class MainActivity extends AppCompatActivity implements CardAlertFragment.CardAlertListener, SnackBar.OnMessageClickListener {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private final ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 200);
@@ -61,7 +61,6 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
         setContentView(R.layout.main_activity);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
@@ -106,20 +105,20 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         updateViews(); // update all views from default strings to real data
         loadSettings(); // load user settings
 
-        if (mRecentActionArray == null) mRecentActions = new ArrayDeque<Integer>(0);
+        if (mRecentActionArray == null) mRecentActions = new ArrayDeque<>(0);
         else for (int action : mRecentActionArray)
             mRecentActions.push(action);
 
-        if (mPreviousTimesArray == null) mPreviousTimes = new ArrayDeque<Long>(0);
+        if (mPreviousTimesArray == null) mPreviousTimes = new ArrayDeque<>(0);
         else for (long time : mPreviousTimesArray)
             mPreviousTimes.push(time);
 
         if (mPreviousPeriodNumbersArray == null)
-            mPreviousPeriodNumbers = new ArrayDeque<Integer>(0);
+            mPreviousPeriodNumbers = new ArrayDeque<>(0);
         else for (int sectionType : mPreviousPeriodNumbersArray)
             mPreviousPeriodNumbers.push(sectionType);
 
-        if (mPreviousSectionTypesArray == null) mPreviousSectionTypes = new ArrayDeque<Integer>(0);
+        if (mPreviousSectionTypesArray == null) mPreviousSectionTypes = new ArrayDeque<>(0);
         else for (int sectionType : mPreviousSectionTypesArray)
             mPreviousSectionTypes.push(sectionType);
 
@@ -154,8 +153,9 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         }
 
         mRinger = RingtoneManager.getRingtone(getApplicationContext(), mAlert);
-        mSnackBar = new SnackBar(this);
-        mSnackBar.setOnClickListener(this);
+//        mSnackBar = new SnackBar(this);
+
+//        mSnackBar.setOnClickListener(this);
 
     }
 
@@ -164,20 +164,20 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         super.onResume();
 
         // reload recent actions, previous times, etc.
-        if (mRecentActionArray == null) mRecentActions = new ArrayDeque<Integer>(0);
+        if (mRecentActionArray == null) mRecentActions = new ArrayDeque<>(0);
         else for (int action : mRecentActionArray)
             mRecentActions.push(action);
 
-        if (mPreviousTimesArray == null) mPreviousTimes = new ArrayDeque<Long>(0);
+        if (mPreviousTimesArray == null) mPreviousTimes = new ArrayDeque<>(0);
         else for (long time : mPreviousTimesArray)
             mPreviousTimes.push(time);
 
         if (mPreviousPeriodNumbersArray == null)
-            mPreviousPeriodNumbers = new ArrayDeque<Integer>(0);
+            mPreviousPeriodNumbers = new ArrayDeque<>(0);
         else for (int sectionType : mPreviousPeriodNumbersArray)
             mPreviousPeriodNumbers.push(sectionType);
 
-        if (mPreviousSectionTypesArray == null) mPreviousSectionTypes = new ArrayDeque<Integer>(0);
+        if (mPreviousSectionTypesArray == null) mPreviousSectionTypes = new ArrayDeque<>(0);
         else for (int sectionType : mPreviousSectionTypesArray)
             mPreviousSectionTypes.push(sectionType);
 
@@ -185,7 +185,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         savedInstanceState.putLong("mTimeRemaining", mTimeRemaining);
         savedInstanceState.putLong("mPeriodLength", mPeriodLength);
         savedInstanceState.putLong("mPriorityLength", mPriorityLength);
@@ -229,7 +229,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.items, menu);
         mActionUndo = menu.findItem(R.id.action_undo);
-        updateUndoButton();
+//        updateUndoButton();
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -253,7 +253,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
     public void updateAll() {
         updateViews();
-        updateUndoButton();
+//        updateUndoButton();
         updateOver();
         updateWinner();
     }
@@ -721,7 +721,7 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
     // 3 = yellow to left, 4 = red to left, 5 = yellow to right, 6 = red to right
     // 7 = skip period
     private void resetRecentActions() {
-        mRecentActions = new ArrayDeque<Integer>(0);
+        mRecentActions = new ArrayDeque<>(0);
     }
 
     private void undoAction(Integer action) {
@@ -795,10 +795,10 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
         undoAction(mRecentActions.peek());
     }
 
-    private void updateUndoButton() {
-        if (mRecentActions.isEmpty()) mActionUndo.setVisible(false);
-        else mActionUndo.setVisible(true);
-    }
+//    private void updateUndoButton() {
+//        if (mRecentActions.isEmpty()) mActionUndo.setVisible(false);
+//        else mActionUndo.setVisible(true);
+//    }
 
     public void openSettings(MenuItem item) {
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
@@ -875,7 +875,14 @@ public class MainActivity extends Activity implements CardAlertFragment.CardAler
 
         short duration = Toast.LENGTH_SHORT;
 
-        mSnackBar.show(text, "undo", SnackBar.Style.ALERT, duration);
+         mSnackBar = new SnackBar.Builder(this)
+                 .withOnClickListener(this)
+                 .withMessage(text)
+                 .withActionMessage("undo")
+                 .withStyle(SnackBar.Style.ALERT)
+                 .withDuration(duration)
+                 .show();
+//        mSnackBar.show(text, "undo", SnackBar.Style.ALERT, duration);
     }
 
     public void onMessageClick(Parcelable token) {
