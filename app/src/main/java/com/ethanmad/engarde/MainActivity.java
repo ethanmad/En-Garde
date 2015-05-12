@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.items, menu);
         mActionUndo = menu.findItem(R.id.action_undo);
-//        updateUndoButton();
+        updateUndoButton();
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
 
     public void updateAll() {
         updateViews();
-//        updateUndoButton();
+        updateUndoButton();
         updateOver();
         updateWinner();
     }
@@ -788,17 +788,18 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
     }
 
     public void undoMostRecent(MenuItem item) {
-        undoAction(mRecentActions.peek());
+        undoMostRecent();
     }
 
     private void undoMostRecent() {
         undoAction(mRecentActions.peek());
+        if (mSnackBar != null) mSnackBar.clear();
     }
 
-//    private void updateUndoButton() {
-//        if (mRecentActions.isEmpty()) mActionUndo.setVisible(false);
-//        else mActionUndo.setVisible(true);
-//    }
+    private void updateUndoButton() {
+        if (mRecentActions.isEmpty()) mActionUndo.setVisible(false);
+        else mActionUndo.setVisible(true);
+    }
 
     public void openSettings(MenuItem item) {
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
@@ -882,7 +883,6 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
                  .withStyle(SnackBar.Style.ALERT)
                  .withDuration(duration)
                  .show();
-//        mSnackBar.show(text, "undo", SnackBar.Style.ALERT, duration);
     }
 
     public void onMessageClick(Parcelable token) {
