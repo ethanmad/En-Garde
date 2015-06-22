@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.media.ToneGenerator;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Parcelable;
@@ -21,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -32,6 +35,7 @@ import android.widget.Toast;
 import com.github.mrengineer13.snackbar.SnackBar;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements CardAlertFragment.CardAlertListener, SnackBar.OnMessageClickListener {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
             mRightWinnerView;
     private ImageView mLeftPenaltyIndicator, mLeftPriorityIndicator, mRightPenaltyIndicator,
             mRightPriorityIndicator;
-    private boolean mTimerRunning, mInPeriod, mInBreak, mInPriority, mShowDouble, mBlackBackground,
+    private boolean mTimerRunning, mInPeriod, mInBreak, mInPriority, mShowDouble, mTrueBlack,
             mIsOver;
     private CountDownTimer mCountDownTimer;
     private Vibrator mVibrator;
@@ -61,25 +65,11 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         leftFencer = new Fencer();
         rightFencer = new Fencer();
-
-        mTimer = (TextView) findViewById(R.id.timer);
-        mLeftScoreView = (TextView) findViewById(R.id.scoreOne);
-        mRightScoreView = (TextView) findViewById(R.id.scoreTwo);
-        mLeftWinnerView = (TextView) findViewById(R.id.winnerViewLeft);
-        mLeftWinnerView.setVisibility(View.INVISIBLE);
-        mRightWinnerView = (TextView) findViewById(R.id.winnerViewRight);
-        mRightWinnerView.setVisibility(View.INVISIBLE);
-        mPeriodView = (TextView) findViewById(R.id.periodView);
-        mLeftPenaltyIndicator = (ImageView) findViewById(R.id.penaltyCircleViewLeft);
-        mLeftPriorityIndicator = (ImageView) findViewById(R.id.priorityCircleViewLeft);
-        mRightPenaltyIndicator = (ImageView) findViewById(R.id.penaltyCircleViewRight);
-        mRightPriorityIndicator = (ImageView) findViewById(R.id.priorityCircleViewRight);
-        mMainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
 
 
         // import previous data if it exists, otherwise use default values on right
@@ -95,15 +85,32 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
         mPeriodNumber = savedInstanceState.getInt("mPeriodNumber", 1);
         mMode = savedInstanceState.getInt("mMode", 5);
         mShowDouble = savedInstanceState.getBoolean("mShowDouble", true);
-        mBlackBackground = savedInstanceState.getBoolean("mBlackBackground", false);
+        mTrueBlack = savedInstanceState.getBoolean("mTrueBlack", false);
         mInPeriod = savedInstanceState.getBoolean("mInPeriod", true);
         mInBreak = savedInstanceState.getBoolean("mInBreak", false);
         mInPriority = savedInstanceState.getBoolean("mInPriority", false);
         mRecentActionArray = savedInstanceState.getIntArray("mRecentActionArray");
         mIsOver = savedInstanceState.getBoolean("mIsOver", false);
 
+        setContentView(R.layout.main_activity);
+
+        mTimer = (TextView) findViewById(R.id.timer);
+        mLeftScoreView = (TextView) findViewById(R.id.scoreOne);
+        mRightScoreView = (TextView) findViewById(R.id.scoreTwo);
+        mLeftWinnerView = (TextView) findViewById(R.id.winnerViewLeft);
+        mLeftWinnerView.setVisibility(View.INVISIBLE);
+        mRightWinnerView = (TextView) findViewById(R.id.winnerViewRight);
+        mRightWinnerView.setVisibility(View.INVISIBLE);
+        mPeriodView = (TextView) findViewById(R.id.periodView);
+        mLeftPenaltyIndicator = (ImageView) findViewById(R.id.penaltyCircleViewLeft);
+        mLeftPriorityIndicator = (ImageView) findViewById(R.id.priorityCircleViewLeft);
+        mRightPenaltyIndicator = (ImageView) findViewById(R.id.penaltyCircleViewRight);
+        mRightPriorityIndicator = (ImageView) findViewById(R.id.priorityCircleViewRight);
+        mMainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
+
         updateViews(); // update all views from default strings to real data
         loadSettings(); // load user settings
+
 
         if (mRecentActionArray == null) mRecentActions = new ArrayDeque<>(0);
         else for (int action : mRecentActionArray)
@@ -194,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
         savedInstanceState.putLong("mBreakLength", mBreakLength);
         savedInstanceState.putInt("mMode", mMode);
         savedInstanceState.putBoolean("mShowDouble", mShowDouble);
-        savedInstanceState.putBoolean("mBlackBackground", mBlackBackground);
+        savedInstanceState.putBoolean("mTrueBlack", mTrueBlack);
         savedInstanceState.putBoolean("mInPeriod", mInPeriod);
         savedInstanceState.putBoolean("mInBreak", mInBreak);
         savedInstanceState.putBoolean("mInPriority", mInPriority);
@@ -241,6 +248,7 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
         int id = item.getItemId();
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
+
 
     // METHODS FOR ALL TYPES
     private void updateViews() { // call all refresh methods (except updateTimer)
@@ -820,6 +828,7 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
                 break;
         }
 
+
         // show or hide double touch button based on preferences
         mShowDouble = mSharedPreferences.getBoolean("pref_show_double", true);
         if (mShowDouble) findViewById(R.id.doubleTouchButton).setVisibility(View.VISIBLE);
@@ -859,9 +868,17 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
         }
 
         // make background color grey or black based on preferences
-        mBlackBackground = mSharedPreferences.getBoolean("pref_black", false);
-        if (mBlackBackground) mMainLayout.setBackgroundColor(Color.BLACK);
-        else mMainLayout.setBackgroundColor(getResources().getColor(R.color.background));
+        mTrueBlack = mSharedPreferences.getBoolean("pref_black", false);
+        int[] themeColors;
+        if (mTrueBlack) themeColors = new int[] {R.color.black, R.color.black, R.color.black};
+        else themeColors = new int[] {R.color.background, R.color.primary, R.color.primary_dark};
+
+        mMainLayout.setBackgroundColor(getResources().getColor(themeColors[0]));
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources()
+                .getColor(themeColors[1])));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            getWindow().setStatusBarColor(getResources().getColor(themeColors[2]));
     }
 
     // SNACKBAR METHODS
