@@ -24,13 +24,16 @@
             android:name=".CardActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/penalty_card"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ethanmad.engarde.MainActivity" />
+        </activity>
+
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/activity_settings"
-            android:parentActivityName=".MainActivity">
+            android:label="@string/activity_settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ethanmad.engarde.MainActivity" />
