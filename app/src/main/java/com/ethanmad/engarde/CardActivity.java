@@ -2,8 +2,10 @@ package com.ethanmad.engarde;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.ethanmad.engarde.R;
 
@@ -15,16 +17,20 @@ public class CardActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        int penaltyColor = getIntent().getBooleanExtra("red", false) ? Color.RED : Color.YELLOW;
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setNavigationBarColor(penaltyColor);
         setContentView(R.layout.card);
 
-        View v = findViewById(R.id.yellow_card);
+        View card = findViewById(R.id.yellow_card);
+        card.setBackgroundColor(penaltyColor);
 
-        boolean red = getIntent().getBooleanExtra("red", false);
-
-        if (red) {
-            v.setBackgroundColor(Color.RED);
-        } else {
-            v.setBackgroundColor(Color.YELLOW);
         }
     }
 
