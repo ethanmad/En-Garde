@@ -3,6 +3,7 @@ package com.ethanmad.engarde;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -19,7 +20,9 @@ import android.os.Parcelable;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -108,8 +111,33 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
         mRightPriorityIndicator = (ImageView) findViewById(R.id.priorityCircleViewRight);
         mMainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
 
+        SharedPreferences.OnSharedPreferenceChangeListener prefListener;
+        // listener on changed sort order preference:
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+                Log.v(LOG_TAG, "Settings key changed: " + key);
+                if (key.equals("pref_mode")) {
+                    AlertDialog.Builder builder =
+                        new AlertDialog.Builder(MainActivity.this, R.style.AppCompatAlertDialogStyle);
+                    builder.setTitle(getResources().getString(R.string.dialog_reset_title));
+                    builder.setMessage(getResources().getString(R.string.dialog_reset_message));
+                    builder.setPositiveButton(getResources().
+                            getString(R.string.dialog_reset_positive),
+                            new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            resetAll();
+                        }
+                    });
+                    builder.setNegativeButton(getResources().
+                            getString(R.string.dialog_reset_negative), null);
+                    builder.show();
+                }
+            }
+        };
+        prefs.registerOnSharedPreferenceChangeListener(prefListener);
         loadSettings(); // load user settings
-//        updateViews(); // update all views from default strings to real data
 
         if (mRecentActionArray == null) mRecentActions = new ArrayDeque<>(0);
         else for (int action : mRecentActionArray)
@@ -262,7 +290,10 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
     }
 
     public void resetAll(MenuItem menuItem) { // onClick for action_reset
-        resetScores();
+       resetAll();
+    }
+
+    public void resetAll() {resetScores();
         if (mTimeRemaining != mPeriodLength) resetTime();
         resetPriority();
         resetCards();
@@ -275,7 +306,6 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
             mSnackBar.clear(true);
         }
     }
-
 
     // METHODS FOR TIME & PERIODS
     public void onClickTimer(View view) { // onClick method for mTimer
@@ -819,8 +849,12 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
     private void loadSettings() { // load user settings and make changes based on them
         SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // make bout end based on preferences
-        mMode = Integer.parseInt(mSharedPreferences.getString("pref_mode", "5"));
+        // change bout length based on preferences
+        int modePref = Integer.parseInt(mSharedPreferences.getString("pref_mode", "5"));
+        if (modePref != mMode) {
+
+        }
+        mMode = modePref;
         switch (mMode) {
             case (5):
                 mMaxPeriods = 1;

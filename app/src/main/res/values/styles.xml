@@ -13,4 +13,5 @@
         <item name="colorPrimaryDark">@color/black</item>
     </style>
 
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Dialog.Alert" />
 </resources>

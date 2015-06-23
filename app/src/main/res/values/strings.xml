@@ -59,7 +59,7 @@
 
     <string name="pref_looks">Looks</string>
     <string name="pref_black">True black mode</string>
-    <string name="pref_black_summary">Make app use black rather than grey to save battery on AMOLED devices</string>
+    <string name="pref_black_summary">Make app use black rather than grey to save battery on devices with AMOLED screens</string>
 
     <string name="pref_about">About</string>
     <string name="pref_version">Version</string>
@@ -69,4 +69,8 @@
     <string name="penalty_left">Penalty to the left</string>
     <string name="penalty_right">Penalty to the right</string>
 
+    <string name="dialog_reset_title">Reset bout?</string>
+    <string name="dialog_reset_message">You have changed the bout mode. Would you like to reset the bout? Clicking "RESET" will reset the time, scores, and penalties.\n\nWarning: this action is irreversible!</string>
+    <string name="dialog_reset_positive">Reset</string>
+    <string name="dialog_reset_negative">Leave it</string>
 </resources>
