@@ -108,9 +108,8 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
         mRightPriorityIndicator = (ImageView) findViewById(R.id.priorityCircleViewRight);
         mMainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
 
-        updateViews(); // update all views from default strings to real data
         loadSettings(); // load user settings
-
+//        updateViews(); // update all views from default strings to real data
 
         if (mRecentActionArray == null) mRecentActions = new ArrayDeque<>(0);
         else for (int action : mRecentActionArray)
@@ -160,10 +159,6 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
         }
 
         mRinger = RingtoneManager.getRingtone(getApplicationContext(), mAlert);
-//        mSnackBar = new SnackBar(this);
-
-//        mSnackBar.setOnClickListener(this);
-
     }
 
     @Override
@@ -457,12 +452,19 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
     }
 
     private void updatePeriod() {
-        if (mInPeriod)
-            mPeriodView.setText(getResources().getString(R.string.period) + " " + mPeriodNumber);
-        else if (mInBreak)
-            mPeriodView.setText(getResources().getString(R.string.rest) + " " + mPeriodNumber);
-        else if (mInPriority)
-            mPeriodView.setText(getResources().getString(R.string.priority));
+        if (mMaxPeriods == 1 && !mInPriority)
+            mPeriodView.setVisibility(View.INVISIBLE);
+        else {
+            mPeriodView.setVisibility(View.VISIBLE);
+            if (mInPeriod)
+                mPeriodView.setText(getResources().getString(R.string.period) + " " + mPeriodNumber);
+            else if (mInBreak)
+                mPeriodView.setText(getResources().getString(R.string.rest) + " " + mPeriodNumber);
+            else if (mInPriority)
+                mPeriodView.setText(getResources().getString(R.string.priority));
+        }
+
+
     }
 
     // use Math.random() to determine priority
@@ -879,6 +881,9 @@ public class MainActivity extends AppCompatActivity implements CardAlertFragment
                 .getColor(themeColors[1])));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setStatusBarColor(getResources().getColor(themeColors[2]));
+
+
+        updateViews(); // make changes take effect
     }
 
     // SNACKBAR METHODS
