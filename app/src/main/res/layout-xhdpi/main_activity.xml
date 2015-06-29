@@ -105,16 +105,18 @@
             android:textSize="60sp" />
 
         <!--Double Touch Button-->
-        <com.cengalabs.flatui.views.FlatButton
+        <Button
             android:id="@+id/doubleTouchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_centerInParent="true"
             android:clickable="true"
             android:onClick="addScore"
             android:text="@string/double_touch"
-            flatui:theme="@array/dark"
-            android:singleLine="false" />
+            android:textSize="20sp"
+            android:background="@android:color/transparent" />
 
         <RelativeLayout
             android:id="@+id/penaltyLayoutLeft"
